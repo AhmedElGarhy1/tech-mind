@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo-color-m.png";
@@ -18,6 +18,7 @@ interface link {
 
 const BasicExample = (): JSX.Element => {
   const [links, setLinks] = useState<link[]>(linksData);
+  const collapsRef = useRef(null);
   const { isEnglish, setIsEnglish } = useLangContext();
 
   const changeLanguage = (
@@ -37,7 +38,7 @@ const BasicExample = (): JSX.Element => {
             <img width="75" src={logo} />
           </Navbar.Brand>
           <Navbar.Toggle className="navbar-bars" aria-controls="nav-items" />
-          <Navbar.Collapse id="nav-items">
+          <Navbar.Collapse ref={collapsRef} id="nav-items">
             <Nav className={`${isEnglish ? "ms-auto" : "me-auto"}`}>
               {links.length !== 0 &&
                 links.map((link) => (

@@ -27,7 +27,7 @@ const Footer = (): JSX.Element => {
                   className="footer-logo mx-auto"
                   src={logo}
                   alt="logo"
-                  style={{ maxWidth: "190px" }}
+                  style={{ maxWidth: "190px", marginTop: "-7px" }}
                 />
                 <p className="footer-logo-text text-white fw-semibold fs-4">
                   {footer.words}

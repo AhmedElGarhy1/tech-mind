@@ -5,17 +5,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  faTwitter,
-  faFacebook,
+  faTwitterSquare,
+  faFacebookSquare,
   faLinkedin,
-  faInstagram,
+  faInstagramSquare,
 } from "@fortawesome/free-brands-svg-icons";
 
 const footer = {
   words: "The Future Is Belongs To You",
   social_icons: [
     {
-      icon: faTwitter,
+      icon: faTwitterSquare,
       name: "Twitter",
       href: "/",
     },
@@ -25,12 +25,12 @@ const footer = {
       href: "/",
     },
     {
-      icon: faFacebook,
+      icon: faFacebookSquare,
       name: "Facebook",
       href: "/",
     },
     {
-      icon: faInstagram,
+      icon: faInstagramSquare,
       name: "Instgram",
       href: "/",
     },
