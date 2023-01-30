@@ -1,5 +1,42 @@
 :root {
   --main-color: #0e1d27;
   --secondary-color: #30a5bf;
+  --secondary-color-hover: #1898b5;
   --yellow-color: #f2be22;
+  --main-transition: 0.3s;
 }
+/* global */
+.main-btn {
+  background-color: var(--secondary-color);
+  border: none;
+  padding: 7px 20px;
+  border-radius: 10px;
+  transition: var(--main-transition);
+  color: white !important;
+}
+
+.main-btn:hover {
+  transform: scale(1.1);
+}
+
+a {
+  text-decoration: none !important;
+}
+/* ends of global */
+/* navbar */
+.navbar-nav a {
+  color: white;
+}
+.navbar-nav a:hover,
+.navbar-nav a.active,
+.navbar-nav a:active,
+.navbar-nav a:focus,
+.navbar-nav .show > .nav-link {
+  color: #005f79 !important;
+  transition: var(--main-transition);
+}
+
+.navbar select:focus {
+  outline: none;
+}
+/* ends of navbar */
