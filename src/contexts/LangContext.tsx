@@ -1,23 +1,20 @@
 import React, { createContext, useState } from "react";
-import { LanguagesEnum } from "../data/enums";
 
 interface Props {
   children: JSX.Element[] | JSX.Element;
 }
 
 interface Values {
-  currentLanguage: LanguagesEnum;
-  setCurrentLanguage: React.Dispatch<React.SetStateAction<LanguagesEnum>>;
+  isEnglish: boolean;
+  setIsEnglish: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const LanguageContext = createContext<null | Values>(null);
 
 export const LanguageContextProvider = (props: Props) => {
-  const [currentLanguage, setCurrentLanguage] = useState<LanguagesEnum>(
-    LanguagesEnum.EN
-  );
+  const [isEnglish, setIsEnglish] = useState<boolean>(true);
   return (
-    <LanguageContext.Provider value={{ currentLanguage, setCurrentLanguage }}>
+    <LanguageContext.Provider value={{ isEnglish, setIsEnglish }}>
       {props.children}
     </LanguageContext.Provider>
   );

@@ -4,42 +4,52 @@ import {
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 
+import {
+  faTwitter,
+  faFacebook,
+  faLinkedin,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
+
 const footer = {
-  words: "The Future Is Belongs To You",
-  socialIcons: [
+  words: { EN: "The Future Is Belongs To You", AR: "المستقبل ينتمى لك" },
+  social_icons: [
     {
-      icon: "",
+      icon: faTwitter,
       name: "Twitter",
       href: "/",
     },
     {
-      icon: "",
+      icon: faLinkedin,
       name: "Linkedin",
       href: "/",
     },
     {
-      icon: "",
-      name: "Youtube",
+      icon: faFacebook,
+      name: "Facebook",
       href: "/",
     },
     {
-      icon: "",
+      icon: faInstagram,
       name: "Instgram",
       href: "/",
     },
   ],
   services: [
-    { name: { AR: "", EN: "Data Analysis" }, href: "/" },
-    { name: { AR: "", EN: "Data Science" }, href: "/" },
-    { name: { AR: "", EN: "C++ Language" }, href: "/" },
-    { name: { AR: "", EN: "Artificial Intelligence" }, href: "/" },
+    { name: { AR: "تحليل البيانات", EN: "Data Analysis" }, href: "/" },
+    { name: { AR: "علم البيانات", EN: "Data Science" }, href: "/" },
+    { name: { AR: "لغة C ++", EN: "C++ Language" }, href: "/" },
+    {
+      name: { AR: "الذكاء الاصطناعي", EN: "Artificial Intelligence" },
+      href: "/",
+    },
   ],
   usefu_links: [
-    { name: { AR: "", EN: "About Us" }, href: "/about" },
-    { name: { AR: "", EN: "Postes" }, href: "/postes" },
-    { name: { AR: "", EN: "Courses" }, href: "/courses" },
-    { name: { AR: "", EN: "Articles" }, href: "/articles" },
-    { name: { AR: "", EN: "Contact Us" }, href: "/contact" },
+    { name: { AR: "نبذة عنا", EN: "About Us" }, href: "/about" },
+    { name: { AR: "المنشورات", EN: "Postes" }, href: "/postes" },
+    { name: { AR: "الكورسات", EN: "Courses" }, href: "/courses" },
+    { name: { AR: "المقالات", EN: "Articles" }, href: "/articles" },
+    { name: { AR: "تواصل معنا", EN: "Contact Us" }, href: "/contact" },
   ],
   contact: [
     {

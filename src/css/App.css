@@ -7,6 +7,8 @@
 }
 /* global */
 .main-btn {
+  display: block;
+  width: fit-content;
   background-color: var(--secondary-color);
   border: none;
   padding: 7px 20px;
@@ -42,6 +44,23 @@ a {
 
 .navbar select:focus {
   outline: none;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,<svg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><path stroke='rgba(255,255,255,255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/></svg>");
+}
+.navbar-toggler:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.collapse {
+  transition: var(--main-transition);
+}
+@media (min-width: 767px) {
+  .navbar-btn.main-btn {
+    margin-right: unset !important;
+    margin-left: unset !important;
+  }
 }
 /* ends of navbar */
 

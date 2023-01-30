@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo-color-m.png";
 import linksData from "../data/nav-links.js";
 import useLangContext from "../hooks/useLangContext";
-import { LanguagesEnum } from "../data/enums";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,15 +18,12 @@ interface link {
 
 const BasicExample = (): JSX.Element => {
   const [links, setLinks] = useState<link[]>(linksData);
-  const { currentLanguage, setCurrentLanguage } = useLangContext();
+  const { isEnglish, setIsEnglish } = useLangContext();
 
   const changeLanguage = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
-    setCurrentLanguage((prev) => {
-      if (prev === LanguagesEnum.AR) return LanguagesEnum.EN;
-      return LanguagesEnum.AR;
-    });
+    setIsEnglish((prev) => !prev);
   };
 
   return (
@@ -36,24 +32,25 @@ const BasicExample = (): JSX.Element => {
         <Navbar.Brand as={Link} to="home">
           <img width="75" src={logo} />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="nav-items" />
+        <Navbar.Toggle className="navbar-bars" aria-controls="nav-items" />
         <Navbar.Collapse id="nav-items">
           <Nav className="ms-auto">
             {links.length !== 0 &&
               links.map((link) => (
                 <Nav.Link
+                  dir={isEnglish ? "ltr" : "rtl"}
                   className="fw-semibold"
                   key={link.id}
                   as={Link}
                   to={link.href}>
-                  {link.name[currentLanguage]}
+                  {link.name[isEnglish ? "EN" : "AR"]}
                 </Nav.Link>
               ))}
             <a
               role="button"
               onClick={changeLanguage}
               className="fw-semibold nav-link me-3 curser-po">
-              {currentLanguage}
+              {isEnglish ? "EN" : "AR"}
               <FontAwesomeIcon
                 width="10"
                 className="ms-1"
@@ -61,8 +58,12 @@ const BasicExample = (): JSX.Element => {
               />
             </a>
           </Nav>
-          <Link className="main-btn fw-semibold" to="/contact">
-            {currentLanguage === "EN" ? "Contact Us" : "تواصل معنا"}
+          <Link
+            className={`main-btn fw-semibold navbar-btn ${
+              isEnglish ? "me-auto" : "ms-auto"
+            }`}
+            to="/contact">
+            {isEnglish ? "Contact Us" : "تواصل معنا"}
           </Link>
         </Navbar.Collapse>
       </Container>
