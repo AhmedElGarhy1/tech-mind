@@ -17,7 +17,7 @@ interface link {
   href: string;
 }
 
-const BasicExample = () => {
+const BasicExample = (): JSX.Element => {
   const [links, setLinks] = useState<link[]>(linksData);
   const { currentLanguage, setCurrentLanguage } = useLangContext();
 
@@ -31,11 +31,7 @@ const BasicExample = () => {
   };
 
   return (
-    <Navbar
-      style={{
-        backgroundColor: "var(--main-color)",
-      }}
-      expand="md">
+    <Navbar className="bg-main" expand="md">
       <Container>
         <Navbar.Brand as={Link} to="home">
           <img width="75" src={logo} />

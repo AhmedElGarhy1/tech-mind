@@ -22,6 +22,10 @@
 a {
   text-decoration: none !important;
 }
+
+.bg-main {
+  background-color: var(--main-color);
+}
 /* ends of global */
 /* navbar */
 .navbar-nav a {
@@ -40,3 +44,10 @@ a {
   outline: none;
 }
 /* ends of navbar */
+
+/* footer */
+footer a:hover {
+  color: #005f79 !important;
+  transition: var(--main-transition);
+}
+/* end of the footer */
