@@ -27,7 +27,7 @@ const BasicExample = (): JSX.Element => {
   };
 
   return (
-    <Navbar className="bg-main" expand="md">
+    <Navbar className="bg-main fixed-top" expand="md">
       <Container>
         <Navbar.Brand as={Link} to="home">
           <img width="75" src={logo} />

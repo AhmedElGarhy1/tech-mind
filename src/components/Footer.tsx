@@ -33,8 +33,9 @@ const Footer = (): JSX.Element => {
                   {footer.words[isEnglish ? "EN" : "AR"]}
                 </p>
                 <ul className="list-unstyled p-0 d-flex">
-                  {footer.social_icons.map((icon) => (
+                  {footer.social_icons.map((icon, i) => (
                     <div
+                      key={i}
                       className="rounded-circle bg-white mx-2 d-flex "
                       style={{ width: "fit-content", padding: "5px" }}
                       role="button">
