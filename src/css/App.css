@@ -69,4 +69,12 @@ footer a:hover {
   color: #005f79 !important;
   transition: var(--main-transition);
 }
+@media (max-width: 576px) {
+  footer {
+    text-align: center !important;
+  }
+  .footer-social {
+    justify-content: center;
+  }
+}
 /* end of the footer */

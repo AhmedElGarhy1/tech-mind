@@ -32,7 +32,7 @@ const Footer = (): JSX.Element => {
                 <p className="text-white fw-semibold fs-4">
                   {footer.words[isEnglish ? "EN" : "AR"]}
                 </p>
-                <ul className="list-unstyled p-0 d-flex">
+                <ul className="footer-social list-unstyled p-0 d-flex">
                   {footer.social_icons.map((icon, i) => (
                     <div
                       key={i}
