@@ -28,19 +28,23 @@ const BasicExample = (): JSX.Element => {
 
   return (
     <>
-      <Navbar className="bg-main fixed-top" expand="md">
+      <Navbar
+        dir={isEnglish ? "ltr" : "rtl"}
+        className="bg-main fixed-top"
+        expand="md">
         <Container>
           <Navbar.Brand as={Link} to="home">
             <img width="75" src={logo} />
           </Navbar.Brand>
           <Navbar.Toggle className="navbar-bars" aria-controls="nav-items" />
           <Navbar.Collapse id="nav-items">
-            <Nav className="ms-auto">
+            <Nav className={`${isEnglish ? "ms-auto" : "me-auto"}`}>
               {links.length !== 0 &&
                 links.map((link) => (
                   <Nav.Link
-                    dir={isEnglish ? "ltr" : "rtl"}
-                    className="fw-semibold"
+                    data-toggle="collapse"
+                    data-target="#nav-items.show"
+                    className="fw-semibold lg-md-2"
                     key={link.id}
                     as={Link}
                     to={link.href}>
@@ -51,7 +55,7 @@ const BasicExample = (): JSX.Element => {
                 role="button"
                 onClick={changeLanguage}
                 className="fw-semibold nav-link me-3 curser-po">
-                {isEnglish ? "EN" : "AR"}
+                {isEnglish ? "AR" : "EN"}
                 <FontAwesomeIcon
                   width="10"
                   className="ms-1"

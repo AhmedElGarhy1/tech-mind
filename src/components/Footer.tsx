@@ -12,7 +12,9 @@ import footer from "../data/footer";
 const Footer = (): JSX.Element => {
   const { isEnglish } = useLangContext();
   return (
-    <footer className="page-footer bg-main font-small blue pt-4">
+    <footer
+      dir={isEnglish ? "ltr" : "rtl"}
+      className="page-footer bg-main font-small blue pt-4">
       {footer && (
         <>
           <Container
@@ -20,24 +22,22 @@ const Footer = (): JSX.Element => {
               isEnglish ? "start" : "end"
             }`}>
             <Row>
-              <div
-                dir={isEnglish ? "ltr" : "rtl"}
-                className="col-sm-6 col-md-6 col-lg-3 mt-md-0 my-3">
+              <div className="col-5 col-sm-6 col-md-6 col-lg-3 mt-md-0 my-3">
                 <img
+                  className="footer-logo mx-auto"
                   src={logo}
                   alt="logo"
-                  className="footer-logo mx-auto "
                   style={{ maxWidth: "190px" }}
                 />
-                <p className="text-white fw-semibold fs-4">
-                  {footer.words[isEnglish ? "EN" : "AR"]}
+                <p className="footer-logo-text text-white fw-semibold fs-4">
+                  {footer.words}
                 </p>
                 <ul className="footer-social list-unstyled p-0 d-flex">
                   {footer.social_icons.map((icon, i) => (
                     <div
                       key={i}
-                      className="rounded-circle bg-white mx-2 d-flex "
-                      style={{ width: "fit-content", padding: "5px" }}
+                      className="rounded-circle bg-white mx-1 mx-sm-2 d-flex p-1"
+                      style={{ width: "fit-content" }}
                       role="button">
                       <FontAwesomeIcon
                         className="text-center fs-5"
@@ -49,9 +49,7 @@ const Footer = (): JSX.Element => {
                 </ul>
               </div>
 
-              <div
-                dir={isEnglish ? "ltr" : "rtl"}
-                className="col-sm-6 col-md-6 col-lg-3 mb-md-0 my-3">
+              <div className="col-7 col-sm-6 col-md-6 col-lg-3 mb-md-0 my-3">
                 <h4 className="text-white fw-semibold">
                   {isEnglish ? "Services" : "الخدمات"}
                 </h4>
@@ -66,9 +64,7 @@ const Footer = (): JSX.Element => {
                 </ul>
               </div>
 
-              <div
-                dir={isEnglish ? "ltr" : "rtl"}
-                className="col-sm-6 col-md-6 col-lg-3 mb-md-0 my-3">
+              <div className="col-5 col-sm-6 col-md-6 col-lg-3 mb-md-0 my-3">
                 <h4 className="text-white fw-semibold">
                   {isEnglish ? "Usefull Links" : "روابط مفيدة"}
                 </h4>
@@ -82,9 +78,7 @@ const Footer = (): JSX.Element => {
                   ))}
                 </ul>
               </div>
-              <div
-                dir={isEnglish ? "ltr" : "rtl"}
-                className="col-sm-6 col-md-6 col-lg-3 mb-md-0 my-3">
+              <div className="col-7 col-sm-6 col-md-6 col-lg-3 mb-md-0 my-3">
                 <h4 className="text-white fw-semibold">
                   {isEnglish ? "Contact Us" : "تواصل معنا"}
                 </h4>
@@ -97,7 +91,9 @@ const Footer = (): JSX.Element => {
                         icon={link.icon}
                         className="mx-2"
                       />
-                      <span className="mx-1">{link.name}</span>
+                      <span className="mx-1 footer-contact-text">
+                        {link.name}
+                      </span>
                     </li>
                   ))}
                 </ul>

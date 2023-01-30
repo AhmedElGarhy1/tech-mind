@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const footer = {
-  words: { EN: "The Future Is Belongs To You", AR: "المستقبل ينتمى لك" },
+  words: "The Future Is Belongs To You",
   social_icons: [
     {
       icon: faTwitter,
@@ -46,7 +46,7 @@ const footer = {
   ],
   usefu_links: [
     { name: { AR: "نبذة عنا", EN: "About Us" }, href: "/about" },
-    { name: { AR: "المنشورات", EN: "Postes" }, href: "/postes" },
+    { name: { AR: "المنشورات", EN: "Posts" }, href: "/posts" },
     { name: { AR: "الكورسات", EN: "Courses" }, href: "/courses" },
     { name: { AR: "المقالات", EN: "Articles" }, href: "/articles" },
     { name: { AR: "تواصل معنا", EN: "Contact Us" }, href: "/contact" },

@@ -56,6 +56,10 @@ a {
 .collapse {
   transition: var(--main-transition);
 }
+.nav-link svg {
+  margin-left: 0.25rem !important;
+  margin-right: 0.25rem !important;
+}
 @media (min-width: 767px) {
   .navbar-btn.main-btn {
     margin-right: unset !important;
@@ -70,11 +74,23 @@ footer a:hover {
   transition: var(--main-transition);
 }
 @media (max-width: 576px) {
+  .footer-logo {
+    width: 135px;
+  }
+  .footer-logo-text.text-white {
+    font-size: 18px !important;
+  }
+  .footer-contact-text {
+    font-size: 14px;
+  }
+}
+
+/* @media (max-width: 576px) {
   footer {
     text-align: center !important;
   }
   .footer-social {
     justify-content: center;
   }
-}
+} */
 /* end of the footer */
