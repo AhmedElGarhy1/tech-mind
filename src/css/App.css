@@ -73,6 +73,9 @@ footer a:hover {
   color: #005f79 !important;
   transition: var(--main-transition);
 }
+.footer-social-icon {
+  padding: 3.5px 5px;
+}
 @media (max-width: 576px) {
   .footer-logo {
     width: 135px;

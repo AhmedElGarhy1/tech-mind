@@ -36,7 +36,7 @@ const Footer = (): JSX.Element => {
                   {footer.social_icons.map((icon, i) => (
                     <div
                       key={i}
-                      className="rounded-circle bg-white mx-1 mx-sm-2 d-flex p-1"
+                      className="footer-social-icon rounded-circle bg-white mx-1 mx-sm-2 d-flex"
                       style={{ width: "fit-content" }}
                       role="button">
                       <FontAwesomeIcon
@@ -89,7 +89,7 @@ const Footer = (): JSX.Element => {
                         color="var(--yellow-color)"
                         fontSize={20}
                         icon={link.icon}
-                        className="mx-2"
+                        className="mx-sm-2 mx-1"
                       />
                       <span className="mx-1 footer-contact-text">
                         {link.name}

@@ -43,7 +43,7 @@ const BasicExample = (): JSX.Element => {
                 links.map((link) => (
                   <Nav.Link
                     data-toggle="collapse"
-                    data-target="#nav-items.show"
+                    data-target=".navbar-collapse.show"
                     className="fw-semibold lg-md-2"
                     key={link.id}
                     as={Link}
