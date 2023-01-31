@@ -1,4 +1,4 @@
-export const convertToPrice = (price: number, isEnglish: bool): string => {
+export const convertToPrice = (price: number, isEnglish: boolean): string => {
   const numberString = price
     .toString()
     .split("")
