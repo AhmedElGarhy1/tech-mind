@@ -10,11 +10,9 @@ import logo from "../assets/logo-color-m.png";
 import footer from "../data/footer";
 
 const Footer = (): JSX.Element => {
-  const { isEnglish } = useLangContext();
+  const { isEnglish, currentLanguage } = useLangContext();
   return (
-    <footer
-      dir={isEnglish ? "ltr" : "rtl"}
-      className="page-footer bg-main font-small blue pt-4">
+    <footer className="page-footer bg-main font-small blue pt-4">
       {footer && (
         <>
           <Container
@@ -57,7 +55,7 @@ const Footer = (): JSX.Element => {
                   {footer.services.map((link, i) => (
                     <li className="my-3" key={i}>
                       <Link className="text-white" to={link.href}>
-                        {link.name[isEnglish ? "EN" : "AR"]}
+                        {link.name[currentLanguage]}
                       </Link>
                     </li>
                   ))}
@@ -72,7 +70,7 @@ const Footer = (): JSX.Element => {
                   {footer.usefu_links.map((link, i) => (
                     <li className="my-3" key={i}>
                       <Link className="text-white" to={link.href}>
-                        {link.name[isEnglish ? "EN" : "AR"]}
+                        {link.name[currentLanguage]}
                       </Link>
                     </li>
                   ))}
@@ -102,7 +100,9 @@ const Footer = (): JSX.Element => {
           </Container>
 
           <div className="footer-copyright text-center py-3 text-white">
-            © 2023 Copyright: Tech Mind
+            {isEnglish
+              ? "© 2023 Copyright: Tech Mind"
+              : "© 2023 حقوق النشر: Tech Mind"}
           </div>
         </>
       )}

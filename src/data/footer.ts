@@ -46,7 +46,7 @@ const footer = {
   ],
   usefu_links: [
     { name: { AR: "نبذة عنا", EN: "About Us" }, href: "/about" },
-    { name: { AR: "المنشورات", EN: "Posts" }, href: "/posts" },
+    { name: { AR: "المنشورات", EN: "Postes" }, href: "/postes" },
     { name: { AR: "الكورسات", EN: "Courses" }, href: "/courses" },
     { name: { AR: "المقالات", EN: "Articles" }, href: "/articles" },
     { name: { AR: "تواصل معنا", EN: "Contact Us" }, href: "/contact" },
