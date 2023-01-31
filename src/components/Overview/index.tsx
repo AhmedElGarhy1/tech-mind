@@ -10,7 +10,7 @@ import {
 import { DeplomasType } from "../../data/deplomas";
 import useLangContext from "../../hooks/useLangContext";
 import OverviewList from "./OverviewList";
-import { convertToPrice } from "../../utils";
+import { convertToPrice, currentLanguage } from "../../utils";
 import { Link } from "react-router-dom";
 
 interface ParamsType {
@@ -18,7 +18,7 @@ interface ParamsType {
 }
 
 const DeplomaOverview = ({ deploma }: ParamsType) => {
-  const { currentLanguage, isEnglish } = useLangContext();
+  const { isEnglish } = useLangContext();
   return (
     <Container>
       <div className="py-4">
@@ -49,7 +49,7 @@ const DeplomaOverview = ({ deploma }: ParamsType) => {
             realProjects={deploma.real_projects}
           />
           <div
-            className="text-center pt-5 pb-4"
+            className="text-center pt-5 pb-4 my-4"
             style={{
               backgroundColor: "#F0F0F0",
               borderLeft: "4px solid var(--secondary-color)",
@@ -78,7 +78,7 @@ const DeplomaOverview = ({ deploma }: ParamsType) => {
             {isEnglish ? "Course Overview" : "نظرة عامة على الدورة"}
           </h3>
           <ul className="list-unstyled p-0">
-            {deploma.overview[currentLanguage].map((text, i) => (
+            {deploma.overview[currentLanguage(isEnglish)].map((text, i) => (
               <li className="py-2" key={i}>
                 {text}
               </li>

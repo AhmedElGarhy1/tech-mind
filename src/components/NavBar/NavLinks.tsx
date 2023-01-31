@@ -4,15 +4,15 @@ import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Nav } from "react-bootstrap";
-
 import linksData from "../../data/nav-links.js";
 import useLangContext from "../../hooks/useLangContext";
 import { ClickMouseEventType, LinkType, NavLinksParamsType } from "./types";
+import { currentLanguage } from "../../utils/index.js";
 
 const NavLinks = ({ menuIconRef }: NavLinksParamsType) => {
   const [links, setLinks] = useState<LinkType[]>(linksData);
   const location = useLocation();
-  const { currentLanguage, isEnglish, setIsEnglish } = useLangContext();
+  const { isEnglish, setIsEnglish } = useLangContext();
 
   useEffect(() => {
     setLinks((prev) => [...prev]);
@@ -39,14 +39,14 @@ const NavLinks = ({ menuIconRef }: NavLinksParamsType) => {
               key={link.id}
               as={Link}
               to={link.href}>
-              {link.name[currentLanguage]}
+              {link.name[currentLanguage(isEnglish)]}
             </Nav.Link>
           ))}
         <a
           role="button"
           onClick={changeLanguage}
           className="fw-semibold nav-link me-3 curser-po">
-          {currentLanguage}
+          {isEnglish ? "AR" : "EN"}
           <FontAwesomeIcon width="10" className="ms-1" icon={faChevronDown} />
         </a>
       </Nav>

@@ -9,3 +9,6 @@ export const convertToPrice = (price: number, isEnglish: boolean): string => {
 
   return isEnglish ? "EGY " + numberString : numberString + " جنيها";
 };
+
+export const currentLanguage = (isEnglish: boolean): "EN" | "AR" =>
+  isEnglish ? "EN" : "AR";

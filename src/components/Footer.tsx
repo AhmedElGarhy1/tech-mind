@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import useLangContext from "../hooks/useLangContext";
-
 import logo from "../assets/logo-color-m.png";
 import footer from "../data/footer";
+import { currentLanguage } from "../utils";
 
 const Footer = (): JSX.Element => {
-  const { isEnglish, currentLanguage } = useLangContext();
+  const { isEnglish } = useLangContext();
   return (
     <footer className="page-footer bg-main font-small blue pt-4">
       {footer && (
@@ -55,7 +55,7 @@ const Footer = (): JSX.Element => {
                   {footer.services.map((link, i) => (
                     <li className="my-3" key={i}>
                       <Link className="text-white" to={link.href}>
-                        {link.name[currentLanguage]}
+                        {link.name[isEnglish ? "EN" : "AR"]}
                       </Link>
                     </li>
                   ))}
@@ -70,7 +70,7 @@ const Footer = (): JSX.Element => {
                   {footer.usefu_links.map((link, i) => (
                     <li className="my-3" key={i}>
                       <Link className="text-white" to={link.href}>
-                        {link.name[currentLanguage]}
+                        {link.name[currentLanguage(isEnglish)]}
                       </Link>
                     </li>
                   ))}
