@@ -22,6 +22,8 @@ export const LanguageContextProvider = (props: Props) => {
       return "AR";
     });
   }, [isEnglish]);
+  console.log(isEnglish);
+  console.log(currentLanguage);
 
   return (
     <LanguageContext.Provider
