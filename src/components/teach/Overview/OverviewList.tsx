@@ -1,5 +1,5 @@
 import React from "react";
-import useLangContext from "../../hooks/useLangContext";
+import useLangContext from "../../../hooks/useLangContext";
 
 import {
   faClock,

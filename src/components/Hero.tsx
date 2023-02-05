@@ -1,4 +1,5 @@
 import React from "react";
+import heroImage from "../assets/hero.jpg";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useLangContext from "../hooks/useLangContext";
@@ -12,23 +13,20 @@ interface ParamsType {
     AR: string;
     EN: string;
   };
-  href: string;
 }
 
-const Hero = ({ name, description, href }: ParamsType) => {
+const Hero = ({ name, description }: ParamsType) => {
   const { isEnglish } = useLangContext();
   return (
-    <div className="py-5 bg-dark text-white">
-      <Container>
-        <h1 style={{ fontSize: "40px" }}>
-          {name[currentLanguage(isEnglish)]} Diploma
-        </h1>
+    <div className="text-white bg-hero-img  py-5">
+      <Container style={{ zIndex: 100 }} className="position-relative pt-5">
+        <h1 style={{ fontSize: "40px" }}>{name[currentLanguage(isEnglish)]}</h1>
         <p className="mt-3 mb-5 pb-1" style={{ maxWidth: "400px" }}>
           {description[currentLanguage(isEnglish)]}
         </p>
-        <Link to={href} className="main-btn px-5">
+        <a role={"button"} className="main-btn px-5 mt-5">
           {isEnglish ? "Start Your Career" : "ابدأ حياتك المهنية"}
-        </Link>
+        </a>
       </Container>
     </div>
   );

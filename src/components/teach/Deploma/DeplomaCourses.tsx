@@ -1,0 +1,65 @@
+import React from "react";
+import { Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import useLangContext from "../../../hooks/useLangContext";
+import { currentLanguage } from "../../../utils";
+
+interface ParamsType {
+  list: {
+    _id: string;
+    name: {
+      AR: string;
+      EN: string;
+    };
+    description: {
+      AR: string;
+      EN: string;
+    };
+    icon: string;
+  }[];
+  deplomaID: string;
+  isDeploma: boolean;
+}
+
+const DeplomaCourses = ({ list, deplomaID, isDeploma }: ParamsType) => {
+  const { isEnglish } = useLangContext();
+  return (
+    <Container className="my-5">
+      <h3 className="mb-4">{isEnglish ? "Course Tracks" : "مسارات الدورة"}</h3>
+      <Row>
+        {list.map((course) => (
+          <>
+            {isDeploma ? (
+              <Link
+                to={`/diploma/${deplomaID}/${course._id}`}
+                key={course._id}
+                className="col-12 col-md-6 col-lg-4 col-xl-3 my-2">
+                <div
+                  style={{ borderColor: "var(--secondary-color) !important" }}
+                  className="deploma-course-card text-center border border-2 border rounded-2 p-1 pt-4 pb-2 h-100 mx-auto">
+                  <img src={course.icon} alt={course.name["EN"]} />
+                  <h5>{course.name[currentLanguage(isEnglish)]}</h5>
+                  <p>{course.description[currentLanguage(isEnglish)]}</p>
+                </div>
+              </Link>
+            ) : (
+              <div
+                key={course._id}
+                className="col-12 col-md-6 col-lg-4 col-xl-3 my-2">
+                <div
+                  style={{ borderColor: "var(--secondary-color) !important" }}
+                  className="deploma-course-card text-center border border-2 border rounded-2 p-1 pt-4 pb-2 h-100 mx-auto">
+                  <img src={course.icon} alt={course.name["EN"]} />
+                  <h5>{course.name[currentLanguage(isEnglish)]}</h5>
+                  <p>{course.description[currentLanguage(isEnglish)]}</p>
+                </div>
+              </div>
+            )}
+          </>
+        ))}
+      </Row>
+    </Container>
+  );
+};
+
+export default DeplomaCourses;

@@ -1,6 +1,7 @@
 :root {
   --main-color: #0e1d27;
   --secondary-color: #30a5bf;
+  --bs-border-color: #30a5bf !important;
   --secondary-color-hover: #1898b5;
   --yellow-color: #f2be22;
   --main-transition: 0.3s;
@@ -11,6 +12,9 @@
 }
 .bg-yellow {
   background-color: var(--yellow-color);
+}
+.bg-main-color {
+  background-color: var(--main-color);
 }
 
 .main-btn {
@@ -32,6 +36,9 @@
 a {
   text-decoration: none !important;
 }
+h3 {
+  font-weight: bold !important;
+}
 
 .bg-main {
   background-color: var(--main-color);
@@ -50,14 +57,9 @@ a {
 /* ends of global */
 /* navbar */
 .navbar-height {
-  height: 75px;
+  height: 70px;
 }
 
-@media (max-width: 576px) {
-  .navbar-height {
-    height: 71px;
-  }
-}
 .navbar-nav a {
   color: white;
 }
@@ -96,6 +98,135 @@ a {
 }
 /* ends of navbar */
 
+/* hero */
+.bg-hero-img {
+  background-image: url("../assets/hero.jpg");
+  background-position: center right;
+  background-size: cover;
+  position: relative;
+}
+@media (max-width: 576px) {
+  .bg-hero-img {
+    background-image: url("../assets/hero-small.png");
+    background-position: center;
+  }
+}
+
+.bg-hero-img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+/* end of hero */
+/* deploma courses */
+.deploma-course-card {
+  max-width: 350px !important;
+}
+.deploma-course-card:hover {
+  background-color: var(--yellow-color);
+  transition: var(--main-transition);
+}
+.deploma-course-card:hover * {
+  color: white !important;
+}
+
+.deploma-course-card h5 {
+  color: initial;
+}
+.deploma-course-card p {
+  color: #7d7d7d;
+}
+/* end ofdeploma courses */
+
+@media (max-width: 767px) {
+  .mobile-disappeare {
+    display: none;
+  }
+}
+
+/* why tech mind */
+
+.why-tech-mind-ul li {
+  position: relative;
+  list-style: none;
+}
+.why-tech-mind-ul li:not(:last-child)::after {
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 135%;
+  top: 0;
+  left: -30px;
+  background-color: var(--secondary-color);
+  z-index: -5;
+}
+.why-tech-mind-li-ball {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  position: absolute;
+  top: -5px;
+  left: -46px;
+}
+.why-tech-mind-ul li[title="false"]:not(:last-child)::after {
+  right: -30px !important;
+  left: unset;
+}
+.why-tech-mind-ul li[title="false"] .why-tech-mind-li-ball {
+  right: -47px;
+  left: unset;
+}
+
+@media (max-width: 576px) {
+  .why-tech-mind-ul li:not(:last-child)::after {
+    left: -20px;
+  }
+  .why-tech-mind-li-ball {
+    left: -37px;
+  }
+  .why-tech-mind-ul li[title="false"]:not(:last-child)::after {
+    right: -23px !important;
+    left: unset;
+  }
+  .why-tech-mind-ul li[title="false"] .why-tech-mind-li-ball {
+    right: -40px;
+    left: unset;
+  }
+}
+/* end of why tech mind */
+/* start stats */
+@media (max-width: 576px) {
+  .stats-icons {
+    flex-wrap: wrap;
+  }
+}
+/* end of stats */
+
+/* faq */
+
+/* end of faq */
+
+/*  */
+.course-slider-image {
+  width: 230px;
+}
+@media (max-width: 576px) {
+  .course-slider-image {
+    width: 180px;
+  }
+}
+/*  */
 /* footer */
 footer a:hover {
   color: #005f79 !important;
@@ -143,3 +274,29 @@ footer a:hover {
   height: 300px;
 }
 /* end overview */
+
+.loading {
+  position: absolute;
+  /* background-image: url("../assets/hero.jpg");
+  background-size: cover;
+  background-position: center right; */
+  background-color: white;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading > span {
+  z-index: 20;
+}
+.loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

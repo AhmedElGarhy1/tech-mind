@@ -1,31 +1,52 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { DeplomaCourses } from "../../components/Deploma";
+import {
+  LoaderFunctionArgs,
+  useLoaderData,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
+import { DeplomaCourses } from "../../components/teach/Deploma";
 import Hero from "../../components/Hero";
-import Overview from "../../components/Overview";
-import { deplomasData, DeplomasType } from "../../data/deplomas";
+import Overview from "../../components/teach/Overview";
+import { DeplomaType } from "../../types/deploma";
+import useGet from "../../hooks/useGet";
+import WhatYouWillLearn from "../../components/teach/WhatYouWillLearn";
+import WhoThisCourseFor from "../../components/teach/WhoThisCourseFor";
+import WhyTechMind from "../../components/teach/WhyTechMind";
+import Stats from "../../components/teach/Stats";
+import FAQ from "../../components/teach/FAQ";
 
 const SingleDeploma = () => {
-  const { id } = useParams();
-  const [deploma, setDeploma] = useState<DeplomasType>(null);
-  useEffect(() => {
-    const currentDeploma = deplomasData.find((d) => d.id === id);
-    if (!currentDeploma) return;
-
-    setDeploma(currentDeploma);
-  }, []);
+  const data = useLoaderData();
+  const deploma = data as DeplomaType;
+  // const navigate = useNavigate();
 
   return (
     <div>
       {deploma && (
         <>
-          <Hero
-            name={deploma.name}
-            description={deploma.description}
-            href={deploma.href}
+          <Hero name={deploma.name} description={deploma.description} />
+          <Overview course={deploma} />
+          <DeplomaCourses
+            isDeploma={true}
+            deplomaID={deploma._id}
+            list={deploma.courses}
           />
-          <Overview deploma={deploma} />
-          <DeplomaCourses />
+          <WhatYouWillLearn
+            isDeploma={true}
+            src={deploma.other_src}
+            list={deploma.what_you_will_learn}
+          />
+          <WhoThisCourseFor list={deploma.who_is_this_course_for} />
+          <WhyTechMind />
+          <Stats
+            duration={deploma.duration}
+            real_projects={deploma.real_projects}
+            lectures={deploma.lectures}
+            name={deploma.name}
+            workshops={deploma.workshops}
+          />
+          <FAQ list={deploma.fqa} />
         </>
       )}
     </div>

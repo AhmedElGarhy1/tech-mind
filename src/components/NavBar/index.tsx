@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Container, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo-color-m.png";
 import useLangContext from "../../hooks/useLangContext";
 
@@ -14,7 +14,7 @@ const NavBar = (): JSX.Element => {
     <>
       <Navbar className="bg-main fixed-top" expand="md">
         <Container>
-          <Navbar.Brand as={Link} to="home">
+          <Navbar.Brand as={NavLink} to="home">
             <img width="75" src={logo} />
           </Navbar.Brand>
           <Navbar.Toggle
@@ -24,13 +24,13 @@ const NavBar = (): JSX.Element => {
           />
           <Navbar.Collapse id="nav-items">
             <NavLinks menuIconRef={menuIconRef} />
-            <Link
+            <NavLink
               className={`main-btn fw-semibold navbar-btn ${
                 isEnglish ? "me-auto" : "ms-auto"
               }`}
               to="/contact">
               {isEnglish ? "Contact Us" : "تواصل معنا"}
-            </Link>
+            </NavLink>
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -1,14 +1,17 @@
 import Home from "./Home";
 import Contact from "./Contact";
 import About from "./About";
-import SingleDeploma from "./Diplomas/SingleDeploma";
-import SingleCourse from "./Courses/SingleCourse";
 import SinglePost from "./Postes/SinglePost";
 import SingleArticle from "./Articles/SingleArticle";
 import Deplomas from "./Diplomas";
 import Courses from "./Courses";
 import Postes from "./Postes";
 import Articles from "./Articles";
+import { lazy } from "react";
+
+// lazy load
+const SingleDeploma = lazy(() => import("./Diplomas/SingleDeploma"));
+const SingleCourse = lazy(() => import("./Courses/SingleCourse"));
 
 export {
   Home,

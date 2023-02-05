@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const footer = {
-  words: "The Future Is Belongs To You",
+  words: "The Future Belongs To You",
   social_icons: [
     {
       icon: faTwitterSquare,
