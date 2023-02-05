@@ -1,3 +1,5 @@
+import { faSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import useLangContext from "../../hooks/useLangContext";
@@ -42,19 +44,19 @@ const WhatYouWillLearn = ({ list, src, isDeploma }: ParamsType) => {
 
   return (
     <>
-      <Container className="my-5">
+      <Container as="section">
         <Row>
           <Col md="6">
-            <h3 className="mb-4">
+            <h1 className="mb-4">
               {isEnglish
                 ? "What you will learn in this Course?"
                 : "ماذا ستتعلم في هذه الدورة؟"}
-            </h3>
-            <ul style={{ listStyle: "square" }}>
+            </h1>
+            <ul className="list-unstyled">
               {visible.map((item, i) => (
                 <li key={i} className="my-2">
-                  {/* &#9632; */}
-                  {item}
+                  <span className="me-2">&#9632;</span>
+                  <span className="fs-5">{item}</span>
                 </li>
               ))}
             </ul>

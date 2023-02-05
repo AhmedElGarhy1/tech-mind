@@ -17,8 +17,8 @@ interface ResponseType {
 }
 
 const useGet = () => {
-  // const baseUrl = "http://localhost:7000/api/";
-  const baseUrl = "https://tech-mind-backend.onrender.com";
+  const baseUrl = "http://localhost:7000";
+  // const baseUrl = "https://tech-mind-backend.onrender.com";
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const makeRequest = async (url: string) => {

@@ -30,11 +30,12 @@ const Stats = ({
   const { isEnglish } = useLangContext();
   return (
     <Container
-      className="rounded-2 text-white text-center py-5 mb-5"
+      as="section"
+      className="rounded-2 text-white text-center py-5"
       style={{ backgroundColor: "var(--main-color)" }}>
-      <h3 className="mb-3">{name[currentLanguage(isEnglish)]}</h3>
-      <p className="text-white-50 fw-normal">
-        Are you ready to start your path to becoming a Data Scients
+      <h1 className="mb-3">{name[currentLanguage(isEnglish)]}</h1>
+      <p className="text-white-50 fw-normal fs-5">
+        Are you ready to start your Career !
       </p>
       <Container className="d-flex text-center justify-content-center mb-4 gap-3 stats-icons px-4 px-sm-0">
         <div>

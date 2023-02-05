@@ -3,7 +3,7 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import { getCourse, getDeiploma } from "../api/get-api";
+import { getCourse, getDeiploma, getDiplomaCourse } from "../api/get-api";
 import Layout from "../components/Layout";
 import NotFound from "../Error/NotFound";
 
@@ -20,12 +20,13 @@ import {
   SingleCourse,
   About,
 } from "../pages";
+import SingleDeplomaCourse from "../pages/Diplomas/SingleDeplomaCourse";
 
 import ReactSuspense from "./LoaderRoute";
 
 export default createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/" element={<Layout />} errorElement={<NotFound />}>
       <Route index element={<Home />} />
       <Route path="contact" element={<Contact />} />
       <Route path="about" element={<About />} />
@@ -39,12 +40,20 @@ export default createBrowserRouter(
       </Route>
       <Route path="diplomas">
         <Route index element={<Deplomas />} />
-        <Route
-          loader={getDeiploma}
-          path=":id"
-          element={<ReactSuspense>{<SingleDeploma />}</ReactSuspense>}
-          errorElement={<NotFound />}
-        />
+        <Route path=":id">
+          <Route
+            loader={getDeiploma}
+            index
+            element={<ReactSuspense>{<SingleDeploma />}</ReactSuspense>}
+            errorElement={<NotFound />}
+          />
+          <Route
+            loader={getDiplomaCourse}
+            path=":id"
+            element={<ReactSuspense>{<SingleCourse />}</ReactSuspense>}
+            errorElement={<NotFound />}
+          />
+        </Route>
       </Route>
       <Route path="courses">
         <Route index element={<Courses />} />
@@ -59,6 +68,7 @@ export default createBrowserRouter(
           errorElement={<NotFound />}
         />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );

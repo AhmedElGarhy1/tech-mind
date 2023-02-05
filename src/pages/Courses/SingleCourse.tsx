@@ -13,17 +13,29 @@ import WhyLearnFromUs from "../../components/teach/WhyTechMind";
 import useGet from "../../hooks/useGet";
 import { CourseType } from "../../types/course";
 
+interface DataType {
+  course: CourseType;
+  deploma: {
+    name: {
+      EN: string;
+      AR: string;
+    };
+    _id: string;
+  };
+}
+
 const SingleCourse = () => {
   const { id } = useParams();
-  const data = useLoaderData();
-  const course = data as CourseType;
+  const data = useLoaderData() as DataType;
+  const course = data.course;
+  const deploma = data.deploma;
 
   return (
     <>
-      {course && course.is_dependent && (
+      {course && (
         <>
           <Hero name={course.name} description={course.description} />
-          <Overview course={course} />
+          <Overview deplomaName={deploma?.name} course={course} />
           {course.have_objectives && <CourseObjectives />}
           <RelatedCourses id={id} />
           <WhatYouWillLearn
@@ -34,7 +46,7 @@ const SingleCourse = () => {
           {course.have_target && (
             <WhoThisCourseFor list={course.who_is_this_course_for} />
           )}
-          {course.is_dependent && <WhyLearnFromUs />}
+          {course.is_dependent && !deploma?._id && <WhyLearnFromUs />}
           <Stats
             duration={course.duration}
             lectures={course.lectures}

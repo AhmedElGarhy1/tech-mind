@@ -25,37 +25,42 @@ const DeplomaCourses = ({ list, deplomaID, isDeploma }: ParamsType) => {
   const { isEnglish } = useLangContext();
   return (
     <Container className="my-5">
-      <h3 className="mb-4">{isEnglish ? "Course Tracks" : "مسارات الدورة"}</h3>
+      <h1 className="mb-4">{isEnglish ? "Course Tracks" : "مسارات الدورة"}</h1>
       <Row>
-        {list.map((course) => (
-          <>
+        {list.map((course, i) => (
+          <div
+            key={course._id}
+            className="col-12 col-md-6 col-lg-4 col-xl-3 my-2">
             {isDeploma ? (
               <Link
-                to={`/diploma/${deplomaID}/${course._id}`}
-                key={course._id}
-                className="col-12 col-md-6 col-lg-4 col-xl-3 my-2">
+                to={`/diplomas/${deplomaID}/${course._id}`}
+                key={course._id}>
                 <div
                   style={{ borderColor: "var(--secondary-color) !important" }}
-                  className="deploma-course-card text-center border border-2 border rounded-2 p-1 pt-4 pb-2 h-100 mx-auto">
-                  <img src={course.icon} alt={course.name["EN"]} />
+                  className="deploma-course-card text-center border border-2 border rounded-2 p-1 pb-2 h-100 mx-auto">
+                  <img
+                    className="my-3"
+                    src={course.icon}
+                    alt={course.name["EN"]}
+                  />
                   <h5>{course.name[currentLanguage(isEnglish)]}</h5>
                   <p>{course.description[currentLanguage(isEnglish)]}</p>
                 </div>
               </Link>
             ) : (
               <div
-                key={course._id}
-                className="col-12 col-md-6 col-lg-4 col-xl-3 my-2">
-                <div
-                  style={{ borderColor: "var(--secondary-color) !important" }}
-                  className="deploma-course-card text-center border border-2 border rounded-2 p-1 pt-4 pb-2 h-100 mx-auto">
-                  <img src={course.icon} alt={course.name["EN"]} />
-                  <h5>{course.name[currentLanguage(isEnglish)]}</h5>
-                  <p>{course.description[currentLanguage(isEnglish)]}</p>
-                </div>
+                style={{ borderColor: "var(--secondary-color) !important" }}
+                className="deploma-course-card text-center border border-2 border rounded-2 p-1 pb-2 h-100 mx-auto">
+                <img
+                  className="my-3"
+                  src={course.icon}
+                  alt={course.name["EN"]}
+                />
+                <h5>{course.name[currentLanguage(isEnglish)]}</h5>
+                <p>{course.description[currentLanguage(isEnglish)]}</p>
               </div>
             )}
-          </>
+          </div>
         ))}
       </Row>
     </Container>

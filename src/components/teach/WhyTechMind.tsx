@@ -40,12 +40,12 @@ const WhyLearnFromUs = () => {
 
   return (
     <>
-      <Container className="mt-5 mb-3">
-        <h3 className="mb-4">
+      <Container as="section">
+        <h1 className="mb-4">
           {isEnglish
             ? "Why learn through Tech Mind Academy?"
             : "لماذا تتعلم من خلال Tech Mind Academy؟"}
-        </h3>
+        </h1>
         <Row>
           <Col md="6">
             <ColumnComponent list={leftColumnData} startCount={1} />

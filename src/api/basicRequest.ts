@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const baseUrl = "https://tech-mind-backend.onrender.com";
+// const baseUrl = "https://tech-mind-backend.onrender.com";
 
-// const baseUrl = "http://localhost:7000";
+const baseUrl = "http://localhost:7000";
 const backendReq = async (url: string, method: string, obj?: object) => {
   const options = {
     method,

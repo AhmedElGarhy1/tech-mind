@@ -33,6 +33,11 @@
   transform: scale(1.05);
 }
 
+section {
+  margin-top: 60px !important;
+  margin-bottom: 0px !important;
+}
+
 a {
   text-decoration: none !important;
 }
@@ -149,7 +154,9 @@ h3 {
 }
 
 /* why tech mind */
-
+.why-tech-mind-ul {
+  margin-left: 11px !important;
+}
 .why-tech-mind-ul li {
   position: relative;
   list-style: none;
@@ -214,6 +221,20 @@ h3 {
 /* end of stats */
 
 /* faq */
+/* 
+.faq-a.closed {
+  opacity: 0;
+  margin: 0 !important;
+  z-index: -20222;
+}
+.faq-a {
+  max-height: 0 !important;
+  transition: var(--main-transition);
+  overflow: hidden;
+}
+.faq-a.opend {
+  max-height: 100% !important;
+} */
 
 /* end of faq */
 
@@ -266,8 +287,15 @@ footer a:hover {
 }
 .overview-list li .rounded-circle {
   width: fit-content;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2px 0px;
+  width: 44px;
+  height: 44px;
+}
+.overview-list li .rounded-circle svg {
+  font-size: 20px;
 }
 .overview-img {
   object-fit: cover;

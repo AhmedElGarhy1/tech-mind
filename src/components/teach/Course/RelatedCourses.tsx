@@ -37,12 +37,12 @@ const RelatedCourses = ({ id }: ParamsType) => {
   }, []);
 
   return (
-    <Container className="bg-main-color py-4">
+    <Container as="section" className="bg-main-color py-4">
       {courses && courses.length > 0 && (
         <>
-          <h3 className="text-white mb-3">
+          <h1 className="text-white mb-3">
             {isEnglish ? "Most Popular Courses" : "الكورسات الأكثر شهرة"}
-          </h3>
+          </h1>
           <Swiper dir="ltr" spaceBetween={50} breakpoints={breakpoints}>
             {courses.map((course) => (
               <SwiperSlide

@@ -21,7 +21,7 @@ const Hero = ({ name, description }: ParamsType) => {
     <div className="text-white bg-hero-img  py-5">
       <Container style={{ zIndex: 100 }} className="position-relative pt-5">
         <h1 style={{ fontSize: "40px" }}>{name[currentLanguage(isEnglish)]}</h1>
-        <p className="mt-3 mb-5 pb-1" style={{ maxWidth: "400px" }}>
+        <p className="mt-3 mb-5 pb-1 fs-5" style={{ maxWidth: "600px" }}>
           {description[currentLanguage(isEnglish)]}
         </p>
         <a role={"button"} className="main-btn px-5 mt-5">

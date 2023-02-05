@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from "react";
-import {
-  LoaderFunctionArgs,
-  useLoaderData,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
-import { DeplomaCourses } from "../../components/teach/Deploma";
+import { useLoaderData } from "react-router-dom";
 import Hero from "../../components/Hero";
 import Overview from "../../components/teach/Overview";
-import { DeplomaType } from "../../types/deploma";
-import useGet from "../../hooks/useGet";
 import WhatYouWillLearn from "../../components/teach/WhatYouWillLearn";
 import WhoThisCourseFor from "../../components/teach/WhoThisCourseFor";
 import WhyTechMind from "../../components/teach/WhyTechMind";
 import Stats from "../../components/teach/Stats";
 import FAQ from "../../components/teach/FAQ";
+import { DeplomaCourses } from "../../components/teach/Deploma";
+import { DeplomaType } from "../../types/deploma";
 
 const SingleDeploma = () => {
   const data = useLoaderData();

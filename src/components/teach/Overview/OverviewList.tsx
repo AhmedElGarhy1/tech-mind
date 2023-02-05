@@ -23,47 +23,42 @@ const OverviewList = (params: ParamsType) => {
   return (
     <ul className="overview-list list-unstyled p-0">
       <Row>
-        <li className="py-3 col-6 col-md-12">
+        <li className="py-3 col-6 col-md-12 d-flex align-items-center">
           <div className="rounded-circle mx-2 bg-yellow">
-            <FontAwesomeIcon
-              className="px-2 text-white"
-              width="13"
-              icon={faClock}
-            />
+            <FontAwesomeIcon className="px-2 text-white" icon={faClock} />
           </div>
-          {isEnglish ? "Durations" : "المدة"} : <span>{params.duration}</span>
+          <span style={{ fontWeight: 500 }} className="fs-5">
+            {isEnglish ? "Durations" : "المدة"} : {params.duration}{" "}
+            {isEnglish ? "Hours" : "ساعة"}
+          </span>
         </li>
-        <li className="py-3 col-6 col-md-12">
+        <li className="py-3 col-6 col-md-12 d-flex align-items-center">
           <div className="rounded-circle mx-2 bg-yellow">
-            <FontAwesomeIcon
-              className="px-2 text-white"
-              width="13"
-              icon={faFolder}
-            />
+            <FontAwesomeIcon className="px-2 text-white" icon={faFolder} />
           </div>
-          {isEnglish ? "Lectures" : "محاضرات"} : <span>{params.lectures}</span>
+          <span style={{ fontWeight: 500 }} className="fs-5">
+            {isEnglish ? "Lectures" : "محاضرات"} : {params.lectures}
+          </span>
         </li>
-        <li className="py-3 col-6 col-md-12">
+        <li className="py-3 col-6 col-md-12 d-flex align-items-center">
           <div className="rounded-circle mx-2 bg-yellow">
-            <FontAwesomeIcon
-              className="px-2 text-white"
-              width="13"
-              icon={faUsers}
-            />
+            <FontAwesomeIcon className="px-2 text-white" icon={faUsers} />
           </div>
-          {isEnglish ? "workshops" : "ورشة عمل"} :{" "}
-          <span>{params.workshops}</span>
+          <span style={{ fontWeight: 500 }} className="fs-5">
+            {isEnglish ? "workshops" : "ورشة عمل"} : {params.workshops}
+          </span>
         </li>
-        <li className="py-3 col-6 col-md-12">
+        <li className="py-3 col-6 col-md-12 d-flex align-items-center">
           <div className="rounded-circle mx-2 bg-yellow">
             <FontAwesomeIcon
               className="px-2 text-white"
-              width="13"
               icon={faSheetPlastic}
             />
           </div>
-          {isEnglish ? "Real Projects" : "مشاريع حقيقية"} :
-          <span>{params.realProjects}</span>
+          <span style={{ fontWeight: 500 }} className="fs-5">
+            {isEnglish ? "Real Projects" : "مشاريع حقيقية"} :{" "}
+            {params.realProjects}
+          </span>
         </li>
       </Row>
     </ul>

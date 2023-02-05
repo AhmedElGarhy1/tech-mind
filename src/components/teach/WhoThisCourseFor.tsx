@@ -41,16 +41,17 @@ const WhoThisCourseFor = ({ list }: ParamsType) => {
 
   return (
     <>
-      <Container className="my-5">
+      <Container as="section">
         <Row>
           <Col md="8">
-            <h3 className="mb-4">
+            <h1 className="mb-4">
               {isEnglish ? "Who is this course for?" : "لمن هذه الدورة؟"}
-            </h3>
-            <ul style={{ listStyle: "square" }}>
+            </h1>
+            <ul className="list-unstyled">
               {visible.map((item, i) => (
                 <li key={i} className="my-2">
-                  {item}
+                  <span className="me-2">&#9632;</span>
+                  <span className="fs-5">{item}</span>
                 </li>
               ))}
             </ul>

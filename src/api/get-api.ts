@@ -21,8 +21,13 @@ const getCourse = async ({ params }: LoaderFunctionArgs) => {
   return response.data;
 };
 
-// const searchProducts = async (obj) => {
-//   return await backendReq("/api/search", "post", obj);
-// };
+const getDiplomaCourse = async ({ params, request }: LoaderFunctionArgs) => {
+  const id = params.id;
+  console.log("HEY");
+  const deplomaId = request.url.split("/").slice(-2)[0];
+  const url = `/courses/${id}?deploma=${deplomaId}`;
+  const response = await backendReq(url, "get");
+  return response.data;
+};
 
-export { getAllDeiplomas, getDeiploma, getCourse };
+export { getAllDeiplomas, getDeiploma, getCourse, getDiplomaCourse };
