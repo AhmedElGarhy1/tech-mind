@@ -49,9 +49,9 @@ const WhoThisCourseFor = ({ list }: ParamsType) => {
             </h1>
             <ul className="list-unstyled">
               {visible.map((item, i) => (
-                <li key={i} className="my-2">
-                  <span className="me-2">&#9632;</span>
-                  <span className="fs-5">{item}</span>
+                <li key={i} className="my-2 d-flex">
+                  <div className="mx-2 mt-1">&#9632;</div>
+                  <div className="fs-5">{item}</div>
                 </li>
               ))}
             </ul>

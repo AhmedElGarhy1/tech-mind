@@ -35,7 +35,9 @@ const Stats = ({
       style={{ backgroundColor: "var(--main-color)" }}>
       <h1 className="mb-3">{name[currentLanguage(isEnglish)]}</h1>
       <p className="text-white-50 fw-normal fs-5">
-        Are you ready to start your Career !
+        {isEnglish
+          ? "Are you ready to start your Career !"
+          : "هل أنت مستعد لبدء حياتك المهنية!"}
       </p>
       <Container className="d-flex text-center justify-content-center mb-4 gap-3 stats-icons px-4 px-sm-0">
         <div>
