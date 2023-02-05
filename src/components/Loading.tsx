@@ -1,9 +1,7 @@
-import { HashLoader } from "react-spinners";
-
 const Loading = () => {
   return (
     <div className="loading">
-      <HashLoader loading={true} size={50} />
+      <h2>Loading...</h2>
     </div>
   );
 };
