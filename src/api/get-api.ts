@@ -23,7 +23,6 @@ const getCourse = async ({ params }: LoaderFunctionArgs) => {
 
 const getDiplomaCourse = async ({ params, request }: LoaderFunctionArgs) => {
   const id = params.id;
-  console.log("HEY");
   const deplomaId = request.url.split("/").slice(-2)[0];
   const url = `/courses/${id}?deploma=${deplomaId}`;
   const response = await backendReq(url, "get");

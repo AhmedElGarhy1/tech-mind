@@ -11,6 +11,7 @@ import WhatYouWillLearn from "../../components/teach/WhatYouWillLearn";
 import WhoThisCourseFor from "../../components/teach/WhoThisCourseFor";
 import WhyLearnFromUs from "../../components/teach/WhyTechMind";
 import useGet from "../../hooks/useGet";
+import useLoadingContext from "../../hooks/useLoadingContext";
 import { CourseType } from "../../types/course";
 
 interface DataType {
@@ -25,10 +26,13 @@ interface DataType {
 }
 
 const SingleCourse = () => {
+  const { removeLoading } = useLoadingContext();
   const { id } = useParams();
   const data = useLoaderData() as DataType;
   const course = data.course;
   const deploma = data.deploma;
+
+  useEffect(removeLoading, []);
 
   return (
     <>

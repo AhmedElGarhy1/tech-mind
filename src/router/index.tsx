@@ -20,7 +20,6 @@ import {
   SingleCourse,
   About,
 } from "../pages";
-import SingleDeplomaCourse from "../pages/Diplomas/SingleDeplomaCourse";
 
 import ReactSuspense from "./LoaderRoute";
 

@@ -8,8 +8,14 @@ import Stats from "../../components/teach/Stats";
 import FAQ from "../../components/teach/FAQ";
 import { DeplomaCourses } from "../../components/teach/Deploma";
 import { DeplomaType } from "../../types/deploma";
+import useLoadingContext from "../../hooks/useLoadingContext";
+import { useEffect } from "react";
 
 const SingleDeploma = () => {
+  console.log("HEY FROM DEPLOMA");
+  const { removeLoading } = useLoadingContext();
+  useEffect(removeLoading, []);
+
   const data = useLoaderData();
   const deploma = data as DeplomaType;
   // const navigate = useNavigate();
@@ -19,7 +25,7 @@ const SingleDeploma = () => {
       {deploma && (
         <>
           <Hero name={deploma.name} description={deploma.description} />
-          <Overview course={deploma} />
+          {/* <Overview course={deploma} /> */}
           <DeplomaCourses
             isDeploma={true}
             deplomaID={deploma._id}
