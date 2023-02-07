@@ -12,11 +12,11 @@ interface ParamsType {
 }
 
 const breakpoints = {
-  767: {
+  991: {
     slidesPerView: 2,
     spaceBetween: 20,
   },
-  1200: {
+  1400: {
     slidesPerView: 3,
     spaceBetween: 30,
   },
@@ -52,17 +52,13 @@ const RelatedCourses = ({ id }: ParamsType) => {
                   <SwiperSlide key={course._id} dir={isEnglish ? "ltr" : "rtl"}>
                     <div
                       style={{
-                        width: "90%",
+                        maxWidth: "400px",
                       }}
-                      className="p-2 bg-white rounded-2 d-flex gap-3">
+                      className="pe-3 bg-white rounded-2 d-flex gap-3 mx-auto m-0 ">
                       <div className="course-slider-image">
-                        <img
-                          width="200"
-                          style={{ scale: "1.35" }}
-                          src={course.main_img}
-                        />
+                        <img className="h-100" src={course.main_img} />
                       </div>
-                      <div className="d-flex flex-column justify-content-between overflow-hidden">
+                      <div className="d-flex flex-column justify-content-between overflow-hidden py-2">
                         <h6>{course.name[currentLanguage(isEnglish)]}</h6>
                         <p className="text-black-50 three-lines-p">
                           {course.description[currentLanguage(isEnglish)]}

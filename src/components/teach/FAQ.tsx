@@ -15,12 +15,14 @@ interface ListItemType {
 }
 
 interface ParamsType {
-  list: ListItemType[];
+  list: { q: StringLang; a: StringLangs }[];
 }
 
 const FAQ = ({ list }: ParamsType) => {
+  const tempList = list as ListItemType[];
+
   const { isEnglish } = useLangContext();
-  const [fqaList, setFqaList] = useState(list);
+  const [fqaList, setFqaList] = useState<ListItemType[]>(tempList);
 
   const handleToggle = (id: string) => {
     const itemIndex = fqaList.findIndex((ele) => ele._id === id);
