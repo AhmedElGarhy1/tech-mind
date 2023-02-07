@@ -37,7 +37,7 @@ const DeplomaCourses = ({ list, deplomaID, isDeploma }: ParamsType) => {
                 key={course._id}>
                 <div
                   style={{ borderColor: "var(--secondary-color) !important" }}
-                  className="deploma-course-card text-center border border-2 border rounded-2 p-1 pb-2 h-100 mx-auto">
+                  className="deploma-course-card text-center border border-2 border rounded-2 p-1 pb-2 h-100 mx-auto px-3">
                   <img
                     className="my-3"
                     src={course.icon}
@@ -50,7 +50,7 @@ const DeplomaCourses = ({ list, deplomaID, isDeploma }: ParamsType) => {
             ) : (
               <div
                 style={{ borderColor: "var(--secondary-color) !important" }}
-                className="deploma-course-card text-center border border-2 border rounded-2 p-1 pb-2 h-100 mx-auto">
+                className="deploma-course-card text-center border border-2 border rounded-2 p-1 pb-2 h-100 mx-auto px-3">
                 <img
                   className="my-3"
                   src={course.icon}

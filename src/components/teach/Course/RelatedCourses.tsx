@@ -39,39 +39,51 @@ const RelatedCourses = ({ id }: ParamsType) => {
   }, [pathname]);
 
   return (
-    <>
-      {courses && courses.length > 0 && (
-        <Container as="section" className="bg-main-color py-4">
-          {!loading ? (
-            <>
-              <h1 className="text-white mb-3">
-                {isEnglish ? "Most Popular Courses" : "الكورسات الأكثر شهرة"}
-              </h1>
+    <div className="bg-main-color">
+      <Container as="section" className="py-4">
+        <h1 className="text-white mb-3">
+          {isEnglish ? "Most Popular Courses" : "الكورسات الأكثر شهرة"}
+        </h1>
+        {courses && courses.length > 0 && (
+          <>
+            {!loading ? (
               <Swiper dir="ltr" spaceBetween={50} breakpoints={breakpoints}>
                 {courses.map((course) => (
-                  <SwiperSlide
-                    key={course._id}
-                    dir={isEnglish ? "ltr" : "rtl"}
-                    className="p-2 bg-white rounded-2 d-flex gap-3 align-items-center">
-                    <div className="course-slider-image">
-                      <img width="100%" src={course.main_img} />
-                    </div>
-                    <div>
-                      <h6>{course.name[currentLanguage(isEnglish)]}</h6>
-                      <Link to={`${path}/${course._id}`} className="main-btn">
-                        {isEnglish ? "See More" : "روئية المذيد"}
-                      </Link>
+                  <SwiperSlide key={course._id} dir={isEnglish ? "ltr" : "rtl"}>
+                    <div
+                      style={{
+                        width: "90%",
+                      }}
+                      className="p-2 bg-white rounded-2 d-flex gap-3">
+                      <div className="course-slider-image">
+                        <img
+                          width="200"
+                          style={{ scale: "1.35" }}
+                          src={course.main_img}
+                        />
+                      </div>
+                      <div className="d-flex flex-column justify-content-between overflow-hidden">
+                        <h6>{course.name[currentLanguage(isEnglish)]}</h6>
+                        <p className="text-black-50 three-lines-p">
+                          {course.description[currentLanguage(isEnglish)]}
+                        </p>
+                        <Link
+                          to={`${path}/${course._id}`}
+                          className="main-btn mb-0 rounded-0">
+                          {isEnglish ? "Explore Now" : "استكشف الآن"}
+                        </Link>
+                      </div>
                     </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
-            </>
-          ) : (
-            <h1 className="text-white text-center fw-normal">Loading...</h1>
-          )}
-        </Container>
-      )}
-    </>
+            ) : (
+              <h1 className="text-white text-center fw-normal">Loading...</h1>
+            )}
+          </>
+        )}
+      </Container>
+    </div>
   );
 };
 

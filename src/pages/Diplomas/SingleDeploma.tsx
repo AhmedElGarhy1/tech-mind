@@ -25,7 +25,7 @@ const SingleDeploma = () => {
       {deploma && (
         <>
           <Hero name={deploma.name} description={deploma.description} />
-          {/* <Overview course={deploma} /> */}
+          <Overview course={deploma} />
           <DeplomaCourses
             isDeploma={true}
             deplomaID={deploma._id}

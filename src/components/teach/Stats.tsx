@@ -39,50 +39,41 @@ const Stats = ({
           ? "Are you ready to start your Career !"
           : "هل أنت مستعد لبدء حياتك المهنية!"}
       </p>
-      <Container className="d-flex text-center justify-content-center mb-4 gap-3 stats-icons px-4 px-sm-0">
-        <div>
-          <FontAwesomeIcon
-            className="px-2 text-white"
-            width="13"
-            icon={faClock}
-          />
+      <Container className="stats-icons d-flex text-center justify-content-center mb-4 gap-1 gap-sm-3 px-4 px-sm-0">
+        <div className="fs-5">
+          <FontAwesomeIcon className="px-2 px-md-3" icon={faClock} />
           <span>
             {duration} {isEnglish ? "Hours" : "ساعة"}
           </span>
         </div>
-        <div>
-          <FontAwesomeIcon
-            className="px-2 text-white"
-            width="13"
-            icon={faFolder}
-          />
+        <div className="fs-5">
+          <FontAwesomeIcon className="px-2 px-md-3" icon={faFolder} />
           <span>
             {lectures} {isEnglish ? "Lectures" : "محاضرات"}
           </span>
         </div>
-        <div>
-          <FontAwesomeIcon
-            className="px-2 text-white"
-            width="13"
-            icon={faUsers}
-          />
+        <div className="fs-5">
+          <FontAwesomeIcon className="px-2 px-md-3" icon={faUsers} />
           <span>
             {workshops} {isEnglish ? "workshops" : "ورش عمل"}
           </span>
         </div>
-        <div>
-          <FontAwesomeIcon
-            className="px-2 text-white"
-            width="13"
-            icon={faSheetPlastic}
-          />
+        <div className="fs-5">
+          <FontAwesomeIcon className="px-2 px-md-3" icon={faSheetPlastic} />
 
           <span>
             {real_projects} {isEnglish ? "Real Projects" : "مشاريع حقيقية"}
           </span>
         </div>
       </Container>
-      <button className="main-btn px-3 mx-auto">Start Your Career</button>
+      <button
+        style={{
+          padding: "4px 51px",
+          lineHeight: "40px",
+        }}
+        className="main-btn  mx-auto">
+        Start Your Career
+      </button>
     </Container>
   );
 };

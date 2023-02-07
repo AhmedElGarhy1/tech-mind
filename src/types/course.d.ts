@@ -28,5 +28,6 @@ export interface CourseType extends SimpleCourse {
 export interface RelatedCoursesType {
   _id: string;
   name: StringLang;
+  description: StringLang;
   main_img: string;
 }

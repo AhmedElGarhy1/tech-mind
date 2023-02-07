@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
 :root {
   --main-color: #0e1d27;
   --secondary-color: #30a5bf;
@@ -5,6 +7,9 @@
   --secondary-color-hover: #1898b5;
   --yellow-color: #f2be22;
   --main-transition: 0.3s;
+}
+* {
+  font-family: "Ubuntu", sans-serif;
 }
 /* global */
 .text-yellow {
@@ -34,8 +39,13 @@
 }
 
 section {
-  margin-top: 60px !important;
+  margin-top: 80px !important;
   margin-bottom: 0px !important;
+}
+
+h1 {
+  font-size: 36px !important;
+  font-weight: 700 !important;
 }
 
 a {
@@ -109,6 +119,11 @@ h3 {
   background-position: center right;
   background-size: cover;
   position: relative;
+  min-height: 446px;
+}
+.bg-hero-img > div {
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 576px) {
   .bg-hero-img {
@@ -147,7 +162,7 @@ h3 {
 }
 /* end ofdeploma courses */
 
-@media (max-width: 767px) {
+@media (max-width: 1200px) {
   .mobile-disappeare {
     display: none;
   }
@@ -218,6 +233,11 @@ h3 {
     flex-wrap: wrap;
   }
 }
+@media (min-width: 576px) and (max-width: 767px) {
+  .stats-icons div {
+    font-size: 15px !important;
+  }
+}
 /* end of stats */
 
 /* faq */
@@ -240,13 +260,29 @@ h3 {
 
 /*  */
 .course-slider-image {
-  width: 230px;
+  width: 136px;
+  height: 136px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-@media (max-width: 576px) {
+.course-slider-image {
+  flex-shrink: 0;
+}
+.three-lines-p {
+  line-height: 16px;
+  display: -webkit-box;
+  max-width: 200px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* @media (max-width: 576px) {
   .course-slider-image {
     width: 180px;
   }
-}
+} */
 /*  */
 /* footer */
 footer a:hover {
