@@ -22,7 +22,7 @@ const WhatYouWillLearn = ({ list, src, isDeploma }: ParamsType) => {
     <>
       <Container as="section">
         <Row className="flex-column-reverse flex-lg-row">
-          <Col lg="6">
+          <Col data-aos="zoom-in" lg="6">
             <h1 className="my-4 mt-lg-0">
               {isEnglish
                 ? "What you will learn in this Course?"
@@ -30,7 +30,7 @@ const WhatYouWillLearn = ({ list, src, isDeploma }: ParamsType) => {
             </h1>
             <ListColumn list={list} />
           </Col>
-          <Col lg="6">
+          <Col data-aos="flip-up" data-aos-delay="350" lg="6">
             <img width="100%" src={src} />
           </Col>
         </Row>

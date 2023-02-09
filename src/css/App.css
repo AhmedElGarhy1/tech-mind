@@ -11,6 +11,10 @@
 * {
   font-family: "Ubuntu", sans-serif;
 }
+body,
+html {
+  overflow-x: hidden;
+}
 /* global */
 .text-yellow {
   color: var(--yellow-color);
@@ -43,6 +47,10 @@ section {
   margin-bottom: 0px !important;
 }
 
+img {
+  border-radius: 5px !important;
+}
+
 h1 {
   font-size: 36px !important;
   font-weight: 700 !important;
@@ -64,16 +72,16 @@ h3 {
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
   html {
-    font-size: 14px;
+    font-size: 12px;
+  }
+  h1 {
+    font-size: 28px !important;
   }
 }
 /* ends of global */
 /* navbar */
-.navbar-height {
-  height: 70px;
-}
 
 .navbar-nav a {
   color: white;
@@ -119,7 +127,7 @@ h3 {
   background-position: center right;
   background-size: cover;
   position: relative;
-  min-height: 446px;
+  height: 446px;
 }
 .bg-hero-img > div {
   display: flex;
@@ -266,18 +274,13 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.course-slider-image {
   flex-shrink: 0;
 }
-.three-lines-p {
-  line-height: 16px;
-  display: -webkit-box;
-  max-width: 200px;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+
+.animate {
+  transition: 0.3s;
 }
+
 /* @media (max-width: 576px) {
   .course-slider-image {
     width: 180px;
@@ -289,9 +292,7 @@ footer a:hover {
   color: #005f79 !important;
   transition: var(--main-transition);
 }
-.footer-social-icon {
-  padding: 3.5px 5px;
-}
+
 @media (max-width: 576px) {
   .footer-logo {
     width: 135px;
@@ -329,6 +330,7 @@ footer a:hover {
   padding: 2px 0px;
   width: 44px;
   height: 44px;
+  flex-shrink: 0;
 }
 .overview-list li .rounded-circle svg {
   font-size: 20px;

@@ -14,6 +14,7 @@ export interface CourseType extends SimpleCourse {
   real_projects: number;
   have_objectives: boolean;
   objectives?: {
+    _id: string;
     name: {
       EN: string;
       AR: string;

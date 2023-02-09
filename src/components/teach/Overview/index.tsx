@@ -23,7 +23,7 @@ const DeplomaOverview = ({ course, deplomaName }: ParamsType) => {
     <Container>
       <BreadCrumb deplomaName={deplomaName} name={course.name} />
       <Row as={"section"} className="gx-4">
-        <Col md="4">
+        <Col data-aos={`fade-${isEnglish ? "right" : "left"}`} md="4">
           <OverviewList
             duration={course.duration}
             workshops={course.workshops}
@@ -31,7 +31,7 @@ const DeplomaOverview = ({ course, deplomaName }: ParamsType) => {
             realProjects={course.real_projects}
           />
         </Col>
-        <Col md="8">
+        <Col data-aos={`fade-${isEnglish ? "left" : "right"}`} md="8">
           <div>
             <img
               className="w-100 rounded"

@@ -52,12 +52,14 @@ const WhereAmI = ({ name, deplomaName }: ParamsType) => {
     return (
       <Link
         key={i}
-        className="text-capitalize text-black fs-5"
+        className={`text-capitalize text-black fs-5 ${
+          i === arr.length - 1 ? "text-black-50" : ""
+        }`}
         to={currentLink}>
         {currentName}
         {i != arr.length - 1 && (
           <FontAwesomeIcon
-            className="px-2"
+            className={`px-2 ${isEnglish ? "ps-1" : "pe-1"}`}
             icon={isEnglish ? faChevronRight : faChevronLeft}
           />
         )}
@@ -67,10 +69,14 @@ const WhereAmI = ({ name, deplomaName }: ParamsType) => {
 
   return (
     <div className="pt-4">
-      <Link className="text-capitalize text-black fs-5" to="/">
+      <Link
+        className={`text-capitalize text-black fs-5 ${
+          pathname === "/" ? "text-black-50" : ""
+        }`}
+        to="/">
         {isEnglish ? "Home" : "الصفحة الرائيسية"}
         <FontAwesomeIcon
-          className="px-2"
+          className={`px-2 ${isEnglish ? "ps-1" : "pe-1"}`}
           icon={isEnglish ? faChevronRight : faChevronLeft}
         />
       </Link>

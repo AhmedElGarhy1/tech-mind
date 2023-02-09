@@ -33,32 +33,37 @@ const Stats = ({
       as="section"
       className="rounded-2 text-white text-center py-5"
       style={{ backgroundColor: "var(--main-color)" }}>
-      <h1 className="mb-3">{name[currentLanguage(isEnglish)]}</h1>
-      <p className="text-white-50 fw-normal fs-5">
+      <h1 data-aos="zoom-in" data-aos-delay="150" className="mb-3">
+        {name[currentLanguage(isEnglish)]}
+      </h1>
+      <p
+        data-aos="fade-up"
+        data-aos-delay="400"
+        className="text-white-50 fw-normal fs-5">
         {isEnglish
           ? "Are you ready to start your Career !"
           : "هل أنت مستعد لبدء حياتك المهنية!"}
       </p>
       <Container className="stats-icons d-flex text-center justify-content-center mb-4 gap-1 gap-sm-3 px-4 px-sm-0">
-        <div className="fs-5">
+        <div data-aos="flip-right" data-aos-delay="700" className="fs-5">
           <FontAwesomeIcon className="px-2 px-md-3" icon={faClock} />
           <span>
-            {duration} {isEnglish ? "Hours" : "ساعة"}
+            {duration} {isEnglish ? "Hours" : "ساعات"}
           </span>
         </div>
-        <div className="fs-5">
+        <div data-aos="flip-right" data-aos-delay="700" className="fs-5">
           <FontAwesomeIcon className="px-2 px-md-3" icon={faFolder} />
           <span>
             {lectures} {isEnglish ? "Lectures" : "محاضرات"}
           </span>
         </div>
-        <div className="fs-5">
+        <div data-aos="flip-right" data-aos-delay="700" className="fs-5">
           <FontAwesomeIcon className="px-2 px-md-3" icon={faUsers} />
           <span>
             {workshops} {isEnglish ? "workshops" : "ورش عمل"}
           </span>
         </div>
-        <div className="fs-5">
+        <div data-aos="flip-right" data-aos-delay="700" className="fs-5">
           <FontAwesomeIcon className="px-2 px-md-3" icon={faSheetPlastic} />
 
           <span>
@@ -71,7 +76,9 @@ const Stats = ({
           padding: "4px 51px",
           lineHeight: "40px",
         }}
-        className="main-btn  mx-auto">
+        data-aos-delay="1000"
+        data-aos="zoom-out"
+        className="main-btn mt-5  mx-auto">
         Start Your Career
       </button>
     </Container>

@@ -47,13 +47,14 @@ const FAQ = ({ list }: ParamsType) => {
     <Container as="section" className="mb-5">
       <Row>
         <Col md="4">
-          <h1 className="mb-4">
+          <h1 data-aos="zoom-in" className="mb-4">
             {isEnglish ? "Frequently Asked Questions" : "أسئلة مكررة"}
           </h1>
         </Col>
         <Col md="8">
           {fqaList.map((item) => (
             <div
+              data-aos={isEnglish ? "fade-right" : "fade-left"}
               key={item._id}
               style={{
                 transition: "var(--main-transition)",
@@ -63,7 +64,7 @@ const FAQ = ({ list }: ParamsType) => {
                 role="button"
                 onClick={() => handleToggle(item._id)}
                 className="d-flex justify-content-between">
-                <h5>{item.q[currentLanguage(isEnglish)]}</h5>
+                <h4>{item.q[currentLanguage(isEnglish)]}</h4>
                 <FontAwesomeIcon
                   icon={item.active ? faChevronUp : faChevronDown}
                 />
@@ -71,7 +72,7 @@ const FAQ = ({ list }: ParamsType) => {
               {item.active && (
                 <div className="faq-a my-3 text-black-50">
                   {item.a[currentLanguage(isEnglish)].map((ele, i) => (
-                    <p key={i} className="mb-3">
+                    <p key={i} className="mb-3 fs-5">
                       - {ele}
                     </p>
                   ))}

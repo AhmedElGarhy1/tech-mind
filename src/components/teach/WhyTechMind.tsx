@@ -48,10 +48,18 @@ const WhyLearnFromUs = () => {
         </h1>
         <Row>
           <Col md="6">
-            <ColumnComponent list={leftColumnData} startCount={1} />
+            <ColumnComponent
+              animation={isEnglish ? "fade-right" : "fade-left"}
+              list={leftColumnData}
+              startCount={1}
+            />
           </Col>
           <Col md="6">
-            <ColumnComponent list={rightColumnData} startCount={7} />
+            <ColumnComponent
+              animation={isEnglish ? "fade-left" : "fade-right"}
+              list={rightColumnData}
+              startCount={7}
+            />
           </Col>
         </Row>
       </Container>
@@ -62,20 +70,23 @@ const WhyLearnFromUs = () => {
 interface ColumnParams {
   list: Coulmn[];
   startCount: number;
+  animation: string;
 }
 
-const ColumnComponent = ({ list, startCount }: ColumnParams) => {
+const ColumnComponent = ({ list, startCount, animation }: ColumnParams) => {
   const { isEnglish } = useLangContext();
 
   return (
     <ul className="why-tech-mind-ul">
       {list.map((ele, i) => (
         <li key={i} title={`${isEnglish}`} className="my-4">
-          <span className="why-tech-mind-li-ball">{i + startCount}</span>
-          <h5>{ele.head[currentLanguage(isEnglish)]}</h5>
-          <p style={{ color: "#7D7D7D" }}>
-            {ele.body[currentLanguage(isEnglish)]}
-          </p>
+          <div data-aos={animation} data-aos-delay={i * 100}>
+            <span className="why-tech-mind-li-ball">{i + startCount}</span>
+            <h5>{ele.head[currentLanguage(isEnglish)]}</h5>
+            <p style={{ color: "#7D7D7D" }}>
+              {ele.body[currentLanguage(isEnglish)]}
+            </p>
+          </div>
         </li>
       ))}
     </ul>

@@ -56,7 +56,7 @@ const footer = {
       icon: faPhone,
       name: "010111111111",
     },
-    { icon: faEnvelope, name: "tech-mind@gmail.com" },
+    { icon: faEnvelope, name: "tickmindit@gmail.com" },
     { icon: faLocationDot, name: "Zagazig" },
   ],
 };

@@ -34,11 +34,11 @@ const Footer = (): JSX.Element => {
                   {footer.social_icons.map((icon, i) => (
                     <div
                       key={i}
-                      className="footer-social-icon rounded-circle bg-white mx-1 mx-sm-2 d-flex"
+                      className="footer-social-icon mx-2 mx-sm-3 d-flex"
                       style={{ width: "fit-content" }}
                       role="button">
                       <FontAwesomeIcon
-                        className="text-center fs-5"
+                        className="text-center fs-4"
                         color="var(--yellow-color)"
                         icon={icon.icon}
                       />

@@ -12,7 +12,7 @@ const NavBar = (): JSX.Element => {
 
   return (
     <>
-      <Navbar className="bg-main fixed-top" expand="md">
+      <Navbar className="bg-main fixed-top w-100" expand="md">
         <Container>
           <Navbar.Brand as={NavLink} to="home">
             <img width="75" src={logo} />
@@ -34,7 +34,7 @@ const NavBar = (): JSX.Element => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="navbar-height"></div>
+      <div style={{ height: 60 }}></div>
     </>
   );
 };

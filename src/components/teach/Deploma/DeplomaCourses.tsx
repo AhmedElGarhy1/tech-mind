@@ -17,7 +17,7 @@ interface ParamsType {
     };
     icon: string;
   }[];
-  deplomaID: string;
+  deplomaID?: string;
   isDeploma: boolean;
 }
 
@@ -29,9 +29,10 @@ const DeplomaCourses = ({ list, deplomaID, isDeploma }: ParamsType) => {
       <Row>
         {list.map((course, i) => (
           <div
+            data-aos="flip-right"
             key={course._id}
             className="col-12 col-md-6 col-lg-4 col-xl-3 my-2">
-            {isDeploma ? (
+            {isDeploma && deplomaID ? (
               <Link
                 to={`/diplomas/${deplomaID}/${course._id}`}
                 key={course._id}>

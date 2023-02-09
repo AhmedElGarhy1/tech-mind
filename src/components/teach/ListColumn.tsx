@@ -41,7 +41,7 @@ const ListColumn = ({ list }: ParamsType) => {
 
   return (
     <>
-      <ul className="list-unstyled">
+      <ul className="list-unstyled animate">
         {visible.map((item, i) => (
           <li key={i} className="my-2 d-flex">
             <div className="mx-2 mt-1">&#9632;</div>
@@ -54,7 +54,7 @@ const ListColumn = ({ list }: ParamsType) => {
         style={{
           padding: "16px 20px",
         }}
-        className="btn btn-dark fw-semibold py-3 mx-1 fs-4 fw-bold">
+        className="btn btn-dark fw-semibold py-3 mt-4 mx-1 fs-4 fw-bold">
         {isOpened
           ? isEnglish
             ? "See less"

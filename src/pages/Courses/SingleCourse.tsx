@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import Hero from "../../components/Hero";
 import Loading from "../../components/Loading";
-import CourseObjectives from "../../components/teach/Course/CourseObjectives";
 import RelatedCourses from "../../components/teach/Course/RelatedCourses";
+import { DeplomaCourses } from "../../components/teach/Deploma";
 import FAQ from "../../components/teach/FAQ";
 import Overview from "../../components/teach/Overview/index";
 import Stats from "../../components/teach/Stats";
@@ -40,7 +40,9 @@ const SingleCourse = () => {
         <>
           <Hero name={course.name} description={course.description} />
           <Overview deplomaName={deploma?.name} course={course} />
-          {course.have_objectives && <CourseObjectives />}
+          {course.have_objectives && (
+            <DeplomaCourses list={course.objectives} isDeploma={false} />
+          )}
           <RelatedCourses id={id} />
           <WhatYouWillLearn
             isDeploma={false}

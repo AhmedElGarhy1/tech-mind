@@ -21,13 +21,17 @@ const WhoThisCourseFor = ({ list }: ParamsType) => {
     <>
       <Container as="section">
         <Row>
-          <Col lg="8">
+          <Col data-aos="zoom-in" lg="8">
             <h1 className="mb-4">
               {isEnglish ? "Who is this course for?" : "لمن هذه الدورة؟"}
             </h1>
             <ListColumn list={list} />
           </Col>
-          <Col className="mobile-disappeare" lg="4">
+          <Col
+            data-aos="flip-up"
+            data-aos-delay="350"
+            className="mobile-disappeare"
+            lg="4">
             <img width="100%" src={workerImage} />
           </Col>
         </Row>
