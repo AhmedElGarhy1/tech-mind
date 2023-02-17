@@ -80,8 +80,8 @@ const ColumnComponent = ({ list, startCount, animation }: ColumnParams) => {
     <ul className="why-tech-mind-ul">
       {list.map((ele, i) => (
         <li key={i} title={`${isEnglish}`} className="my-4">
-          <div data-aos={animation} data-aos-delay={i * 100}>
-            <span className="why-tech-mind-li-ball">{i + startCount}</span>
+          <span className="why-tech-mind-li-ball">{i + startCount}</span>
+          <div data-aos={animation} data-aos-delay={i * 120}>
             <h5>{ele.head[currentLanguage(isEnglish)]}</h5>
             <p style={{ color: "#7D7D7D" }}>
               {ele.body[currentLanguage(isEnglish)]}
