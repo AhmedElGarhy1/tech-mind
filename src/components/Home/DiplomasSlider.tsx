@@ -25,9 +25,9 @@ const DiplomasSlider = () => {
       const data = await makeRequest("/diplomas");
       console.log(data);
     };
-    console.log(
-      swiperRef.current && swiperRef.current.clientHeight + "px !important"
-    );
+    // console.log(
+    //   swiperRef.current && swiperRef.current.clientHeight + "px !important"
+    // );
     // makeFetch();
   }, []);
   return (
@@ -57,12 +57,7 @@ const DiplomasSlider = () => {
             </SwiperSlide>
           ))} */}
 
-          <SwiperSlide
-            style={{
-              height:
-                swiperRef.current &&
-                swiperRef.current.clientHeight + "px !important",
-            }}>
+          <SwiperSlide>
             <div>
               <img src={img} width="100%" alt="" />
             </div>
