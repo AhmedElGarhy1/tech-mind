@@ -24,12 +24,17 @@ const GrowYourSkills = ({ img, list }: ParamsType) => {
         <div className="col-12 col-md-6">
           <h3
             className="text-black-50"
+            data-aos="fade-down"
             style={{
               fontWeight: "500 !important",
             }}>
-            GET TO KNOW US
+            {isEnglish ? "GET TO KNOW US" : "تعرف علينا"}
           </h3>
-          <h2>Grow your skills learn with us from anywhere</h2>
+          <h2 data-aos="fade-up" data-aos-delay="400">
+            {isEnglish
+              ? "Grow your skills, learn with us from anywhere"
+              : "طور مهاراتك وتعلم معنا من أي مكان"}
+          </h2>
           <GrowYourSkillsList list={list} />
         </div>
       </Row>
@@ -45,6 +50,7 @@ const GrowYourSkillsList = ({ list }: { list: StringLang[] }) => {
       {list &&
         list.map((item, i) => (
           <li
+            data-aos={`fade-${isEnglish ? "right" : "left"}`}
             className="d-flex align-items-center gap-2 my-1 my-lg-3 w-100 w-xl-50"
             key={i}>
             <div className="rounded-circle bg-yellow text-white ">

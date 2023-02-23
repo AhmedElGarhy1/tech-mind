@@ -12,11 +12,37 @@
   height: 100%;
   background-color: rgba(0, 95, 121, 0.96);
 }
-
-.diploma-slider .swiper-wrapper {
-  display: flex;
+.course-image {
+  border-radius: 12px 12px 0 0 !important;
 }
-.diploma-slider .swiper-wrapper .swiper-slide {
-  height: 100% !important;
-  background-color: red;
+.diploma-img {
+  border-radius: 6px 6px 0 0 !important;
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translateX(0);
+  }
+  10% {
+    transform: scale(1.1, 0.9) translateX(0);
+  }
+  30% {
+    transform: scale(0.9, 1.1) translateX(25px);
+  }
+  50% {
+    transform: scale(1.05, 0.95) translateX(0);
+  }
+  57% {
+    transform: scale(1, 1) translateX(5px);
+  }
+  64% {
+    transform: scale(1, 1) translateX(0);
+  }
+  100% {
+    transform: scale(1, 1) translateX(0);
+  }
 }

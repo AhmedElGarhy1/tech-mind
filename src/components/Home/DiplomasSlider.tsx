@@ -1,10 +1,26 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import useGet from "../../hooks/useGet";
 
-import img from "../../assets/AiDataScienceDeploma.jfif";
 import { Link } from "react-router-dom";
+import { StringLang } from "../../types/common";
+import { currentLanguage } from "../../utils";
+import useLangContext from "../../hooks/useLangContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowLeftLong,
+  faArrowRightLong,
+} from "@fortawesome/free-solid-svg-icons";
+import { Autoplay } from "swiper";
+import ExploreLink from "./ExploreLink";
+
+interface DiplomaType {
+  _id: string;
+  name: StringLang;
+  description: StringLang;
+  main_img: string;
+}
 
 const breakpoints = {
   767: {
@@ -18,118 +34,102 @@ const breakpoints = {
 };
 
 const DiplomasSlider = () => {
-  const swiperRef = useRef<SwiperRef>();
+  const [diplomas, setDiplomas] = useState<DiplomaType[]>([]);
   const { error, loading, makeRequest } = useGet();
+  const { isEnglish } = useLangContext();
+
   useEffect(() => {
     const makeFetch = async () => {
-      const data = await makeRequest("/diplomas");
-      console.log(data);
+      console.log("START");
+      const data = (await makeRequest("/diplomas")) as DiplomaType[];
+      setDiplomas(data);
     };
-    // console.log(
-    //   swiperRef.current && swiperRef.current.clientHeight + "px !important"
-    // );
-    // makeFetch();
+
+    makeFetch();
   }, []);
+
   return (
     <section
       className="diploma-slider"
       style={{
         backgroundColor: "var(--section-color)",
       }}>
-      <Container>
-        <h1 className="pt-5 pb-4 text-center">Our Diplomas</h1>
-        <Swiper ref={swiperRef} spaceBetween={25} breakpoints={breakpoints}>
-          {/* {["", "", ""].map((ele) => (
-            <SwiperSlide>
-              <div>
-                <img src={img} width="100%" alt="" />
-              </div>
-              <div className="px-3 ">
-                <h4 className="fw-bold py-2">Data Science and AI Diploma</h4>
-                <p style={{ lineHeight: "32px" }} className="fs-5">
-                  Learn Data Science Get the skills you need to land your first
-                  data science job. Learn Python — no experience required!
-                </p>
-                <Link className="main-btn" to="/">
-                  Learn More
-                </Link>
-              </div>
-            </SwiperSlide>
-          ))} */}
+      <Container className="pb-5">
+        <h1 className="pt-5 pb-4 text-center">
+          {isEnglish ? "Our Diplomas" : "الدبلومات الخاصة بنا"}
+        </h1>
+        {loading ? (
+          <h1 className="text-center">Loading...</h1>
+        ) : diplomas.length === 0 ? (
+          <h1>There Are No Diplomas Yet</h1>
+        ) : (
+          <Swiper
+            dir="ltr"
+            modules={[Autoplay]}
+            autoplay={{ delay: 7000 }}
+            spaceBetween={25}
+            breakpoints={breakpoints}>
+            {diplomas.map((diploma) => (
+              <SwiperSlide
+                key={diploma._id}
+                dir={isEnglish ? "ltr" : "rtl"}
+                className="bg-white"
+                style={{ height: "auto" }}>
+                <DiplomaCardSlide diploma={diploma} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
 
-          <SwiperSlide>
-            <div>
-              <img src={img} width="100%" alt="" />
-            </div>
-            <div className="px-3 ">
-              <h4 className="fw-bold py-2">Data Science and AI Diploma</h4>
-              <p style={{ lineHeight: "32px" }} className="fs-5">
-                Learn Data Science Get the skills you need to land your first
-                data science job. Learn Python — no experience required! Learn
-                Data Science Get the skills you need to land your first data
-                science job. Learn Python — no experience required!
-              </p>
-              <Link
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                }}
-                className="main-btn"
-                to="/">
-                Learn More
-              </Link>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="">
-            <div>
-              <img src={img} width="100%" alt="" />
-            </div>
-            <div className="px-3 ">
-              <h4 className="fw-bold py-2">Data Science and AI Diploma</h4>
-              <p style={{ lineHeight: "32px" }} className="fs-5">
-                Learn Data Science Get the skills you need to land your first
-                data science job. Learn Python — no experience required! Learn
-                Data Science Get the skills you need to land your first data
-                science job. Learn Python — no experience required! ce job.
-                Learn Python — no experience required! Learn Data Science Get
-                the skills you need to land your first data science job. Learn
-                Python — no experience required!
-              </p>
-              <Link
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                }}
-                className="main-btn"
-                to="/">
-                Learn More
-              </Link>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="">
-            <div>
-              <img src={img} width="100%" alt="" />
-            </div>
-            <div className="px-3 ">
-              <h4 className="fw-bold py-2">Data Science and AI Diploma</h4>
-              <p style={{ lineHeight: "32px" }} className="fs-5">
-                Learn Data Science Get the skills you need to land your first
-                datance job. Learn Python — no experience required!
-              </p>
-              <Link
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                }}
-                className="main-btn"
-                to="/">
-                Learn More
-              </Link>
-            </div>
-          </SwiperSlide>
-        </Swiper>
+        <ExploreLink
+          enText="Explore all diplomas"
+          path="/diplomas"
+          arText=" استكشف جميع الدبلومات"
+        />
       </Container>
     </section>
+  );
+};
+
+const DiplomaCardSlide = ({ diploma }: { diploma: DiplomaType }) => {
+  const { isEnglish } = useLangContext();
+
+  return (
+    <>
+      <div>
+        <img
+          src={diploma.main_img}
+          data-aos="zoom-in"
+          className="diploma-img"
+          width="100%"
+          height="250"
+          alt=""
+        />
+      </div>
+      <div className="px-3 pb-5">
+        <h4 data-aos="fade-up" className="fw-bold py-2">
+          {diploma.name[currentLanguage(isEnglish)]}
+        </h4>
+        <p
+          data-aos="fade-left"
+          data-aos-delay="600"
+          style={{ lineHeight: "32px" }}
+          className="fs-5">
+          {diploma.description[currentLanguage(isEnglish)]}
+        </p>
+        <Link
+          data-aos="zoom-out"
+          data-aos-delay="1200"
+          style={{
+            position: "absolute",
+            bottom: "15px",
+          }}
+          className="main-btn"
+          to={`/diplomas/${diploma._id}`}>
+          {isEnglish ? "Learn More" : "معرفة المزيد"}
+        </Link>
+      </div>
+    </>
   );
 };
 
