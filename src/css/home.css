@@ -1,0 +1,22 @@
+.home-bg {
+  background-image: url("../assets/binary.jfif");
+  background-position: center;
+  position: relative;
+}
+.home-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100%;
+  background-color: rgba(0, 95, 121, 0.96);
+}
+
+.diploma-slider .swiper-wrapper {
+  display: flex;
+}
+.diploma-slider .swiper-wrapper .swiper-slide {
+  height: 100% !important;
+  background-color: red;
+}

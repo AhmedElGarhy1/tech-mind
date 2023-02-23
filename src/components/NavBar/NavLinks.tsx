@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Nav } from "react-bootstrap";
-import linksData from "../../data/nav-links.js";
+import linksData from "../../data/navLinks.js";
 import useLangContext from "../../hooks/useLangContext";
 import { ClickMouseEventType, LinkType, NavLinksParamsType } from "./types";
 import { currentLanguage } from "../../utils/index.js";

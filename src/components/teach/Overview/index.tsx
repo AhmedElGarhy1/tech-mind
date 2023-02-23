@@ -7,22 +7,16 @@ import { CourseType } from "../../../types/course";
 import useLangContext from "../../../hooks/useLangContext";
 import OverviewList from "./OverviewList";
 import { currentLanguage } from "../../../utils";
-import BreadCrumb from "./BreadCrumb";
 
 interface ParamsType {
   course: DeplomaType | CourseType;
-  deplomaName?: {
-    EN: string;
-    AR: string;
-  };
 }
 
-const DeplomaOverview = ({ course, deplomaName }: ParamsType) => {
+const DeplomaOverview = ({ course }: ParamsType) => {
   const { isEnglish } = useLangContext();
   return (
     <Container>
-      <BreadCrumb deplomaName={deplomaName} name={course.name} />
-      <Row as={"section"} className="gx-4">
+      <Row className="gx-4">
         <Col data-aos={`fade-${isEnglish ? "right" : "left"}`} md="4">
           <OverviewList
             duration={course.duration}

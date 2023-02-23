@@ -13,9 +13,10 @@ interface ParamsType {
     AR: string;
     EN: string;
   };
+  noBtn?: boolean;
 }
 
-const Hero = ({ name, description }: ParamsType) => {
+const Hero = ({ name, description, noBtn }: ParamsType) => {
   const { isEnglish } = useLangContext();
   return (
     <div className="text-white bg-hero-img  py-5">
@@ -23,10 +24,7 @@ const Hero = ({ name, description }: ParamsType) => {
         style={{ zIndex: 100 }}
         className="position-relative h-100 justify-content-between pt-4">
         <div>
-          <h1
-            data-aos="zoom-in"
-            className="fw-bold"
-            style={{ fontSize: "40px" }}>
+          <h1 data-aos="zoom-in" className="fw-bold mt-4 mt-md-0">
             {name[currentLanguage(isEnglish)]}
           </h1>
           <p
@@ -37,14 +35,16 @@ const Hero = ({ name, description }: ParamsType) => {
             {description[currentLanguage(isEnglish)]}
           </p>
         </div>
-        <a
-          data-aos="fade-right"
-          data-aos-delay="1200"
-          role={"button"}
-          style={{ lineHeight: "40px" }}
-          className="main-btn px-5 mb-4 mt-5">
-          {isEnglish ? "Start Your Career" : "ابدأ حياتك المهنية"}
-        </a>
+        {!noBtn && (
+          <a
+            data-aos="fade-right"
+            data-aos-delay="1200"
+            role={"button"}
+            style={{ lineHeight: "40px" }}
+            className="main-btn hero-btn px-5">
+            {isEnglish ? "Start Your Career" : "ابدأ حياتك المهنية"}
+          </a>
+        )}
       </Container>
     </div>
   );

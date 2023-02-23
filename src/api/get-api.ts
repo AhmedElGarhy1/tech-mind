@@ -8,7 +8,7 @@ const getAllDeiplomas = async () => {
 
 const getDeiploma = async ({ params }: LoaderFunctionArgs) => {
   const id = params.id;
-  const url = `/deplomas/${id}`;
+  const url = `/diplomas/${id}`;
   const response = await backendReq(url, "get");
   return response.data;
 };

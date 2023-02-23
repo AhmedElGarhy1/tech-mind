@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import Hero from "../../components/Hero";
-import Loading from "../../components/Loading";
-import RelatedCourses from "../../components/teach/Course/RelatedCourses";
-import { DeplomaCourses } from "../../components/teach/Deploma";
-import FAQ from "../../components/teach/FAQ";
-import Overview from "../../components/teach/Overview/index";
-import Stats from "../../components/teach/Stats";
-import WhatYouWillLearn from "../../components/teach/WhatYouWillLearn";
-import WhoThisCourseFor from "../../components/teach/WhoThisCourseFor";
-import WhyLearnFromUs from "../../components/teach/WhyTechMind";
-import useGet from "../../hooks/useGet";
+
+import {
+  DeplomaCourses,
+  FAQ,
+  Overview,
+  RelatedCourses,
+  Stats,
+  WhatYouWillLearn,
+  WhoThisCourseFor,
+  WhyTechMind,
+} from "../../components/teach";
+import BreadCrumb from "../../components/BreadCrumb";
+
 import useLoadingContext from "../../hooks/useLoadingContext";
 import { CourseType } from "../../types/course";
 
@@ -39,7 +42,8 @@ const SingleCourse = () => {
       {course && (
         <>
           <Hero name={course.name} description={course.description} />
-          <Overview deplomaName={deploma?.name} course={course} />
+          <BreadCrumb name={course.name} deplomaName={deploma?.name} />
+          <Overview course={course} />
           {course.have_objectives && (
             <DeplomaCourses list={course.objectives} isDeploma={false} />
           )}
@@ -52,7 +56,7 @@ const SingleCourse = () => {
           {course.have_target && (
             <WhoThisCourseFor list={course.who_is_this_course_for} />
           )}
-          {course.is_dependent && !deploma?._id && <WhyLearnFromUs />}
+          {course.is_dependent && !deploma?._id && <WhyTechMind />}
           <Stats
             duration={course.duration}
             lectures={course.lectures}

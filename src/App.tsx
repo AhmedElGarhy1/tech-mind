@@ -3,6 +3,7 @@ import { LanguageContextProvider } from "./contexts/LangContext";
 import AOS from "aos";
 
 import "./css/App.css";
+import "./css/home.css";
 
 // swiper css
 import "swiper/css";
@@ -19,6 +20,7 @@ const App = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
+      once: true,
     });
   }, []);
 

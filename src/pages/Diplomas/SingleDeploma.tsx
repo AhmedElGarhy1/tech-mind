@@ -1,12 +1,16 @@
 import { useLoaderData } from "react-router-dom";
 import Hero from "../../components/Hero";
-import Overview from "../../components/teach/Overview";
-import WhatYouWillLearn from "../../components/teach/WhatYouWillLearn";
-import WhoThisCourseFor from "../../components/teach/WhoThisCourseFor";
-import WhyTechMind from "../../components/teach/WhyTechMind";
-import Stats from "../../components/teach/Stats";
-import FAQ from "../../components/teach/FAQ";
-import { DeplomaCourses } from "../../components/teach/Deploma";
+
+import {
+  DeplomaCourses,
+  FAQ,
+  Overview,
+  Stats,
+  WhatYouWillLearn,
+  WhoThisCourseFor,
+  WhyTechMind,
+} from "../../components/teach";
+import BreadCrumb from "../../components/BreadCrumb";
 import { DeplomaType } from "../../types/deploma";
 import useLoadingContext from "../../hooks/useLoadingContext";
 import { useEffect } from "react";
@@ -25,6 +29,8 @@ const SingleDeploma = () => {
       {deploma && (
         <>
           <Hero name={deploma.name} description={deploma.description} />
+          <BreadCrumb name={deploma.name} />
+
           <Overview course={deploma} />
           <DeplomaCourses
             isDeploma={true}

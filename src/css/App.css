@@ -3,6 +3,7 @@
 :root {
   --main-color: #0e1d27;
   --secondary-color: #30a5bf;
+  --section-color: #f7f9f8;
   --bs-border-color: #30a5bf !important;
   --secondary-color-hover: #1898b5;
   --yellow-color: #f2be22;
@@ -81,6 +82,13 @@ h3 {
   }
 }
 /* ends of global */
+/* starts of bootstrap custom css */
+@media (min-width: 1400px) {
+  .w-100.w-xl-50 {
+    width: 50% !important;
+  }
+}
+/* ends of bootstrap custom css */
 /* navbar */
 
 .navbar-nav a {
@@ -128,6 +136,7 @@ h3 {
   background-size: cover;
   position: relative;
   height: 446px;
+  position: relative;
 }
 .bg-hero-img > div {
   display: flex;
@@ -148,6 +157,11 @@ h3 {
   width: 100% !important;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
+}
+.hero-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 /* end of hero */
 /* deploma courses */
@@ -322,8 +336,7 @@ footer a:hover {
     border-bottom: none;
   }
 }
-.overview-list li .rounded-circle {
-  width: fit-content;
+.rounded-circle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -332,7 +345,15 @@ footer a:hover {
   height: 44px;
   flex-shrink: 0;
 }
-.overview-list li .rounded-circle svg {
+
+@media (max-width: 767px) {
+  .rounded-circle {
+    width: 33px;
+    height: 33px;
+  }
+}
+
+.rounded-circle svg {
   font-size: 20px;
 }
 .overview-img {
