@@ -26,7 +26,7 @@ const DiplomaCard = ({ diploma }: { diploma: DiplomaCardType }) => {
         />
       </div>
       <div className="px-3 pb-5">
-        <h4 data-aos="fade-up" className="fw-bold py-2">
+        <h4 data-aos="fade-up" className="fw-bold pb-2 pt-3">
           {diploma.name[currentLanguage(isEnglish)]}
         </h4>
         <p

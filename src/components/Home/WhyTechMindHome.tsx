@@ -53,15 +53,21 @@ const WhyTechMindHome = ({ list }: ParamsType) => {
                   <div
                     style={{ height: "110px" }}
                     className="d-flex align-items-center gap-3 fw-normal justify-content-start w-100">
-                    <img data-aos="flip-right" src={item.img} alt="item" />
+                    <img
+                      className="why-tech-mind-home-icon "
+                      data-aos="flip-right"
+                      src={item.img}
+                      alt="item"
+                    />
                     <div data-aos="fade-right" className="fs-3">
                       {item[currentLanguage(isEnglish)]}
                     </div>
                   </div>
                   <div
-                    style={{ marginTop: "30px", height: "110px" }}
-                    className="d-flex align-items-center gap-3 fw-normal justify-content-start w-100">
+                    style={{ height: "110px" }}
+                    className="d-flex align-items-center gap-3 fw-normal justify-content-start w-100 mt-4">
                     <img
+                      className="why-tech-mind-home-icon "
                       data-aos="flip-right"
                       src={arr[i + 1].img}
                       alt="item"

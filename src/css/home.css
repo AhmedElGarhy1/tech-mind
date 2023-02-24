@@ -18,6 +18,11 @@
 .diploma-img {
   border-radius: 6px 6px 0 0 !important;
 }
+@media (max-width: 767px) {
+  .why-tech-mind-home-icon {
+    width: 40px !important;
+  }
+}
 
 .bounce {
   animation: bounce 2s infinite;
