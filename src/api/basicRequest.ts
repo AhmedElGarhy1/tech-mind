@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const baseUrl = "https://tech-mind-backend.onrender.com";
+// export const BASE_URL = "http://localhost:7000";
+export const BASE_URL = "https://tech-mind-backend.onrender.com";
 
-// const baseUrl = "http://localhost:7000";
 const backendReq = async (url: string, method: string, obj?: object) => {
   const options = {
     method,
     // url,
-    url: baseUrl + "/api" + url,
+    url: BASE_URL + "/api" + url,
     data: obj,
     headers: {
       "Content-Type": "application/json",

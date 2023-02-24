@@ -3,12 +3,7 @@ import { Container } from "react-bootstrap";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import useGet from "../../hooks/useGet";
 
-import { Link } from "react-router-dom";
-import { StringLang } from "../../types/common";
-import { currentLanguage } from "../../utils";
 import useLangContext from "../../hooks/useLangContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faFolder } from "@fortawesome/free-solid-svg-icons";
 import { Autoplay } from "swiper";
 import ExploreLink from "./ExploreLink";
 import CourseCard, { CourseCardType } from "../teach/Course/CourseCard";
@@ -36,8 +31,10 @@ const CourseSlider = () => {
 
   useEffect(() => {
     const makeFetch = async () => {
-      console.log("START");
-      const data = (await makeRequest("/courses")) as CourseCardType[];
+      const data = (await makeRequest(
+        "/courses?is_dependent=true&limit=8"
+      )) as CourseCardType[];
+
       setCourses(data);
     };
 

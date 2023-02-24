@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CourseType, RelatedCoursesType } from "../types/course";
 import { DeplomaType } from "../types/deploma";
+import { BASE_URL } from "../api/basicRequest";
 
 interface ResponseType {
   data: {
@@ -17,15 +18,13 @@ interface ResponseType {
 }
 
 const useGet = () => {
-  // const baseUrl = "http://localhost:7000";
-  const baseUrl = "https://tech-mind-backend.onrender.com";
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const makeRequest = async (url: string) => {
     setLoading(true);
     setError(false);
     try {
-      const response: ResponseType = await axios.get(baseUrl + "/api/" + url);
+      const response: ResponseType = await axios.get(BASE_URL + "/api/" + url);
       const data = response.data;
       if (!data.ok) {
         setError(true);

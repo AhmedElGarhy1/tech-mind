@@ -1,4 +1,4 @@
-import { Routes, Route, RouterProvider, useLocation } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { LanguageContextProvider } from "./contexts/LangContext";
 import AOS from "aos";
 

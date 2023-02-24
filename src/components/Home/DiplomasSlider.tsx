@@ -3,9 +3,6 @@ import { Container } from "react-bootstrap";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import useGet from "../../hooks/useGet";
 
-import { Link } from "react-router-dom";
-import { StringLang } from "../../types/common";
-import { currentLanguage } from "../../utils";
 import useLangContext from "../../hooks/useLangContext";
 
 import { Autoplay } from "swiper";
@@ -30,7 +27,9 @@ const DiplomasSlider = () => {
 
   useEffect(() => {
     const makeFetch = async () => {
-      const data = (await makeRequest("/diplomas")) as DiplomaCardType[];
+      const data = (await makeRequest(
+        "/diplomas?limit=5"
+      )) as DiplomaCardType[];
       setDiplomas(data);
     };
 
