@@ -5,6 +5,13 @@ import laptopMoney from "../assets/home_icons/laptop-money.png";
 import profiles from "../assets/home_icons/profiles.png";
 import time from "../assets/home_icons/time.png";
 
+import user from "../assets/home_icons/user.png";
+import userTrue from "../assets/home_icons/userTrue.png";
+import comment from "../assets/home_icons/comment.png";
+import teacherExplain from "../assets/home_icons/teacherExplain.png";
+import teacher from "../assets/home_icons/teacher.png";
+import grid from "../assets/home_icons/grid.png";
+
 export const homeData = {
   name: {
     AR: "",
@@ -54,6 +61,39 @@ export const homeData = {
       AR: "مشاريع جاهزة للعرض في ال portfolio",
       EN: "Projects ready to be showcased in portfolio",
       img: laptopMoney,
+    },
+
+    // -------
+
+    {
+      AR: "الموجهون المحترفون",
+      EN: "Professional Mentors",
+      img: teacher,
+    },
+    {
+      AR: "ورش عمل تفاعلية",
+      EN: "Interactive Workshops",
+      img: teacherExplain,
+    },
+    {
+      AR: "التوجيه الدائم من المدربين",
+      EN: "Standing guidance from trainers",
+      img: user,
+    },
+    {
+      AR: "مشاريع عملية",
+      EN: "Practical Praojects",
+      img: grid,
+    },
+    {
+      AR: "المتابعة مع الطلاب",
+      EN: "Follow-up with Students",
+      img: userTrue,
+    },
+    {
+      AR: "الدعم المستمر",
+      EN: "Continuous Support",
+      img: comment,
     },
   ],
 };

@@ -85,7 +85,7 @@ h3 {
 /* starts of bootstrap custom css */
 @media (min-width: 1400px) {
   .w-100.w-xl-50 {
-    width: 50% !important;
+    width: 45% !important;
   }
 }
 /* ends of bootstrap custom css */

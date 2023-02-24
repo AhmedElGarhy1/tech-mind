@@ -7,20 +7,10 @@ import { Link } from "react-router-dom";
 import { StringLang } from "../../types/common";
 import { currentLanguage } from "../../utils";
 import useLangContext from "../../hooks/useLangContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowLeftLong,
-  faArrowRightLong,
-} from "@fortawesome/free-solid-svg-icons";
+
 import { Autoplay } from "swiper";
 import ExploreLink from "./ExploreLink";
-
-interface DiplomaType {
-  _id: string;
-  name: StringLang;
-  description: StringLang;
-  main_img: string;
-}
+import DiplomaCard, { DiplomaCardType } from "../teach/Deploma/DiplomaCard";
 
 const breakpoints = {
   767: {
@@ -34,14 +24,13 @@ const breakpoints = {
 };
 
 const DiplomasSlider = () => {
-  const [diplomas, setDiplomas] = useState<DiplomaType[]>([]);
+  const [diplomas, setDiplomas] = useState<DiplomaCardType[]>([]);
   const { error, loading, makeRequest } = useGet();
   const { isEnglish } = useLangContext();
 
   useEffect(() => {
     const makeFetch = async () => {
-      console.log("START");
-      const data = (await makeRequest("/diplomas")) as DiplomaType[];
+      const data = (await makeRequest("/diplomas")) as DiplomaCardType[];
       setDiplomas(data);
     };
 
@@ -75,7 +64,7 @@ const DiplomasSlider = () => {
                 dir={isEnglish ? "ltr" : "rtl"}
                 className="bg-white"
                 style={{ height: "auto" }}>
-                <DiplomaCardSlide diploma={diploma} />
+                <DiplomaCard diploma={diploma} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -88,48 +77,6 @@ const DiplomasSlider = () => {
         />
       </Container>
     </section>
-  );
-};
-
-const DiplomaCardSlide = ({ diploma }: { diploma: DiplomaType }) => {
-  const { isEnglish } = useLangContext();
-
-  return (
-    <>
-      <div>
-        <img
-          src={diploma.main_img}
-          data-aos="zoom-in"
-          className="diploma-img"
-          width="100%"
-          height="250"
-          alt=""
-        />
-      </div>
-      <div className="px-3 pb-5">
-        <h4 data-aos="fade-up" className="fw-bold py-2">
-          {diploma.name[currentLanguage(isEnglish)]}
-        </h4>
-        <p
-          data-aos="fade-left"
-          data-aos-delay="600"
-          style={{ lineHeight: "32px" }}
-          className="fs-5">
-          {diploma.description[currentLanguage(isEnglish)]}
-        </p>
-        <Link
-          data-aos="zoom-out"
-          data-aos-delay="1200"
-          style={{
-            position: "absolute",
-            bottom: "15px",
-          }}
-          className="main-btn"
-          to={`/diplomas/${diploma._id}`}>
-          {isEnglish ? "Learn More" : "معرفة المزيد"}
-        </Link>
-      </div>
-    </>
   );
 };
 

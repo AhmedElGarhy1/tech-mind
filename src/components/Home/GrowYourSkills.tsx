@@ -46,12 +46,14 @@ const GrowYourSkillsList = ({ list }: { list: StringLang[] }) => {
   const { isEnglish } = useLangContext();
 
   return (
-    <ul className="list-unstyled d-flex flex-wrap">
+    <ul
+      style={{ columnGap: "50px" }}
+      className="list-unstyled d-flex flex-wrap ">
       {list &&
         list.map((item, i) => (
           <li
             data-aos={`fade-${isEnglish ? "right" : "left"}`}
-            className="d-flex align-items-center gap-2 my-1 my-lg-3 w-100 w-xl-50"
+            className="d-flex align-items-center gap-2 my-2 my-lg-3 w-100 w-xl-50"
             key={i}>
             <div className="rounded-circle bg-yellow text-white ">
               <FontAwesomeIcon className="fs-3" icon={faCheck} />

@@ -31,7 +31,7 @@ const Hero = ({ name, description, noBtn }: ParamsType) => {
             data-aos="fade-up"
             data-aos-delay="600"
             className="mt-4 mb-5 pb-1 fs-4"
-            style={{ maxWidth: "600px" }}>
+            style={{ maxWidth: "600px", lineHeight: "40px" }}>
             {description[currentLanguage(isEnglish)]}
           </p>
         </div>
