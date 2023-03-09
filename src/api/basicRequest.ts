@@ -6,7 +6,6 @@ export const BASE_URL = "https://tech-mind-backend.onrender.com";
 const backendReq = async (url: string, method: string, obj?: object) => {
   const options = {
     method,
-    // url,
     url: BASE_URL + "/api" + url,
     data: obj,
     headers: {

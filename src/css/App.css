@@ -385,3 +385,13 @@ footer a:hover {
   width: 100%;
   height: 100%;
 }
+
+.about-programs {
+  width: 400px;
+}
+
+@media (max-width: 576px) {
+  .about-programs {
+    width: 100%;
+  }
+}

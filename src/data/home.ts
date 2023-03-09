@@ -14,7 +14,7 @@ import grid from "../assets/home_icons/grid.png";
 
 export const homeData = {
   name: {
-    AR: "",
+    AR: "The Future belongs to you",
     EN: "The Future belongs to you",
   },
   description: {

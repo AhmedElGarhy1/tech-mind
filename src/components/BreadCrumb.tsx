@@ -7,7 +7,7 @@ import useLangContext from "../hooks/useLangContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { currentLanguage } from "../utils";
-import { Container } from "react-bootstrap";
+import { Breadcrumb, Container } from "react-bootstrap";
 
 interface ParamsType {
   name?: {
@@ -29,10 +29,9 @@ const WhereAmI = ({ name, deplomaName }: ParamsType) => {
   // a global var
   let currentLink: string = "";
 
-  console.log();
   useEffect(() => {
     setBreadCrumbs(pathname.split("/").slice(1).map(createBreadCrumb));
-  }, [pathname]);
+  }, [pathname, isEnglish]);
 
   // a dummy function that create one breadCrumbe
   function createBreadCrumb(breadCrumb: string, i: number, arr: string[]) {
@@ -43,7 +42,6 @@ const WhereAmI = ({ name, deplomaName }: ParamsType) => {
     }
     currentLink += `/${breadCrumb}`;
     let currentName = breadCrumb;
-    console.log(arr);
 
     switch (breadCrumb) {
       case "courses": {
