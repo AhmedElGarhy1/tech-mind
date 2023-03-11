@@ -4,8 +4,8 @@ import homeData from "../data/home";
 import BreadCrumb from "../components/BreadCrumb";
 import GrowYourSkills from "../components/Home/GrowYourSkills";
 import WhyTechMindHome from "../components/Home/WhyTechMindHome";
-import DiplomasSlider from "../components/Home/DiplomasSlider";
-import CoursesSlider from "../components/Home/CoursesSlider";
+import DiplomasSlider from "../components/Diplomas/DiplomasSlider";
+import CoursesSlider from "../components/Courses/CoursesSlider";
 const Home = () => {
   return (
     <div className="home">

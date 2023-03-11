@@ -1,4 +1,7 @@
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import useLangContext from "../../hooks/useLangContext";
@@ -46,7 +49,9 @@ const AboutTechMind = ({ name, list }: ParamsType) => {
             style={{ marginTop: "20px" }}
             key={i}>
             <div>
-              <FontAwesomeIcon icon={faChevronRight} />
+              <FontAwesomeIcon
+                icon={isEnglish ? faChevronRight : faChevronLeft}
+              />
             </div>
             <div>{ele[currentLanguage(isEnglish)]}</div>
           </li>

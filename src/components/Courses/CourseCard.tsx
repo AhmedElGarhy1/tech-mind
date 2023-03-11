@@ -1,9 +1,9 @@
 import { faClock, faFolder } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import useLangContext from "../../../hooks/useLangContext";
-import { StringLang } from "../../../types/common";
-import { currentLanguage } from "../../../utils";
+import useLangContext from "../../hooks/useLangContext";
+import { StringLang } from "../../types/common";
+import { currentLanguage } from "../../utils";
 
 export interface CourseCardType {
   _id: string;

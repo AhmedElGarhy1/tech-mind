@@ -11,7 +11,9 @@ const AboutPrograms = ({ list }: ParamsType) => {
   return (
     <div
       data-aos="flip-right"
-      className="float-none m-auto float-lg-end  pt-4 px-3 about-programs"
+      className={`float-none m-auto float-lg-${
+        isEnglish ? "end" : "start"
+      }  pt-4 px-3 about-programs`}
       style={{
         backgroundColor: "#0A657E",
         borderRadius: "12px",

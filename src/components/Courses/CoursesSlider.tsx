@@ -5,8 +5,8 @@ import useGet from "../../hooks/useGet";
 
 import useLangContext from "../../hooks/useLangContext";
 import { Autoplay } from "swiper";
-import ExploreLink from "./ExploreLink";
-import CourseCard, { CourseCardType } from "../teach/Course/CourseCard";
+import ExploreLink from "../Home/ExploreLink";
+import CourseCard, { CourseCardType } from "./CourseCard";
 
 const breakpoints = {
   575: {

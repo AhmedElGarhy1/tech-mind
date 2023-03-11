@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Col, Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import useGet from "../../../hooks/useGet";
-import useLangContext from "../../../hooks/useLangContext";
-import { RelatedCoursesType } from "../../../types/course";
-import { currentLanguage } from "../../../utils";
+import useGet from "../../hooks/useGet";
+import useLangContext from "../../hooks/useLangContext";
+import { RelatedCoursesType } from "../../types/course";
+import { currentLanguage } from "../../utils";
 
 interface ParamsType {
   id: string;

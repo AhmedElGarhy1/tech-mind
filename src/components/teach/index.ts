@@ -1,5 +1,5 @@
-import RelatedCourses from "./Course/RelatedCourses";
-import DeplomaCourses from "./Deploma/DeplomaCourses";
+import RelatedCourses from "../Courses/RelatedCourses";
+import DeplomaCourses from "../Diplomas/DeplomaCourses";
 import FAQ from "./FAQ";
 import Overview from "./Overview";
 import Stats from "./Stats";

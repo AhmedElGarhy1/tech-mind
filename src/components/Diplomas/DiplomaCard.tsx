@@ -1,7 +1,7 @@
-import useLangContext from "../../../hooks/useLangContext";
+import useLangContext from "../../hooks/useLangContext";
 import { Link } from "react-router-dom";
-import { StringLang } from "../../../types/common";
-import { currentLanguage } from "../../../utils";
+import { StringLang } from "../../types/common";
+import { currentLanguage } from "../../utils";
 
 export interface DiplomaCardType {
   _id: string;

@@ -1,6 +1,6 @@
 export const aboutData = {
   name: {
-    AR: "About Tech Mind",
+    AR: "نبزة عن Tech Mind",
     EN: "About Tech Mind",
   },
   description: {

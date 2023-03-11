@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import useLangContext from "../../../hooks/useLangContext";
-import { currentLanguage } from "../../../utils";
+import useLangContext from "../../hooks/useLangContext";
+import { currentLanguage } from "../../utils";
 
 interface ParamsType {
   list: {

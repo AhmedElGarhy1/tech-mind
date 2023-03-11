@@ -20,6 +20,11 @@ const getCourse = async ({ params }: LoaderFunctionArgs) => {
   const response = await backendReq(url, "get");
   return response.data;
 };
+const getAllCourses = async () => {
+  const url = `/courses?is_dependent=true`;
+  const response = await backendReq(url, "get");
+  return response.data;
+};
 
 const getDiplomaCourse = async ({ params, request }: LoaderFunctionArgs) => {
   const id = params.id;
@@ -29,4 +34,18 @@ const getDiplomaCourse = async ({ params, request }: LoaderFunctionArgs) => {
   return response.data;
 };
 
-export { getAllDeiplomas, getDeiploma, getCourse, getDiplomaCourse };
+//* -------------------------- diplomas endpoints --------------------------
+const getDiplomas = async () => {
+  const url = `/courses`;
+  const response = await backendReq(url, "get");
+  return response.data;
+};
+
+export {
+  getAllDeiplomas,
+  getDeiploma,
+  getCourse,
+  getDiplomaCourse,
+  getAllCourses,
+  getDiplomas,
+};

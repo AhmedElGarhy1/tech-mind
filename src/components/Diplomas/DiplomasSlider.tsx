@@ -6,8 +6,8 @@ import useGet from "../../hooks/useGet";
 import useLangContext from "../../hooks/useLangContext";
 
 import { Autoplay } from "swiper";
-import ExploreLink from "./ExploreLink";
-import DiplomaCard, { DiplomaCardType } from "../teach/Deploma/DiplomaCard";
+import ExploreLink from "../Home/ExploreLink";
+import DiplomaCard, { DiplomaCardType } from "./DiplomaCard";
 
 const breakpoints = {
   767: {

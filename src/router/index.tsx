@@ -3,7 +3,12 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import { getCourse, getDeiploma, getDiplomaCourse } from "../api/get-api";
+import {
+  getCourse,
+  getAllCourses,
+  getDeiploma,
+  getDiplomaCourse,
+} from "../api/get-api";
 import Layout from "../components/Layout";
 import NotFound from "../Error/NotFound";
 
@@ -55,7 +60,11 @@ export default createBrowserRouter(
         </Route>
       </Route>
       <Route path="courses">
-        <Route index element={<Courses />} />
+        <Route
+          index
+          element={<ReactSuspense>{<Courses />}</ReactSuspense>}
+          loader={getAllCourses}
+        />
         <Route
           path=":id"
           loader={getCourse}
