@@ -3,6 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import AboutPrograms from "../components/About/AboutPrograms";
 import AboutTechMind from "../components/About/AboutTechMind";
 import Hero from "../components/Hero";
+import BreadCrumb from "../components/BreadCrumb";
 import { WhyTechMind } from "../components/teach";
 import aboutData from "../data/about";
 
@@ -14,7 +15,8 @@ const About = () => {
         description={aboutData.description}
         noBtn={true}
       />
-      <section
+      <BreadCrumb />
+      <div
         className="py-5"
         style={{
           backgroundColor: "var(--section-color)",
@@ -30,7 +32,7 @@ const About = () => {
             list={aboutData.vision}
           />
         </Container>
-      </section>
+      </div>
       <section>
         <Container>
           <Row>

@@ -30,10 +30,11 @@ const CourseCard = ({ course }: { course: CourseCardType }) => {
         />
       </div>
       <div style={{ lineHeight: "28px" }} className="px-3 pb-4">
-        <h4 data-aos="fade-up" className="fw-bold pb-2 pt-3 mb-0">
+        <h4 data-aos="fade-up" className="fw-bold pt-3 mb-0">
           {course.name[currentLanguage(isEnglish)]}
         </h4>
         <p
+          className="py-2"
           data-aos="fade-left"
           data-aos-delay="600"
           style={{ fontSize: "16px" }}>

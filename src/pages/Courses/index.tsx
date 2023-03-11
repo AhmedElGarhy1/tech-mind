@@ -4,9 +4,8 @@ import { useLoaderData } from "react-router-dom";
 import CourseCard, {
   CourseCardType,
 } from "../../components/Courses/CourseCard";
-import CourseSlider from "../../components/Courses/CoursesSlider";
 import Hero from "../../components/Hero";
-// import CourseSlider from "../../components/teach/Course/";
+import BreadCrumb from "../../components/BreadCrumb";
 
 const Courses = () => {
   const courses = useLoaderData() as CourseCardType[];
@@ -23,28 +22,34 @@ const Courses = () => {
         }}
         noBtn={true}
       />
+      <BreadCrumb />
       <div
         style={{
+          backgroundColor: "var(--section-color)",
           marginBottom: "80px",
-        }}>
-        <section
-          style={{
-            backgroundColor: "var(--section-color)",
-          }}
-          className="pb-5">
-          <Container>
-            <h1 className="pt-5 pb-3 fw-bold">Our Courses</h1>
-            <Row className="position-relative gap-4">
-              {courses.map((course) => (
-                <div
-                  key={course._id}
-                  className="bg-white p-0 col-12 col-md-6 col-lg-4 col-xl-3">
-                  <CourseCard course={course} />
-                </div>
-              ))}
-            </Row>
-          </Container>
-        </section>
+        }}
+        className="pb-5">
+        <Container>
+          <h1 className="pt-5 pb-3 fw-bold">Our Courses</h1>
+          <Row
+            style={{
+              rowGap: "30px",
+            }}>
+            {courses.map((course) => (
+              <div
+                style={{
+                  boxSizing: "border-box",
+                  borderLeft: "15px solid transparent",
+                  borderRight: "15px solid transparent",
+                  backgroundClip: "padding-box",
+                }}
+                key={course._id}
+                className="bg-white p-0 col-12 col-md-6 col-lg-4 col-xxl-3 position-relative">
+                <CourseCard course={course} />
+              </div>
+            ))}
+          </Row>
+        </Container>
       </div>
     </div>
   );

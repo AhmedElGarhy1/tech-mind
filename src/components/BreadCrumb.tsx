@@ -4,7 +4,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import useLangContext from "../hooks/useLangContext";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { currentLanguage } from "../utils";
 import { Breadcrumb, Container } from "react-bootstrap";
@@ -40,6 +40,10 @@ const WhereAmI = ({ name, deplomaName }: ParamsType) => {
       setIsHome(true);
       return;
     }
+
+    // fix some issues like if it made rerender and the previous buffer(link) wasn't empty
+    if (i === 0) currentLink = "";
+
     currentLink += `/${breadCrumb}`;
     let currentName = breadCrumb;
 
@@ -66,7 +70,7 @@ const WhereAmI = ({ name, deplomaName }: ParamsType) => {
         else currentName = deplomaName[currentLanguage(isEnglish)];
       }
     }
-
+    console.log(currentLink, i);
     return (
       <Link
         key={i}
@@ -87,7 +91,7 @@ const WhereAmI = ({ name, deplomaName }: ParamsType) => {
 
   return (
     <Container>
-      <div className="pt-4 pb-5">
+      <div className="p-4">
         <Link
           className={`text-capitalize text-black fs-5 ${
             pathname === "/" ? "text-black-50" : ""
