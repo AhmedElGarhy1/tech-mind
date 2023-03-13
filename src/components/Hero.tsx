@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import heroImage from "../assets/hero.jpg";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useLangContext from "../hooks/useLangContext";
 import { currentLanguage } from "../utils";
+import ReservationPopup from "./ReservationPopup";
 interface ParamsType {
   name: {
     AR: string;
@@ -18,6 +19,12 @@ interface ParamsType {
 
 const Hero = ({ name, description, noBtn }: ParamsType) => {
   const { isEnglish } = useLangContext();
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div className="text-white bg-hero-img  py-5">
       <Container
@@ -36,14 +43,17 @@ const Hero = ({ name, description, noBtn }: ParamsType) => {
           </p>
         </div>
         {!noBtn && (
-          <a
-            data-aos="fade-right"
-            data-aos-delay="1200"
-            role={"button"}
-            style={{ lineHeight: "40px" }}
-            className="main-btn hero-btn px-5">
-            {isEnglish ? "Start Your Career" : "ابدأ حياتك المهنية"}
-          </a>
+          <>
+            <button
+              onClick={handleShow}
+              data-aos="fade-right"
+              data-aos-delay="1200"
+              style={{ lineHeight: "40px" }}
+              className="main-btn hero-btn px-5">
+              {isEnglish ? "Start Your Career" : "ابدأ حياتك المهنية"}
+            </button>
+            <ReservationPopup handleClose={handleClose} show={show} />
+          </>
         )}
       </Container>
     </div>
