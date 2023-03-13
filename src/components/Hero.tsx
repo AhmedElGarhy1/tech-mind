@@ -49,7 +49,7 @@ const Hero = ({ name, description, noBtn }: ParamsType) => {
               data-aos="fade-right"
               data-aos-delay="1200"
               style={{ lineHeight: "40px" }}
-              className="main-btn hero-btn px-5">
+              className="main-btn hero-btn px-5 mx-2">
               {isEnglish ? "Start Your Career" : "ابدأ حياتك المهنية"}
             </button>
             <ReservationPopup handleClose={handleClose} show={show} />
