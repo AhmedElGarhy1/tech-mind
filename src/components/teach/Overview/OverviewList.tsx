@@ -27,12 +27,12 @@ const OverviewList = (params: ParamsType) => {
           <div className="rounded-circle mx-2 bg-yellow">
             <FontAwesomeIcon className="px-2 text-white" icon={faClock} />
           </div>
-          <div className="overview-list-item-text fs-5 ">
+          <div className="fs-5 ">
             <span className="text-black-50">
               {isEnglish ? "Durations" : "المدة"} :
             </span>
             <span className="fw-normal">
-              {params.duration} {isEnglish ? "Hours" : "ساعة"}
+              {params.duration} {isEnglish ? "H" : "س"}
             </span>
           </div>
         </li>
@@ -40,7 +40,7 @@ const OverviewList = (params: ParamsType) => {
           <div className="rounded-circle mx-2 bg-yellow">
             <FontAwesomeIcon className="px-2 text-white" icon={faFolder} />
           </div>
-          <div className="overview-list-item-text fs-5">
+          <div className="fs-5">
             <span className="text-black-50">
               {isEnglish ? "Lectures" : "محاضرات"} :{" "}
             </span>
@@ -51,7 +51,7 @@ const OverviewList = (params: ParamsType) => {
           <div className="rounded-circle mx-2 bg-yellow">
             <FontAwesomeIcon className="px-2 text-white" icon={faUsers} />
           </div>
-          <div className="overview-list-item-text fs-5">
+          <div className="fs-5">
             <span className="text-black-50">
               {isEnglish ? "workshops" : "ورشة عمل"} :{" "}
             </span>
@@ -65,9 +65,9 @@ const OverviewList = (params: ParamsType) => {
               icon={faSheetPlastic}
             />
           </div>
-          <div className="overview-list-item-text fs-5">
+          <div className="fs-5">
             <span className="text-black-50">
-              {isEnglish ? "Real Projects" : "مشاريع حقيقية"} :{" "}
+              {isEnglish ? "Projects" : "مشاريع"} :{" "}
             </span>
             <span className="fw-normal">{params.realProjects}</span>
           </div>
