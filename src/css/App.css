@@ -335,6 +335,12 @@ footer a:hover {
     width: 33px;
     height: 33px;
   }
+
+  @media (max-width: 576px) {
+    div.overview-list-item-text {
+      font-size: 12px !important;
+    }
+  }
 }
 
 .rounded-circle svg {
@@ -377,11 +383,5 @@ footer a:hover {
 @media (max-width: 576px) {
   .about-programs {
     width: 100%;
-  }
-}
-
-@media (max-width: 576px) {
-  .overview-list-item-text {
-    font-size: 12px !important;
   }
 }
