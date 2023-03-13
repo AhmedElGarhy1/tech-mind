@@ -7,7 +7,7 @@
   --bs-border-color: #30a5bf !important;
   --secondary-color-hover: #1898b5;
   --yellow-color: #f2be22;
-  --main-transition: 0.3s;
+  --main-transition: 0.3s !important;
 }
 * {
   font-family: "Ubuntu", sans-serif;
