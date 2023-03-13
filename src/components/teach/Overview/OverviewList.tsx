@@ -29,7 +29,7 @@ const OverviewList = (params: ParamsType) => {
           </div>
           <div className="fs-5 ">
             <span className="text-black-50">
-              {isEnglish ? "Durations" : "المدة"} :
+              {isEnglish ? "Duration" : "المدة"} :
             </span>
             <span className="fw-normal">
               {params.duration} {isEnglish ? "H" : "س"}
