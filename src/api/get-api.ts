@@ -43,6 +43,13 @@ const getDiplomas = async () => {
   return response.data;
 };
 
+//* -------------------------- diplomas endpoints --------------------------
+const sendMessage = async (data: any) => {
+  const url = `/messages`;
+  const response = await backendReq(url, "post", data);
+  return response;
+};
+
 export {
   getAllDiplomas,
   getDeiploma,
@@ -50,4 +57,5 @@ export {
   getDiplomaCourse,
   getAllCourses,
   getDiplomas,
+  sendMessage,
 };

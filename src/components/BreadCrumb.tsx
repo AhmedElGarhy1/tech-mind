@@ -91,7 +91,7 @@ const WhereAmI = ({ name, deplomaName }: ParamsType) => {
 
   return (
     <Container>
-      <div className="p-4">
+      <div className="py-4">
         <Link
           className={`text-capitalize text-black fs-5 ${
             pathname === "/" ? "text-black-50" : ""

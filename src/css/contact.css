@@ -1,0 +1,35 @@
+.contact-form {
+  margin-top: 40px !important;
+}
+.contact-form div:not(:last-child) {
+  display: flex;
+  width: 100%;
+}
+.contact-form div input,
+.contact-form textarea {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  background: #f0f0f0;
+}
+
+.contact-form div input:focus,
+.contact-form textarea:focus {
+  outline: none;
+}
+
+.contact-form textarea {
+  background: #f0f0f0;
+  resize: none;
+  width: 100%;
+}
+.error-message {
+  color: #f00;
+  font-size: 16px;
+  font-weight: bold;
+  width: fit-content;
+  padding: 5px 20px;
+  margin: auto;
+  border: 1px dashed red;
+}
