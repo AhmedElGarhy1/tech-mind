@@ -38,6 +38,7 @@ const NavLinks = ({ menuIconRef }: NavLinksParamsType) => {
               }`}
               key={link.id}
               as={Link}
+              disabled={link.id === 5 || link.id === 6}
               to={link.href}>
               {link.name[currentLanguage(isEnglish)]}
             </Nav.Link>

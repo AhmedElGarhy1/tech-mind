@@ -105,6 +105,10 @@ h3 {
   transition: var(--main-transition);
 }
 
+.navbar-nav a.disabled {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .navbar select:focus {
   outline: none;
 }
