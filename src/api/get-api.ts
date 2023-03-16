@@ -2,8 +2,10 @@ import { LoaderFunctionArgs } from "react-router-dom";
 import { backendReq } from "./basicRequest";
 // import Data from "../data/productsData";
 // * -------------------------- diplomas endpoints --------------------------
-const getAllDeiplomas = async () => {
-  return backendReq("/deploma", "get");
+const getAllDiplomas = async () => {
+  const url = `/diplomas`;
+  const response = await backendReq(url, "get");
+  return response.data;
 };
 
 const getDeiploma = async ({ params }: LoaderFunctionArgs) => {
@@ -42,7 +44,7 @@ const getDiplomas = async () => {
 };
 
 export {
-  getAllDeiplomas,
+  getAllDiplomas,
   getDeiploma,
   getCourse,
   getDiplomaCourse,

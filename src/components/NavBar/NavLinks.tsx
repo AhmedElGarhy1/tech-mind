@@ -33,7 +33,7 @@ const NavLinks = ({ menuIconRef }: NavLinksParamsType) => {
                 window.innerWidth < 767 &&
                 menuIconRef.current.click()
               }
-              className={`fw-semibold pe-lg-3 ${
+              className={`fw-semibold pe-lg-3 fs-6${
                 location.pathname == link.href ? "active" : ""
               }`}
               key={link.id}

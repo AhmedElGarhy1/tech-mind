@@ -8,6 +8,7 @@ import {
   getAllCourses,
   getDeiploma,
   getDiplomaCourse,
+  getAllDiplomas,
 } from "../api/get-api";
 import Layout from "../components/Layout";
 import NotFound from "../Error/NotFound";
@@ -25,6 +26,7 @@ import {
   SingleCourse,
   About,
 } from "../pages";
+import Diplomas from "../pages/Diplomas";
 
 import ReactSuspense from "./LoaderRoute";
 
@@ -43,7 +45,11 @@ export default createBrowserRouter(
         <Route path=":id" element={<SingleArticle />} />
       </Route>
       <Route path="diplomas">
-        <Route index element={<Deplomas />} />
+        <Route
+          index
+          element={<ReactSuspense>{<Diplomas />}</ReactSuspense>}
+          loader={getAllDiplomas}
+        />
         <Route path=":id">
           <Route
             loader={getDeiploma}

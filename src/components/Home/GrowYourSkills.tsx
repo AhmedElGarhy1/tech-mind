@@ -48,7 +48,7 @@ const GrowYourSkillsList = ({ list }: { list: StringLang[] }) => {
   return (
     <ul
       style={{ columnGap: "50px" }}
-      className="list-unstyled d-flex flex-wrap ">
+      className="list-unstyled d-flex flex-wrap p-0">
       {list &&
         list.map((item, i) => (
           <li
