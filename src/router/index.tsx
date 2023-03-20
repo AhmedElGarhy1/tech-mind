@@ -36,7 +36,7 @@ export default createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="contact" element={<Contact />} />
       <Route path="about" element={<About />} />
-      <Route path="postes">
+      <Route path="posts">
         <Route index element={<Postes />} />
         <Route path=":id" element={<SinglePost />} />
       </Route>
