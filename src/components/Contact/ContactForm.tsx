@@ -58,7 +58,7 @@ const ContactForm = () => {
       <h1>{isEnglish ? "Feel Free to Write" : "لا تتردد في الكتابة"}</h1>
       {resMessage && <p className="error-message">{resMessage}</p>}
       <form className="contact-form my-4">
-        <div className="gap-3 mb-4">
+        <div className="gap-3 mb-3 mb-md-4 flex-wrap flex-md-nowrap">
           <input
             className="py-3 px-3"
             type="text"
@@ -74,7 +74,7 @@ const ContactForm = () => {
             placeholder="Enter Email"
           />
         </div>
-        <div className="gap-3 mb-4">
+        <div className="gap-3 mb-3 mb-md-4 flex-wrap flex-md-nowrap">
           <input
             className="py-3 px-3"
             type="text"
