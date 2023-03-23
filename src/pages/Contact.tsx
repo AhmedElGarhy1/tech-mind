@@ -21,16 +21,18 @@ const Contact = () => {
         noBtn={true}
       />
       <BreadCrumb />
-      <Container>
-        <Row>
-          <Col lg={8} className="mb-5">
-            <ContactForm />
-          </Col>
-          <Col lg={4} className="mb-5">
-            <ContactDetails />
-          </Col>
-        </Row>
-      </Container>
+      <div className="mt-5">
+        <Container>
+          <Row>
+            <Col lg={8} className="mb-5">
+              <ContactForm />
+            </Col>
+            <Col lg={4} className="mb-5">
+              <ContactDetails />
+            </Col>
+          </Row>
+        </Container>
+      </div>
       <div
         style={{
           marginBottom: "80px",

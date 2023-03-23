@@ -22,8 +22,9 @@ const ContactDetails = () => {
           <div
             style={{
               backgroundColor: "var(--secondary-color)",
+              borderRadius: "3px",
             }}
-            className="icon p-3">
+            className="icon p-3 ">
             <FontAwesomeIcon
               icon={footer.contact[0].icon}
               color="white"
@@ -39,8 +40,9 @@ const ContactDetails = () => {
           <div
             style={{
               backgroundColor: "var(--secondary-color)",
+              borderRadius: "3px",
             }}
-            className="icon p-3">
+            className="icon p-3 ">
             <FontAwesomeIcon
               icon={footer.contact[1].icon}
               color="white"

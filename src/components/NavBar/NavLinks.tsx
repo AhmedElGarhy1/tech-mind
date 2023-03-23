@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -22,17 +22,19 @@ const NavLinks = ({ menuIconRef }: NavLinksParamsType) => {
     setIsEnglish((prev) => !prev);
   };
 
+  const closeMobileMenu = () => {
+    menuIconRef.current &&
+      window.innerWidth < 991 &&
+      menuIconRef.current.click();
+  };
+
   return (
     <>
       <Nav className={`${isEnglish ? "ms-auto" : "me-auto"}`}>
         {links.length !== 0 &&
           links.map((link) => (
             <Nav.Link
-              onClick={() =>
-                menuIconRef.current &&
-                window.innerWidth < 767 &&
-                menuIconRef.current.click()
-              }
+              onClick={closeMobileMenu}
               className={`fw-semibold pe-lg-3 fs-6${
                 location.pathname == link.href ? "active" : ""
               }`}
@@ -51,6 +53,14 @@ const NavLinks = ({ menuIconRef }: NavLinksParamsType) => {
           <FontAwesomeIcon width="10" className="ms-1" icon={faChevronDown} />
         </a>
       </Nav>
+      <NavLink
+        className={`main-btn fw-semibold navbar-btn ${
+          isEnglish ? "me-auto" : "ms-auto"
+        }`}
+        onClick={closeMobileMenu}
+        to="/contact">
+        {isEnglish ? "Contact Us" : "تواصل معنا"}
+      </NavLink>
     </>
   );
 };

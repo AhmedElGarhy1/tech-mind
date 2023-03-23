@@ -24,13 +24,6 @@ const NavBar = (): JSX.Element => {
           />
           <Navbar.Collapse id="nav-items">
             <NavLinks menuIconRef={menuIconRef} />
-            <NavLink
-              className={`main-btn fw-semibold navbar-btn ${
-                isEnglish ? "me-auto" : "ms-auto"
-              }`}
-              to="/contact">
-              {isEnglish ? "Contact Us" : "تواصل معنا"}
-            </NavLink>
           </Navbar.Collapse>
         </Container>
       </Navbar>

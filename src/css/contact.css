@@ -13,6 +13,10 @@
   border-radius: 6px;
   background: #f0f0f0;
 }
+.contact-form div input::placeholder,
+.contact-form textarea::placeholder {
+  color: #8c8c8c;
+}
 
 .contact-form div input:focus,
 .contact-form textarea:focus {
