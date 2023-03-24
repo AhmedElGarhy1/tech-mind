@@ -38,7 +38,7 @@ const Contact = () => {
           marginBottom: "80px",
         }}>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6869.147475463333!2d31.50366017437583!3d30.589576476748775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f7f100305e98d3%3A0xd16278f792b9c3b1!2sTechMe!5e0!3m2!1sar!2seg!4v1678991223670!5m2!1sar!2seg"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3434.642283832278!2d31.48964518487191!3d30.587642081687974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f7f054c47e8509%3A0xceeef2c84c7f078b!2z2KfZhNmF2KzYsdip!5e0!3m2!1sar!2seg!4v1679685329276!5m2!1sar!2seg"
           width="100%"
           height="450"
           style={{ border: 0 }}
