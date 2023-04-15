@@ -56,7 +56,11 @@ const ReservationPopup = ({ show, handleClose, tech_id }: ParamsType) => {
             dir="rtl"
             modules={[Pagination]}
             pagination={true}
-            className="reservation-slider position-absolute rounded-2">
+            className="reservation-slider position-absolute rounded-2"
+            style={{
+              left: isEnglish ? 48 : "unset",
+              right: isEnglish ? "unset" : 48,
+            }}>
             <SwiperSlide>
               {isEnglish
                 ? "Providing software content that distinguishes us from everyone, in addition to a special service and follow-up to gain the respect of the student."
