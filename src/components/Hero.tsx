@@ -15,7 +15,7 @@ interface ParamsType {
     EN: string;
   };
   noBtn?: boolean;
-  tech_id: string;
+  tech_id?: string;
 }
 
 const Hero = ({ name, description, noBtn, tech_id }: ParamsType) => {
