@@ -9,6 +9,13 @@
   --yellow-color: #f2be22;
   --main-transition: 0.3s !important;
 }
+
+/* swiper */
+
+/* :root {
+  --swiper-pagination-color: black;
+} */
+
 * {
   font-family: "Ubuntu", sans-serif;
 }

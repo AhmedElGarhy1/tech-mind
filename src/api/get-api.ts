@@ -43,10 +43,22 @@ const getDiplomas = async () => {
   return response.data;
 };
 
-//* -------------------------- diplomas endpoints --------------------------
+//* -------------------------- contact us endpoint --------------------------
 const sendMessage = async (data: any) => {
   const url = `/messages`;
   const response = await backendReq(url, "post", data);
+  return response;
+};
+
+//* -------------------------- reservation endpoint --------------------------
+const makeReservation = async (data: any) => {
+  const url = `/reservations`;
+  const response = await backendReq(url, "post", data);
+  return response;
+};
+const getAllReservations = async () => {
+  const url = `/reservations`;
+  const response = await backendReq(url, "get");
   return response;
 };
 
@@ -58,4 +70,6 @@ export {
   getAllCourses,
   getDiplomas,
   sendMessage,
+  makeReservation,
+  getAllReservations,
 };

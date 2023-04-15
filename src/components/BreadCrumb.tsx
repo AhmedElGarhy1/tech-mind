@@ -70,7 +70,6 @@ const WhereAmI = ({ name, deplomaName }: ParamsType) => {
         else currentName = deplomaName[currentLanguage(isEnglish)];
       }
     }
-    console.log(currentLink, i);
     return (
       <Link
         key={i}

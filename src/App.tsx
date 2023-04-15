@@ -3,11 +3,11 @@ import { LanguageContextProvider } from "./contexts/LangContext";
 import AOS from "aos";
 
 import "./css/App.css";
-import "./css/home.css";
 
 // swiper css
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 // aos css
 import "aos/dist/aos.css";

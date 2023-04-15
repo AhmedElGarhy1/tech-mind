@@ -45,11 +45,11 @@ export default createBrowserRouter(
         <Route path=":id" element={<SingleArticle />} />
       </Route>
       <Route path="diplomas">
-        {/* <Route
+        <Route
           index
           element={<ReactSuspense>{<Diplomas />}</ReactSuspense>}
           loader={getAllDiplomas}
-        /> */}
+        />
         <Route path=":id">
           <Route
             loader={getDeiploma}

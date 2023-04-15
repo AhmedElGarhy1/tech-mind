@@ -41,7 +41,11 @@ const SingleCourse = () => {
     <>
       {course && (
         <>
-          <Hero name={course.name} description={course.description} />
+          <Hero
+            name={course.name}
+            description={course.description}
+            tech_id={course._id}
+          />
           <BreadCrumb name={course.name} deplomaName={deploma?.name} />
           <Overview course={course} />
           {course.have_objectives && (

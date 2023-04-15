@@ -28,7 +28,11 @@ const SingleDeploma = () => {
     <div>
       {deploma && (
         <>
-          <Hero name={deploma.name} description={deploma.description} />
+          <Hero
+            name={deploma.name}
+            description={deploma.description}
+            tech_id={deploma._id}
+          />
           <BreadCrumb name={deploma.name} />
 
           <Overview course={deploma} />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import heroImage from "../assets/hero.jpg";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -15,9 +15,10 @@ interface ParamsType {
     EN: string;
   };
   noBtn?: boolean;
+  tech_id: string;
 }
 
-const Hero = ({ name, description, noBtn }: ParamsType) => {
+const Hero = ({ name, description, noBtn, tech_id }: ParamsType) => {
   const { isEnglish } = useLangContext();
 
   const [show, setShow] = useState(false);
@@ -52,7 +53,11 @@ const Hero = ({ name, description, noBtn }: ParamsType) => {
               className="main-btn hero-btn px-5 mx-2">
               {isEnglish ? "Start Your Career" : "ابدأ حياتك المهنية"}
             </button>
-            <ReservationPopup handleClose={handleClose} show={show} />
+            <ReservationPopup
+              tech_id={tech_id}
+              handleClose={handleClose}
+              show={show}
+            />
           </>
         )}
       </Container>

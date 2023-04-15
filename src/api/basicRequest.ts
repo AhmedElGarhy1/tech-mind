@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
-// export const BASE_URL = "http://localhost:7000";
-export const BASE_URL = "https://tech-mind-backend.onrender.com";
+export const BASE_URL = "http://localhost:7000";
+// export const BASE_URL = "https://tech-mind-backend.onrender.com";
 
 const backendReq = async (url: string, method: string, obj?: object) => {
   const options = {
@@ -13,14 +13,15 @@ const backendReq = async (url: string, method: string, obj?: object) => {
       Accept: "application/json",
     },
   };
+  let response;
   try {
-    const response = await axios(options);
+    response = await axios(options);
     return response.data;
   } catch (err) {
-    if (err instanceof Error) {
-      throw Error(err.message);
+    if (err instanceof AxiosError) {
+      return err.response.data;
     }
-    throw Error("Somthing went wrong");
+    return "Somthing went wrong";
   }
 };
 
