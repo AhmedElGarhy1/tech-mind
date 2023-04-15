@@ -4,18 +4,22 @@ import { formateEmail } from "../../lib/utils";
 import { Form } from "react-bootstrap";
 import { makeReservation } from "../../api/get-api";
 import { PostResponse } from "../../types/response";
+import Swal from "sweetalert2";
 
 interface ReservationFormTypes {
   tech_id: string;
+  handleClose: () => void;
 }
 
-const ReservationForm = ({ tech_id }: ReservationFormTypes) => {
+const ReservationForm = ({ tech_id, handleClose }: ReservationFormTypes) => {
   const { isEnglish } = useLangContext();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+
   const [error, setError] = useState<null | string>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const num = e.target.value;
@@ -34,9 +38,20 @@ const ReservationForm = ({ tech_id }: ReservationFormTypes) => {
 
     const data = { name, phone, email, tech_id };
     try {
+      setIsLoading(true);
       const res: PostResponse = await makeReservation(data);
+      setIsLoading(false);
       if (!res.ok) setError(res.msg);
+      Swal.fire("Good job!", "We will contact you ASAP", "success").then(
+        handleClose
+      );
+
+      setError("");
+      setName("");
+      setPhone("");
+      setEmail("");
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   };
@@ -45,7 +60,7 @@ const ReservationForm = ({ tech_id }: ReservationFormTypes) => {
     <Form className="text-black-50 mt-3">
       <div className="mb-3">
         <label htmlFor="name" className="mb-1">
-          Full Name
+          {isEnglish ? "Full Name" : "الاسم الكامل"}
         </label>
         <input
           value={name}
@@ -56,7 +71,7 @@ const ReservationForm = ({ tech_id }: ReservationFormTypes) => {
       </div>
       <div className="mb-3">
         <label htmlFor="email" className="mb-1">
-          Email address
+          {isEnglish ? "Email address" : "عنوان البريد الإلكتروني"}
         </label>
         <input
           value={email}
@@ -68,7 +83,7 @@ const ReservationForm = ({ tech_id }: ReservationFormTypes) => {
       </div>
       <div className="mb-3">
         <label htmlFor="phone" className="mb-1">
-          Phone Number
+          {isEnglish ? "Phone Number" : "رقم التليفون"}
         </label>
         <input
           value={phone}
@@ -88,8 +103,15 @@ const ReservationForm = ({ tech_id }: ReservationFormTypes) => {
           marginTop: 10,
         }}
         onClick={handleSubmit}
+        disabled={isLoading}
         className="main-btn fw-semibold mx-auto mx-md-0">
-        {isEnglish ? "Submit" : "أرسال"}
+        {isEnglish
+          ? isLoading
+            ? "Loading..."
+            : "Submit"
+          : isLoading
+          ? "تحميل..."
+          : "أرسال"}
       </button>
     </Form>
   );

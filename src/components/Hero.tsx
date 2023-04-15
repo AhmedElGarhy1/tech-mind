@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useLangContext from "../hooks/useLangContext";
 import { currentLanguage } from "../utils";
-import ReservationPopup from "./ReservationPopup";
+import ReservationPopup from "./Popup/ReservationPopup";
 interface ParamsType {
   name: {
     AR: string;
