@@ -7,7 +7,7 @@ import { currentLanguage } from "../../lib/utils";
 
 interface ParamsType {
   list: {
-    _id: string;
+    _id?: string;
     name: {
       AR: string;
       EN: string;
