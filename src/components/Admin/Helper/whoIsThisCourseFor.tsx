@@ -55,7 +55,7 @@ const WhoIsThisCourseFor: FC<Params> = ({ type }) => {
     });
   };
   const addOne = () => {
-    if (list.at(-1).AR === "" || list.at(-1).EN === "") return;
+    if (list.at(-1)?.AR === "" || list.at(-1)?.EN === "") return;
     setList((p) => [
       ...p,
       {

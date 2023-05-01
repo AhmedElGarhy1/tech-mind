@@ -53,10 +53,10 @@ const Questions: FC<Params> = ({ type }) => {
 
   const addQuestion = () => {
     if (
-      list.at(-1).q.EN === "" ||
-      list.at(-1).q.AR === "" ||
-      list.at(-1).a.at(-1).AR === "" ||
-      list.at(-1).a.at(-1).EN === ""
+      list.at(-1)?.q?.EN === "" ||
+      list.at(-1)?.q?.AR === "" ||
+      list.at(-1)?.a?.at(-1)?.AR === "" ||
+      list.at(-1)?.a?.at(-1)?.EN === ""
     )
       return;
 

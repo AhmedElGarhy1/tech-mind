@@ -96,10 +96,10 @@ const CourseObjectives: FC<Params> = ({ setImages }) => {
 
   const addOne = () => {
     if (
-      !list.at(-1).name.AR ||
-      !list.at(-1).name.EN ||
-      !list.at(-1).description.AR ||
-      !list.at(-1).description.EN
+      !list.at(-1)?.name?.AR ||
+      !list.at(-1)?.name?.EN ||
+      !list.at(-1)?.description?.AR ||
+      !list.at(-1)?.description?.EN
     )
       return;
     setList((p) => [

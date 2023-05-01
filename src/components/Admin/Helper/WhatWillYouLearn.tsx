@@ -53,7 +53,7 @@ const WhatWillYouLearn: FC<Params> = ({ type, setImage }) => {
     });
   };
   const addOne = () => {
-    if (list.at(-1).AR === "" || list.at(-1).EN === "") return;
+    if (list.at(-1)?.AR === "" || list.at(-1)?.EN === "") return;
 
     setList((p) => [
       ...p,

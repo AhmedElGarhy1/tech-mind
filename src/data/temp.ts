@@ -14,33 +14,21 @@ export const tempCourse: CourseType = {
     AR: "",
   },
   overview: {
-    EN: [""],
-    AR: [""],
+    EN: [],
+    AR: [],
   },
   what_you_will_learn: {
-    EN: [""],
-    AR: [""],
+    EN: [],
+    AR: [],
   },
   who_is_this_course_for: {
-    EN: [""],
-    AR: [""],
+    EN: [],
+    AR: [],
   },
   _id: "",
   main_img: "",
   other_src: "",
-  fqa: [
-    {
-      q: {
-        EN: "",
-        AR: "",
-      },
-      a: {
-        EN: [""],
-        AR: [""],
-      },
-      _id: "",
-    },
-  ],
+  fqa: [],
   duration: 0,
   lectures: 0,
   workshops: 0,
@@ -49,19 +37,6 @@ export const tempCourse: CourseType = {
   have_target: false,
   is_dependent: false,
   have_objectives: false,
-  objectives: [
-    {
-      name: {
-        AR: "",
-        EN: "",
-      },
-      description: {
-        AR: "",
-        EN: "",
-      },
-      icon: "",
-      _id: "",
-    },
-  ],
+  objectives: [],
   related_courses: [],
 };
