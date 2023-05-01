@@ -6,8 +6,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container } from "react-bootstrap";
-import useLangContext from "../../hooks/useLangContext";
-import { currentLanguage } from "../../utils";
+import { useAppSelector } from "../../store/hooks";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { currentLanguage } from "../../lib/utils";
 
 interface Params {
   name: {
@@ -27,7 +28,8 @@ const Stats = ({
   workshops,
   real_projects,
 }: Params) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   return (
     <Container
       as="section"

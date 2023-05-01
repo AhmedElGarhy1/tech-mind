@@ -3,11 +3,12 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import useLangContext from "../hooks/useLangContext";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { currentLanguage } from "../utils";
 import { Breadcrumb, Container } from "react-bootstrap";
+import { useAppSelector } from "../store/hooks";
+import { selectIsEnglish } from "../store/slices/LangSlice";
+import { currentLanguage } from "../lib/utils";
 
 interface ParamsType {
   name?: {
@@ -21,7 +22,8 @@ interface ParamsType {
 }
 
 const WhereAmI = ({ name, deplomaName }: ParamsType) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   const { pathname } = useLocation();
   const [isHome, setIsHome] = useState(false);
   const [breadCrumbs, setBreadCrumbs] = useState([]);

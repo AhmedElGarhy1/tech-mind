@@ -1,28 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 
 import "../../css/reservationPopup.css";
-import useLangContext from "../../hooks/useLangContext";
-import { formateEmail } from "../../lib/utils";
 import ReservationForm from "./ResrvationForm";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { useAppSelector } from "../../store/hooks";
 
 interface ParamsType {
   show: boolean;
   handleClose: () => void;
   tech_id: string;
+  layoutRef: React.MutableRefObject<HTMLDivElement>;
 }
 
-const ReservationPopup = ({ show, handleClose, tech_id }: ParamsType) => {
-  const { isEnglish } = useLangContext();
+const ReservationPopup = ({
+  show,
+  handleClose,
+  tech_id,
+  layoutRef,
+}: ParamsType) => {
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
     <>
       <div
+        ref={layoutRef}
+        style={{ display: "none" }}
         className={`${show ? "opacity-100 fixed-top" : ""} reservation-layout`}>
         <div className="reservation-popup p-4">
           <FontAwesomeIcon

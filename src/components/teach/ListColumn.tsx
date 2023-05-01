@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import useLangContext from "../../hooks/useLangContext";
-import { currentLanguage } from "../../utils";
+import { useAppSelector } from "../../store/hooks";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { currentLanguage } from "../../lib/utils";
 
 interface ListType {
   AR: string[];
@@ -12,7 +13,8 @@ interface ParamsType {
 }
 
 const ListColumn = ({ list }: ParamsType) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   const [visible, setVisible] = useState([]);
   const [isOpened, setIsOpened] = useState(false);
 
@@ -30,6 +32,7 @@ const ListColumn = ({ list }: ParamsType) => {
   };
 
   const changeButtonState = () => {
+    console.log("first");
     if (!isOpened) {
       setVisible(list[currentLanguage(isEnglish)]);
     } else {
@@ -49,20 +52,22 @@ const ListColumn = ({ list }: ParamsType) => {
           </li>
         ))}
       </ul>
-      <button
-        onClick={changeButtonState}
-        style={{
-          padding: "16px 20px",
-        }}
-        className="btn btn-dark fw-semibold py-3 mt-4 mx-1 fs-4 fw-bold">
-        {isOpened
-          ? isEnglish
-            ? "See less"
-            : "عرض القليل"
-          : isEnglish
-          ? "See more"
-          : "عرض المذيد"}
-      </button>
+      {list.AR.length > 6 && (
+        <button
+          onClick={changeButtonState}
+          style={{
+            padding: "16px 20px",
+          }}
+          className="btn btn-dark fw-semibold py-3 mt-4 mx-1 fs-4 fw-bold">
+          {isOpened
+            ? isEnglish
+              ? "See less"
+              : "عرض القليل"
+            : isEnglish
+            ? "See more"
+            : "عرض المذيد"}
+        </button>
+      )}
     </>
   );
 };

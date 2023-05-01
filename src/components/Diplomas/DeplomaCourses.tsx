@@ -1,8 +1,9 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import useLangContext from "../../hooks/useLangContext";
-import { currentLanguage } from "../../utils";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { useAppSelector } from "../../store/hooks";
+import { currentLanguage } from "../../lib/utils";
 
 interface ParamsType {
   list: {
@@ -22,7 +23,8 @@ interface ParamsType {
 }
 
 const DeplomaCourses = ({ list, deplomaID, isDeploma }: ParamsType) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   return (
     <Container className="my-5">
       <h1 className="mb-4">{isEnglish ? "Course Tracks" : "مسارات الدورة"}</h1>

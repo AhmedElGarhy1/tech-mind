@@ -17,5 +17,6 @@ export interface SimpleCourse {
   fqa: {
     q: StringLang;
     a: StringLangs;
+    _id?: string;
   }[];
 }

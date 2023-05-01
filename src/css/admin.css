@@ -1,0 +1,52 @@
+.admin a.active {
+  background-color: #073744;
+}
+.update-page input,
+.update-page .input,
+.update-page textarea {
+  border: 1px solid #d9d9d9;
+  outline: none;
+  border-radius: 4px;
+  flex-grow: 1;
+  resize: none;
+  padding: 14px;
+}
+
+input::-ms-browse {
+  background: black;
+  color: red;
+  padding: 1em;
+}
+
+.bg-border-color {
+  background-color: #d9d9d9;
+}
+
+.switch-body {
+  width: 100px;
+  height: 40px;
+  border-radius: 200px;
+  background: #005f79;
+  position: relative;
+  display: flex;
+}
+.switch-body span:first-of-type {
+  padding: 4px 7px;
+}
+.switch-body span:last-of-type {
+  padding: 4px 7px;
+  float: right;
+}
+.switch-body .inner-ball {
+  background-color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 200px;
+  transition: 0.3s;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+.switch-body .inner-ball.on {
+  left: 62px;
+}

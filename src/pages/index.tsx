@@ -3,7 +3,7 @@ import Contact from "./Contact";
 import About from "./About";
 import SinglePost from "./Postes/SinglePost";
 import SingleArticle from "./Articles/SingleArticle";
-import Deplomas from "./Diplomas";
+import Diplomas from "./Diplomas";
 import Courses from "./Courses";
 import Postes from "./Postes";
 import Articles from "./Articles";
@@ -18,7 +18,7 @@ export {
   Contact,
   About,
   Courses,
-  Deplomas,
+  Diplomas,
   Postes,
   Articles,
   SingleCourse,

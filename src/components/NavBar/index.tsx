@@ -2,12 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { Container, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo-color-m.png";
-import useLangContext from "../../hooks/useLangContext";
 
 import NavLinks from "./NavLinks";
 
 const NavBar = (): JSX.Element => {
-  const { isEnglish } = useLangContext();
   const menuIconRef = useRef<HTMLButtonElement | null>(null);
 
   return (

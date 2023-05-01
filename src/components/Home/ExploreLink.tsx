@@ -1,8 +1,9 @@
+import React from "react";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 import { Link } from "react-router-dom";
-import useLangContext from "../../hooks/useLangContext";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { useAppSelector } from "../../store/hooks";
 
 interface ParamsType {
   path: string;
@@ -11,7 +12,8 @@ interface ParamsType {
 }
 
 const ExploreLink = ({ path, arText, enText }: ParamsType) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   return (
     <Link className="text-black fs-4 text-end d-block mt-4" to={path}>
       {isEnglish ? (

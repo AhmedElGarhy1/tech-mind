@@ -3,10 +3,12 @@ import { Container } from "react-bootstrap";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import useGet from "../../hooks/useGet";
 
-import useLangContext from "../../hooks/useLangContext";
 import { Autoplay } from "swiper";
 import ExploreLink from "../Home/ExploreLink";
-import CourseCard, { CourseCardType } from "./CourseCard";
+import CourseCard from "./CourseCard";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { useAppSelector } from "../../store/hooks";
+import { CourseCardType } from "../../types/course";
 
 const breakpoints = {
   575: {
@@ -27,7 +29,7 @@ const CourseSlider = () => {
   const swiperRef = useRef<SwiperRef>();
   const [courses, setCourses] = useState<CourseCardType[]>([]);
   const { error, loading, makeRequest } = useGet();
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   useEffect(() => {
     const makeFetch = async () => {

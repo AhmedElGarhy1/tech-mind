@@ -3,18 +3,14 @@
 :root {
   --main-color: #0e1d27;
   --secondary-color: #30a5bf;
+  --dashboard-color: #005f79;
   --section-color: #f7f9f8;
+  --admin-section-color: #f5f5f5;
   --bs-border-color: #30a5bf !important;
   --secondary-color-hover: #1898b5;
   --yellow-color: #f2be22;
   --main-transition: 0.3s !important;
 }
-
-/* swiper */
-
-/* :root {
-  --swiper-pagination-color: black;
-} */
 
 * {
   font-family: "Ubuntu", sans-serif;
@@ -29,11 +25,23 @@ html {
 .text-yellow {
   color: var(--yellow-color);
 }
+.text-secondary-color {
+  color: var(--secondary-color);
+}
 .bg-yellow {
   background-color: var(--yellow-color);
 }
 .bg-main-color {
   background-color: var(--main-color);
+}
+.bg-dashboard-color {
+  background-color: var(--dashboard-color);
+}
+.bg-admin-section-color {
+  background-color: var(--admin-section-color);
+}
+.input-border {
+  border: 1px solid #d9d9d9;
 }
 
 .main-btn {
@@ -150,6 +158,7 @@ h3 {
   position: relative;
   height: 446px;
   position: relative;
+  /* z-index: -2; */
 }
 .bg-hero-img > div {
   display: flex;

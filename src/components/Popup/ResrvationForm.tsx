@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import useLangContext from "../../hooks/useLangContext";
 import { formateEmail } from "../../lib/utils";
 import { Form } from "react-bootstrap";
 import { makeReservation } from "../../api/get-api";
 import { PostResponse } from "../../types/response";
 import Swal from "sweetalert2";
+import { useAppSelector } from "../../store/hooks";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
 
 interface ReservationFormTypes {
   tech_id: string;
@@ -12,7 +13,7 @@ interface ReservationFormTypes {
 }
 
 const ReservationForm = ({ tech_id, handleClose }: ReservationFormTypes) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

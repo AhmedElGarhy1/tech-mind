@@ -1,21 +1,13 @@
 import { faClock, faFolder } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import useLangContext from "../../hooks/useLangContext";
-import { StringLang } from "../../types/common";
-import { currentLanguage } from "../../utils";
-
-export interface CourseCardType {
-  _id: string;
-  name: StringLang;
-  description: StringLang;
-  main_img: string;
-  duration: string;
-  lectures: string;
-}
+import { CourseCardType } from "../../types/course";
+import { useAppSelector } from "../../store/hooks";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { currentLanguage } from "../../lib/utils";
 
 const CourseCard = ({ course }: { course: CourseCardType }) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
     <Link className="text-black" to={`/courses/${course._id}`}>

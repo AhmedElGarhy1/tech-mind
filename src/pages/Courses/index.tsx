@@ -1,11 +1,10 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import { useLoaderData } from "react-router-dom";
-import CourseCard, {
-  CourseCardType,
-} from "../../components/Courses/CourseCard";
+import CourseCard from "../../components/Courses/CourseCard";
 import Hero from "../../components/Hero";
 import BreadCrumb from "../../components/BreadCrumb";
+import { CourseCardType } from "../../types/course";
 
 const Courses = () => {
   const courses = useLoaderData() as CourseCardType[];

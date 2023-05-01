@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Container } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
-import useLangContext from "../../hooks/useLangContext";
-import { currentLanguage } from "../../utils";
 import { Autoplay } from "swiper";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { useAppSelector } from "../../store/hooks";
+import { currentLanguage } from "../../lib/utils";
 
 const breakpoints = {
   767: {
@@ -23,7 +24,8 @@ interface ParamsType {
 }
 
 const WhyTechMindHome = ({ list }: ParamsType) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   return (
     <section>
       <h1 className="text-center mb-4">

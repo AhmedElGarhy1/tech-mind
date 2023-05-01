@@ -4,13 +4,15 @@ import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import useLangContext from "../hooks/useLangContext";
 import logo from "../assets/logo-color-m.png";
 import footer from "../data/footer";
-import { currentLanguage } from "../utils";
+import { useAppSelector } from "../store/hooks";
+import { selectIsEnglish } from "../store/slices/LangSlice";
+import { currentLanguage } from "../lib/utils";
 
 const Footer = (): JSX.Element => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   return (
     <footer className="page-footer bg-main font-small blue pt-4">
       {footer && (

@@ -4,9 +4,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import useLangContext from "../../hooks/useLangContext";
 import { StringLang } from "../../types/common";
-import { currentLanguage } from "../../utils";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { useAppSelector } from "../../store/hooks";
+import { currentLanguage } from "../../lib/utils";
 
 interface ParamsType {
   name: StringLang;
@@ -14,8 +15,8 @@ interface ParamsType {
 }
 
 const AboutTechMind = ({ name, list }: ParamsType) => {
-  const { isEnglish } = useLangContext();
-  console.log(name, list);
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   return (
     <div style={{ maxWidth: "800px" }}>
       <h1

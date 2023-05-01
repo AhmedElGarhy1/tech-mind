@@ -2,9 +2,9 @@ import { faSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import useLangContext from "../../hooks/useLangContext";
-import { currentLanguage } from "../../utils";
 import ListColumn from "./ListColumn";
+import { useAppSelector } from "../../store/hooks";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
 
 interface ParamsType {
   list: {
@@ -16,7 +16,7 @@ interface ParamsType {
 }
 
 const WhatYouWillLearn = ({ list, src, isDeploma }: ParamsType) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
     <>

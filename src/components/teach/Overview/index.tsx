@@ -4,16 +4,18 @@ import { Col, Container, Row } from "react-bootstrap";
 import { DeplomaType } from "../../../types/deploma";
 import { CourseType } from "../../../types/course";
 
-import useLangContext from "../../../hooks/useLangContext";
 import OverviewList from "./OverviewList";
-import { currentLanguage } from "../../../utils";
+import { useAppSelector } from "../../../store/hooks";
+import { selectIsEnglish } from "../../../store/slices/LangSlice";
+import { currentLanguage } from "../../../lib/utils";
 
 interface ParamsType {
   course: DeplomaType | CourseType;
 }
 
 const DeplomaOverview = ({ course }: ParamsType) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   return (
     <Container>
       <Row className="gx-4">

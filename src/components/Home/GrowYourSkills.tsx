@@ -1,10 +1,11 @@
+import React from "react";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import useLangContext from "../../hooks/useLangContext";
+import { Container, Row } from "react-bootstrap";
 import { StringLang } from "../../types/common";
-import { currentLanguage } from "../../utils";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { useAppSelector } from "../../store/hooks";
+import { currentLanguage } from "../../lib/utils";
 
 interface ParamsType {
   img: string;
@@ -12,7 +13,7 @@ interface ParamsType {
 }
 
 const GrowYourSkills = ({ img, list }: ParamsType) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
     <Container>
@@ -43,7 +44,7 @@ const GrowYourSkills = ({ img, list }: ParamsType) => {
 };
 
 const GrowYourSkillsList = ({ list }: { list: StringLang[] }) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
     <ul

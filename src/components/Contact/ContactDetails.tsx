@@ -1,12 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import footer from "../../data/footer";
-import useLangContext from "../../hooks/useLangContext";
-import { currentLanguage } from "../../utils";
+import { useAppSelector } from "../../store/hooks";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
 
 const ContactDetails = () => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
     <>

@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useLangContext from "../hooks/useLangContext";
+import { selectIsEnglish } from "../store/slices/LangSlice";
+import { useAppSelector } from "../store/hooks";
 
 const NotFound = () => {
   console.log("first");
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   return (
     <div className="my-5 text-center">
       <h2>{isEnglish ? "Not Found" : "غير موجود"}</h2>

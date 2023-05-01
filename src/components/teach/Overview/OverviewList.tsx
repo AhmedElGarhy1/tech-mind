@@ -1,6 +1,4 @@
 import React from "react";
-import useLangContext from "../../../hooks/useLangContext";
-
 import {
   faClock,
   faFolder,
@@ -9,6 +7,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Row } from "react-bootstrap";
+import { useAppSelector } from "../../../store/hooks";
+import { selectIsEnglish } from "../../../store/slices/LangSlice";
 
 interface ParamsType {
   duration: number;
@@ -18,7 +18,7 @@ interface ParamsType {
 }
 
 const OverviewList = (params: ParamsType) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
     <ul className="overview-list list-unstyled p-0">

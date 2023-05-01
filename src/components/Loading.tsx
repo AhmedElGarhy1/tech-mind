@@ -1,7 +1,8 @@
-import useLoadingContext from "../hooks/useLoadingContext";
+import { useAppSelector } from "../store/hooks";
+import { selectLoadingStatus } from "../store/slices/LoadingSlice";
 
 export const MainLoading = () => {
-  const { pageLoading } = useLoadingContext();
+  const pageLoading = useAppSelector(selectLoadingStatus);
 
   return (
     <>
@@ -15,8 +16,6 @@ export const MainLoading = () => {
 };
 
 export const Loading = () => {
-  const { pageLoading } = useLoadingContext();
-
   return (
     <>
       <div className="loading">

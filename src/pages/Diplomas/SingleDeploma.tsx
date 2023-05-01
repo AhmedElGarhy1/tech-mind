@@ -12,13 +12,15 @@ import {
 } from "../../components/teach";
 import BreadCrumb from "../../components/BreadCrumb";
 import { DeplomaType } from "../../types/deploma";
-import useLoadingContext from "../../hooks/useLoadingContext";
 import { useEffect } from "react";
+import { removeLoading } from "../../store/slices/LoadingSlice";
+import { useAppDispatch } from "../../store/hooks";
 
 const SingleDeploma = () => {
-  console.log("HEY FROM DEPLOMA");
-  const { removeLoading } = useLoadingContext();
-  useEffect(removeLoading, []);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(removeLoading());
+  }, []);
 
   const data = useLoaderData();
   const deploma = data as DeplomaType;

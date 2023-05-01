@@ -3,16 +3,20 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import ReactSuspense from "./LoaderRoute";
 import {
-  getCourse,
-  getAllCourses,
-  getDeiploma,
+  getCourseLoader,
+  getAllDependentCourses,
+  getDiploma,
   getDiplomaCourse,
   getAllDiplomas,
+  getAllCourses,
+  getCourseLoaderForAdmin,
 } from "../api/get-api";
-import Layout from "../components/Layout";
+import { AdminLayout, MainLayout, ViewLayout } from "../Layouts";
 import NotFound from "../Error/NotFound";
 
+// view pages
 import {
   Home,
   Contact,
@@ -20,69 +24,110 @@ import {
   SinglePost,
   Articles,
   SingleArticle,
-  Deplomas,
+  Diplomas,
   SingleDeploma,
   Courses,
   SingleCourse,
   About,
 } from "../pages";
-import Diplomas from "../pages/Diplomas";
 
-import ReactSuspense from "./LoaderRoute";
+// admin pages
+import {
+  AdminLogin,
+  Dashboard,
+  AllDiplomas,
+  UpdateDiploma,
+  AllCourses,
+  AddCourse,
+} from "../pages/Admin";
+import UpdateCourse from "../pages/Admin/Courses/UpdateCourse";
 
 export default createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />} errorElement={<NotFound />}>
-      <Route index element={<Home />} />
-      <Route path="contact" element={<Contact />} />
-      <Route path="about" element={<About />} />
-      <Route path="posts">
-        <Route index element={<Postes />} />
-        <Route path=":id" element={<SinglePost />} />
-      </Route>
-      <Route path="articles">
-        <Route index element={<Articles />} />
-        <Route path=":id" element={<SingleArticle />} />
-      </Route>
-      <Route path="diplomas">
-        <Route
-          index
-          element={<ReactSuspense>{<Diplomas />}</ReactSuspense>}
-          loader={getAllDiplomas}
-        />
-        <Route path=":id">
+    <Route path="/" element={<MainLayout />} errorElement={<NotFound />}>
+      <Route element={<ViewLayout />}>
+        <Route index element={<Home />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="about" element={<About />} />
+        <Route path="posts">
+          <Route index element={<Postes />} />
+          <Route path=":id" element={<SinglePost />} />
+        </Route>
+        <Route path="articles">
+          <Route index element={<Articles />} />
+          <Route path=":id" element={<SingleArticle />} />
+        </Route>
+        <Route path="diplomas">
           <Route
-            loader={getDeiploma}
             index
-            element={<ReactSuspense>{<SingleDeploma />}</ReactSuspense>}
-            errorElement={<NotFound />}
+            element={<ReactSuspense>{<Diplomas />}</ReactSuspense>}
+            loader={getAllDiplomas}
+          />
+          <Route path=":id">
+            <Route
+              loader={getDiploma}
+              index
+              element={<ReactSuspense>{<SingleDeploma />}</ReactSuspense>}
+              errorElement={<NotFound />}
+            />
+            <Route
+              loader={getDiplomaCourse}
+              path=":id"
+              element={<ReactSuspense>{<SingleCourse />}</ReactSuspense>}
+              errorElement={<NotFound />}
+            />
+          </Route>
+        </Route>
+        <Route path="courses">
+          <Route
+            index
+            element={<ReactSuspense>{<Courses />}</ReactSuspense>}
+            loader={getAllDependentCourses}
           />
           <Route
-            loader={getDiplomaCourse}
             path=":id"
-            element={<ReactSuspense>{<SingleCourse />}</ReactSuspense>}
+            loader={getCourseLoader}
+            element={
+              <ReactSuspense>
+                <SingleCourse />
+              </ReactSuspense>
+            }
             errorElement={<NotFound />}
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Route>
-      <Route path="courses">
-        <Route
-          index
-          element={<ReactSuspense>{<Courses />}</ReactSuspense>}
-          loader={getAllCourses}
-        />
-        <Route
-          path=":id"
-          loader={getCourse}
-          element={
-            <ReactSuspense>
-              <SingleCourse />
-            </ReactSuspense>
-          }
-          errorElement={<NotFound />}
-        />
+      <Route path="admin">
+        <Route element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="courses">
+            <Route
+              index
+              loader={getAllCourses}
+              element={
+                <ReactSuspense>
+                  <AllCourses />
+                </ReactSuspense>
+              }
+            />
+            <Route path="add" element={<AddCourse type="add" />} />
+            <Route
+              path=":id"
+              loader={getCourseLoaderForAdmin}
+              element={
+                <ReactSuspense>
+                  <UpdateCourse />
+                </ReactSuspense>
+              }
+              errorElement={<NotFound />}
+            />
+          </Route>
+          <Route path="diplomas" element={<AllDiplomas />}>
+            <Route path=":id" element={<UpdateDiploma />} />
+          </Route>
+        </Route>
+        <Route path="login" element={<AdminLogin />} />
       </Route>
-      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );

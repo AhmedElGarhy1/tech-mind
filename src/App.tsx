@@ -1,5 +1,4 @@
 import { RouterProvider } from "react-router-dom";
-import { LanguageContextProvider } from "./contexts/LangContext";
 import AOS from "aos";
 
 import "./css/App.css";
@@ -15,6 +14,8 @@ import "aos/dist/aos.css";
 import routes from "./router";
 import { MainLoading } from "./components/Loading";
 import { useEffect } from "react";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const App = () => {
   useEffect(() => {
@@ -25,10 +26,10 @@ const App = () => {
   }, []);
 
   return (
-    <LanguageContextProvider>
+    <Provider store={store}>
       <MainLoading />
       <RouterProvider router={routes} />
-    </LanguageContextProvider>
+    </Provider>
   );
 };
 

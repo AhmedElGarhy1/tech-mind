@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import useLangContext from "../../hooks/useLangContext";
-import { currentLanguage } from "../../utils";
 import whyTechMind from "../../data/whyTechMind";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { useAppSelector } from "../../store/hooks";
+import { currentLanguage } from "../../lib/utils";
 
 interface Coulmn {
   head: {
@@ -16,7 +17,8 @@ interface Coulmn {
 }
 
 const WhyLearnFromUs = () => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   const [leftColumnData, setLeftCoulmnData] = useState<Coulmn[]>([]);
   const [rightColumnData, setRightCoulmnData] = useState<Coulmn[]>([]);
 
@@ -74,7 +76,7 @@ interface ColumnParams {
 }
 
 const ColumnComponent = ({ list, startCount, animation }: ColumnParams) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
     <ul className="why-tech-mind-ul">

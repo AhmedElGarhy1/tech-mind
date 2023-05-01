@@ -3,11 +3,11 @@ import { Container } from "react-bootstrap";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import useGet from "../../hooks/useGet";
 
-import useLangContext from "../../hooks/useLangContext";
-
 import { Autoplay } from "swiper";
 import ExploreLink from "../Home/ExploreLink";
 import DiplomaCard, { DiplomaCardType } from "./DiplomaCard";
+import { useAppSelector } from "../../store/hooks";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
 
 const breakpoints = {
   767: {
@@ -22,8 +22,8 @@ const breakpoints = {
 
 const DiplomasSlider = () => {
   const [diplomas, setDiplomas] = useState<DiplomaCardType[]>([]);
-  const { error, loading, makeRequest } = useGet();
-  const { isEnglish } = useLangContext();
+  const { loading, makeRequest } = useGet();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   useEffect(() => {
     const makeFetch = async () => {

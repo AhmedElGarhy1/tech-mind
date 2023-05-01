@@ -1,11 +1,12 @@
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Col, Container, Row } from "react-bootstrap";
-import useLangContext from "../../hooks/useLangContext";
 import { StringLang, StringLangs } from "../../types/common";
-import { currentLanguage } from "../../utils";
+import { useAppSelector } from "../../store/hooks";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { currentLanguage } from "../../lib/utils";
 
 interface ListItemType {
   q: StringLang;
@@ -20,8 +21,8 @@ interface ParamsType {
 
 const FAQ = ({ list }: ParamsType) => {
   const tempList = list as ListItemType[];
+  const isEnglish = useAppSelector(selectIsEnglish);
 
-  const { isEnglish } = useLangContext();
   const [fqaList, setFqaList] = useState<ListItemType[]>(tempList);
 
   const handleToggle = (id: string) => {

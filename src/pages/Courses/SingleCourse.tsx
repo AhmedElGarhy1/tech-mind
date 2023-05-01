@@ -14,8 +14,9 @@ import {
 } from "../../components/teach";
 import BreadCrumb from "../../components/BreadCrumb";
 
-import useLoadingContext from "../../hooks/useLoadingContext";
 import { CourseType } from "../../types/course";
+import { useAppDispatch } from "../../store/hooks";
+import { removeLoading } from "../../store/slices/LoadingSlice";
 
 interface DataType {
   course: CourseType;
@@ -29,13 +30,16 @@ interface DataType {
 }
 
 const SingleCourse = () => {
-  const { removeLoading } = useLoadingContext();
+  const dispatch = useAppDispatch();
+
   const { id } = useParams();
   const data = useLoaderData() as DataType;
   const course = data.course;
   const deploma = data.deploma;
 
-  useEffect(removeLoading, []);
+  useEffect(() => {
+    dispatch(removeLoading());
+  }, []);
 
   return (
     <>

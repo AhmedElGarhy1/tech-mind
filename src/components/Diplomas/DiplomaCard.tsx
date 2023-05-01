@@ -1,7 +1,8 @@
-import useLangContext from "../../hooks/useLangContext";
 import { Link } from "react-router-dom";
 import { StringLang } from "../../types/common";
-import { currentLanguage } from "../../utils";
+import { useAppSelector } from "../../store/hooks";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { currentLanguage } from "../../lib/utils";
 
 export interface DiplomaCardType {
   _id: string;
@@ -11,7 +12,7 @@ export interface DiplomaCardType {
 }
 
 const DiplomaCard = ({ diploma }: { diploma: DiplomaCardType }) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
     <>

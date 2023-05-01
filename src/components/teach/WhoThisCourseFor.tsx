@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import useLangContext from "../../hooks/useLangContext";
-import { currentLanguage } from "../../utils";
 import workerImage from "../../assets/workers.png";
 import ListColumn from "./ListColumn";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { useAppSelector } from "../../store/hooks";
 
 interface ListType {
   AR: string[];
@@ -15,7 +15,7 @@ interface ParamsType {
 }
 
 const WhoThisCourseFor = ({ list }: ParamsType) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
     <>

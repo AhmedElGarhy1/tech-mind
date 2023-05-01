@@ -1,5 +1,6 @@
 import { LoaderFunctionArgs } from "react-router-dom";
 import { backendReq } from "./basicRequest";
+import { CourseType } from "../types/course";
 // import Data from "../data/productsData";
 // * -------------------------- diplomas endpoints --------------------------
 const getAllDiplomas = async () => {
@@ -8,7 +9,7 @@ const getAllDiplomas = async () => {
   return response.data;
 };
 
-const getDeiploma = async ({ params }: LoaderFunctionArgs) => {
+const getDiploma = async ({ params }: LoaderFunctionArgs) => {
   const id = params.id;
   const url = `/diplomas/${id}`;
   const response = await backendReq(url, "get");
@@ -16,14 +17,28 @@ const getDeiploma = async ({ params }: LoaderFunctionArgs) => {
 };
 //* -------------------------- courses endpoints --------------------------
 
-const getCourse = async ({ params }: LoaderFunctionArgs) => {
+const getCourseLoader = async ({ params }: LoaderFunctionArgs) => {
   const id = params.id;
   const url = `/courses/${id}`;
   const response = await backendReq(url, "get");
   return response.data;
 };
-const getAllCourses = async () => {
+
+const getCourseLoaderForAdmin = async ({ params }: LoaderFunctionArgs) => {
+  const id = params.id;
+  const url = `/courses/${id}?isAdmin=true`;
+  const response = await backendReq(url, "get");
+  return response.data;
+};
+
+const getAllDependentCourses = async () => {
   const url = `/courses?is_dependent=true`;
+  const response = await backendReq(url, "get");
+  return response.data;
+};
+
+const getAllCourses = async () => {
+  const url = `/courses`;
   const response = await backendReq(url, "get");
   return response.data;
 };
@@ -36,11 +51,50 @@ const getDiplomaCourse = async ({ params, request }: LoaderFunctionArgs) => {
   return response.data;
 };
 
-//* -------------------------- diplomas endpoints --------------------------
-const getDiplomas = async () => {
+// not loader
+const deleteCourse = async (id: string) => {
+  const url = `/courses/${id}`;
+  const response = await backendReq(url, "delete");
+  return response;
+};
+
+// not loader
+const addCourse = async (course: CourseType) => {
   const url = `/courses`;
+  const response = await backendReq(url, "post", course);
+  return response;
+};
+
+// not loader
+const updateCourse = async (_id: string, course: CourseType) => {
+  const url = `/courses/${_id}`;
+  console.log(url);
+  const response = await backendReq(url, "patch", course);
+  return response;
+};
+
+// not loader
+const getCourse = async (courseId: string) => {
+  const url = `/courses/${courseId}`;
   const response = await backendReq(url, "get");
-  return response.data;
+  return response;
+};
+
+// not loader
+const addRelatedCourse = async (courseId: string, otherCourseId: string) => {
+  const url = `/courses/related/${courseId}`;
+  const response = await backendReq(url, "post", {
+    courseId: otherCourseId,
+  });
+  return response;
+};
+
+const deleteRelatedCourse = async (courseId: string, otherCourseId: string) => {
+  const url = `/courses/related/${courseId}`;
+  const response = await backendReq(url, "delete", {
+    courseId: otherCourseId,
+  });
+  return response;
 };
 
 //* -------------------------- contact us endpoint --------------------------
@@ -64,12 +118,19 @@ const getAllReservations = async () => {
 
 export {
   getAllDiplomas,
-  getDeiploma,
-  getCourse,
-  getDiplomaCourse,
+  getDiploma,
   getAllCourses,
-  getDiplomas,
+  getAllDependentCourses,
+  getDiplomaCourse,
+  getCourseLoader,
   sendMessage,
   makeReservation,
   getAllReservations,
+  deleteCourse,
+  addCourse,
+  getCourse,
+  updateCourse,
+  getCourseLoaderForAdmin,
+  addRelatedCourse,
+  deleteRelatedCourse,
 };

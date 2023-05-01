@@ -1,13 +1,14 @@
 import React from "react";
-import useLangContext from "../../hooks/useLangContext";
 import { StringLang } from "../../types/common";
-import { currentLanguage } from "../../utils";
+import { useAppSelector } from "../../store/hooks";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { currentLanguage } from "../../lib/utils";
 
 interface ParamsType {
   list: StringLang[];
 }
 const AboutPrograms = ({ list }: ParamsType) => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
   return (
     <div
       data-aos="flip-right"

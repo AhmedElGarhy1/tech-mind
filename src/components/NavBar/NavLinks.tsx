@@ -5,21 +5,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Nav } from "react-bootstrap";
 import linksData from "../../data/navLinks.js";
-import useLangContext from "../../hooks/useLangContext";
-import { ClickMouseEventType, LinkType, NavLinksParamsType } from "./types";
-import { currentLanguage } from "../../utils/index.js";
+import { LinkType, NavLinksParamsType } from "./types";
+import { useAppSelector } from "../../store/hooks.js";
+import {
+  changeCurrentLanguage,
+  selectIsEnglish,
+} from "../../store/slices/LangSlice.js";
+import { useDispatch } from "react-redux";
+import { currentLanguage } from "../../lib/utils.js";
 
 const NavLinks = ({ menuIconRef }: NavLinksParamsType) => {
   const [links, setLinks] = useState<LinkType[]>(linksData);
   const location = useLocation();
-  const { isEnglish, setIsEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setLinks((prev) => [...prev]);
   }, [location]);
 
-  const changeLanguage = (e: ClickMouseEventType) => {
-    setIsEnglish((prev) => !prev);
+  const changeLanguage = () => {
+    dispatch(changeCurrentLanguage());
   };
 
   const closeMobileMenu = () => {

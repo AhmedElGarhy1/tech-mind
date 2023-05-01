@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { sendMessage } from "../../api/get-api";
-import useLangContext from "../../hooks/useLangContext";
-import { currentLanguage, validateEmail } from "../../utils";
+import { useAppSelector } from "../../store/hooks";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { validateEmail } from "../../lib/utils";
 
 const ContactForm = () => {
-  const { isEnglish } = useLangContext();
+  const isEnglish = useAppSelector(selectIsEnglish);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -22,7 +23,15 @@ const ContactForm = () => {
 
     const e = validateEmail(email);
     if (e) {
-      setResMessage(e);
+      setResMessage("Please Provide a Valid " + e);
+      setLoading(false);
+      return;
+    }
+    if (!name || !phone || !subject || !message) {
+      if (!name) setResMessage("Please Provide a Valid name");
+      else if (!subject) setResMessage("Please Provide a Valid subject");
+      else if (!phone) setResMessage("Please Provide a Valid phone");
+      else if (!message) setResMessage("Please Provide a Valid message");
       setLoading(false);
       return;
     }
@@ -86,7 +95,9 @@ const ContactForm = () => {
             className="py-3 px-3"
             type="text"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) =>
+              !isNaN(+e.target.value) && setPhone(e.target.value)
+            }
             placeholder="Enter Phone"
           />
         </div>
