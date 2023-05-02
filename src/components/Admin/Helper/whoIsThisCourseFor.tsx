@@ -50,12 +50,12 @@ const WhoIsThisCourseFor: FC<Params> = ({ type }) => {
 
   const deleteOne = (e: number) => {
     setList((p) => {
-      if (p.length <= 1) return p;
+      if (!isOn) return p;
       return [...p].filter((e2) => e2.id !== e);
     });
   };
   const addOne = () => {
-    if (list.at(-1)?.AR === "" || list.at(-1)?.EN === "") return;
+    if (list.at(-1)?.AR === "" || list.at(-1)?.EN === "" || !isOn) return;
     setList((p) => [
       ...p,
       {

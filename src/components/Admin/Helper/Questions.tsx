@@ -131,14 +131,16 @@ const Questions: FC<Params> = ({ type }) => {
 
   const deleteAnswer = (qId: string) => (aId: string) => {
     setList((p) =>
-      [...p].map((ele) =>
-        ele._id === qId
-          ? {
-              ...ele,
-              a: [...ele.a.filter((answer) => answer._id !== aId)],
-            }
-          : ele
-      )
+      [...p].map((ele) => {
+        if (ele._id == qId) {
+          if (ele.a.length <= 1) return ele;
+          return {
+            ...ele,
+            a: [...ele.a.filter((answer) => answer._id !== aId)],
+          };
+        }
+        return ele;
+      })
     );
   };
 

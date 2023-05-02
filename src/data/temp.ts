@@ -14,12 +14,12 @@ export const tempCourse: CourseType = {
     AR: "",
   },
   overview: {
-    EN: [],
-    AR: [],
+    EN: [""],
+    AR: [""],
   },
   what_you_will_learn: {
-    EN: [],
-    AR: [],
+    EN: [""],
+    AR: [""],
   },
   who_is_this_course_for: {
     EN: [],
@@ -28,7 +28,18 @@ export const tempCourse: CourseType = {
   _id: "",
   main_img: "",
   other_src: "",
-  fqa: [],
+  fqa: [
+    {
+      q: {
+        AR: "",
+        EN: "",
+      },
+      a: {
+        AR: [""],
+        EN: [""],
+      },
+    },
+  ],
   duration: 0,
   lectures: 0,
   workshops: 0,

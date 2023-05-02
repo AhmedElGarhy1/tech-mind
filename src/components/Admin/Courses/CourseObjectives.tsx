@@ -89,17 +89,19 @@ const CourseObjectives: FC<Params> = ({ setImages }) => {
 
   const deleteOne = (e: string) => {
     setList((p) => {
-      if (p.length <= 1) return p;
+      if (!isOn) return p;
       return [...p].filter((e2) => e2._id !== e);
     });
   };
 
   const addOne = () => {
+    if (!isOn) return;
     if (
-      !list.at(-1)?.name?.AR ||
-      !list.at(-1)?.name?.EN ||
-      !list.at(-1)?.description?.AR ||
-      !list.at(-1)?.description?.EN
+      (!list.at(-1)?.name?.AR ||
+        !list.at(-1)?.name?.EN ||
+        !list.at(-1)?.description?.AR ||
+        !list.at(-1)?.description?.EN) &&
+      list.length > 0
     )
       return;
     setList((p) => [
