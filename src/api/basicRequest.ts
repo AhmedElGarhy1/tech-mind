@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 
-// export const BASE_URL = "http://localhost:7000";
-export const BASE_URL = "https://tech-mind-backend.onrender.com";
+export let BASE_URL = "https://tech-mind-backend.onrender.com";
+if (import.meta.env.VITE_ENV === "dev") BASE_URL = "http://localhost:7000";
 
 const backendReq = async (url: string, method: string, obj?: object) => {
   const options = {

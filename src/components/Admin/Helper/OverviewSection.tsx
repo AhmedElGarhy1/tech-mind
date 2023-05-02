@@ -55,7 +55,7 @@ const OverviewSection: FC<Params> = ({ type, setImage }) => {
     });
   };
   const addOne = () => {
-    if (overviewList.at(-1)?.AR === "" || overviewList?.at(-1).EN === "")
+    if (overviewList.at(-1)?.AR === "" || overviewList?.at(-1)?.EN === "")
       return;
     setOverviewList((p) => [
       ...p,

@@ -21,7 +21,6 @@ interface ParamsType {
 const Hero = ({ name, description, noBtn, tech_id }: ParamsType) => {
   const isEnglish = useAppSelector(selectIsEnglish);
   const layoutRef = useRef<HTMLDivElement>();
-  console.log(layoutRef);
 
   const [show, setShow] = useState(false);
 
