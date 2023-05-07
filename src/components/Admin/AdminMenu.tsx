@@ -1,59 +1,21 @@
 import React, { useMemo, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import logo from "../../assets/logo-color-m.png";
-import {
-  IconDefinition,
-  faBook,
-  faChevronCircleLeft,
-  faChevronCircleRight,
-  faClose,
-  faMessage,
-  faPeopleRobbery,
-  faSheetPlastic,
-} from "@fortawesome/free-solid-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Nav } from "react-bootstrap";
-
-interface LinkType {
-  id: number;
-  name: string;
-  pathname: string;
-  icon: IconDefinition;
-}
-
-const adminLinks: LinkType[] = [
-  {
-    id: 1,
-    name: "Diplomas",
-    pathname: "/admin/diplomas",
-    icon: faBook,
-  },
-  {
-    id: 2,
-    name: "Courses",
-    pathname: "/admin/courses",
-    icon: faSheetPlastic,
-  },
-  {
-    id: 3,
-    name: "Messages",
-    pathname: "/admin/messages",
-    icon: faMessage,
-  },
-  {
-    id: 4,
-    name: "Enrollments",
-    pathname: "/admin/enrollments",
-    icon: faPeopleRobbery,
-  },
-];
+import { AdminLinkType, adminLinks } from "../../data/admin";
+import {
+  faChevronCircleLeft,
+  faChevronCircleRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 const AdminMenu = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const activeStatus = useMemo(
-    () => (link: LinkType) =>
+    () => (link: AdminLinkType) =>
       location.pathname === link.pathname ? "active" : "",
     [location]
   );

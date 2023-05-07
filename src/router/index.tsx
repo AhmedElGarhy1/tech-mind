@@ -153,7 +153,7 @@ export default createBrowserRouter(
             />
           </Route>
           <Route
-            path="enrollments"
+            path="registrations"
             loader={getAllReservations}
             element={
               <ReactSuspense>
