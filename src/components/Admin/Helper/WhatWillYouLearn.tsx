@@ -17,6 +17,15 @@ import {
   selectCourseWhatWillYouLearn,
   updateCourseWhatWillYouLearn,
 } from "../../../store/slices/Admin/CourseSlice";
+import { GlobalCourseImagesStringType } from "../../../types/course";
+import { GlobalDiplomaImagesStringType } from "../../../types/deploma";
+import {
+  selectDiplomaImages,
+  selectDiplomaIsSent,
+  selectDiplomaWhatWillYouLearn,
+  updateDiplomaWhatWillYouLearn,
+} from "../../../store/slices/Admin/DiplomSlice";
+import SwitchElement from "./SwitchElement";
 
 interface Params {
   type: "Course" | "Diploma";
@@ -27,22 +36,49 @@ interface overviewElement extends StringLang {
   id: number;
 }
 
+interface DiplomaWhat {
+  what: overviewElement[];
+  have_video: boolean;
+}
+
 const WhatWillYouLearn: FC<Params> = ({ type, setImage }) => {
-  const isSent = useAppSelector(selectCourseIsSent);
-  const data = useAppSelector(selectCourseWhatWillYouLearn);
-  const images = useAppSelector(selectCourseImages);
+  let data: overviewElement[] | DiplomaWhat;
+  let isSent: boolean;
+  let images: GlobalCourseImagesStringType | GlobalDiplomaImagesStringType;
+  if (type === "Course") {
+    data = useAppSelector(selectCourseWhatWillYouLearn);
+    isSent = useAppSelector(selectCourseIsSent);
+    images = useAppSelector(selectCourseImages);
+  } else if (type === "Diploma") {
+    data = useAppSelector(selectDiplomaWhatWillYouLearn);
+    isSent = useAppSelector(selectDiplomaIsSent);
+    images = useAppSelector(selectDiplomaImages);
+  }
 
   const [collapse, setCollapse] = useState<boolean>(false);
-  const [list, setList] = useState<overviewElement[]>(data);
+  const [isOn, setIsOn] = useState<boolean>(false);
+  const [list, setList] = useState<overviewElement[]>(
+    // @ts-ignore
+    type === "Diploma" ? data.what : data
+  );
 
   useEffect(() => {
-    setList(data);
+    // @ts-ignore
+    if (type === "Course") setList(data);
+    else {
+      // @ts-ignore
+      setList(data.what);
+      // @ts-ignore
+      setIsOn(data.have_video);
+    }
   }, [data]);
 
   // redux
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(updateCourseWhatWillYouLearn(list));
+    if (type === "Course") dispatch(updateCourseWhatWillYouLearn(list));
+    else
+      dispatch(updateDiplomaWhatWillYouLearn({ what: list, have_video: isOn }));
   }, [isSent]);
   // ------------------|
 
@@ -77,6 +113,10 @@ const WhatWillYouLearn: FC<Params> = ({ type, setImage }) => {
             : ele
         )
       );
+  };
+
+  const changeStatus = () => {
+    setIsOn((p) => !p);
   };
 
   return (
@@ -114,9 +154,16 @@ const WhatWillYouLearn: FC<Params> = ({ type, setImage }) => {
           <AddField addFunction={addOne} />
           <UploadImage
             imgSrc={images.other_src}
-            header="GIF Image"
+            header={isOn ? "Video" : "Image"}
             setImage={setImage}
+            isVideo={isOn}
           />
+          {type === "Diploma" && (
+            <>
+              <h5 className="mt-3">Have Video?</h5>
+              <SwitchElement changeStatus={changeStatus} isOn={isOn} />
+            </>
+          )}
         </div>
       )}
     </>

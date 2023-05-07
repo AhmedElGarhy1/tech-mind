@@ -6,8 +6,8 @@ import {
 } from "firebase/storage";
 import storage from "../config/firebaseConfig";
 import { GlobalImagesFilesType } from "../pages/Admin/Courses/AddCourse";
-import { GlobalImagesStringType } from "../components/Admin/Helper/ButtonAddRecord";
-
+import { GlobalCourseImagesStringType } from "../types/course";
+import { GlobalDiplomaImagesStringType } from "../types/deploma";
 export const uploadFile = async (
   file: File,
   path: "Course" | "Diploma"
@@ -43,7 +43,8 @@ export const deleteImage = async (
 
 export const sendCourseImagesToFirebase = async (
   images: GlobalImagesFilesType,
-  stateImages: GlobalImagesStringType
+  stateImages: GlobalCourseImagesStringType | GlobalDiplomaImagesStringType,
+  type: "Course" | "Diploma"
 ) => {
   if (!images.main_img && !stateImages.main_img) {
     throw Error("Please Provide Main Image");
@@ -53,18 +54,26 @@ export const sendCourseImagesToFirebase = async (
       "Please Provide The other Sourse course = JIF, diploma = video"
     );
   }
-
-  const icon_promise = uploadFile(images.icon, "Course");
-  const main_img_promise = uploadFile(images.main_img, "Course");
-  const other_src_promise = uploadFile(images.other_src, "Course");
-  const objectives_promise = Promise.all(
-    images.objectives.map(async (obj) => await uploadFile(obj, "Course"))
-  );
-  const [icon, main_img, other_src, objectives] = await Promise.all([
-    icon_promise,
-    main_img_promise,
-    other_src_promise,
-    objectives_promise,
-  ]);
-  return { icon, main_img, objectives, other_src };
+  const main_img_promise = uploadFile(images.main_img, type);
+  const other_src_promise = uploadFile(images.other_src, type);
+  if (type === "Course") {
+    const icon_promise = uploadFile(images.icon, type);
+    const objectives_promise = Promise.all(
+      images.objectives.map(async (obj) => await uploadFile(obj, type))
+    );
+    const [icon, main_img, other_src, objectives] = await Promise.all([
+      icon_promise,
+      main_img_promise,
+      other_src_promise,
+      objectives_promise,
+    ]);
+    return { icon, main_img, objectives, other_src };
+  } else {
+    const [main_img, other_src] = await Promise.all([
+      main_img_promise,
+      other_src_promise,
+    ]);
+    console.log(main_img, other_src);
+    return { main_img, other_src };
+  }
 };

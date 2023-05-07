@@ -9,7 +9,6 @@ import {
   faCaretUp,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import SwitchElement from "../Helper/SwitchElement";
 import { StringLang } from "../../../types/common";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import {
@@ -17,6 +16,11 @@ import {
   selectCourseIsSent,
   updateCourseQuestions,
 } from "../../../store/slices/Admin/CourseSlice";
+import {
+  selectDiplomaDiplomaQuestions,
+  selectDiplomaIsSent,
+  updateDiplomaQuestions,
+} from "../../../store/slices/Admin/DiplomSlice";
 
 interface Params {
   type: "Course" | "Diploma";
@@ -33,8 +37,15 @@ interface listElement {
 }
 
 const Questions: FC<Params> = ({ type }) => {
-  const data = useAppSelector(selectCourseCourseQuestions);
-  const isSent = useAppSelector(selectCourseIsSent);
+  let data: listElement[];
+  let isSent: boolean;
+  if (type === "Course") {
+    data = useAppSelector(selectCourseCourseQuestions);
+    isSent = useAppSelector(selectCourseIsSent);
+  } else if (type === "Diploma") {
+    data = useAppSelector(selectDiplomaDiplomaQuestions);
+    isSent = useAppSelector(selectDiplomaIsSent);
+  }
 
   const [collapse, setCollapse] = useState<boolean>(false);
   const [list, setList] = useState<listElement[]>(data);
@@ -47,7 +58,8 @@ const Questions: FC<Params> = ({ type }) => {
 
   // redux
   useEffect(() => {
-    dispatch(updateCourseQuestions(list));
+    if (type === "Course") dispatch(updateCourseQuestions(list));
+    else dispatch(updateDiplomaQuestions(list));
   }, [isSent]);
   // ------------------|
 

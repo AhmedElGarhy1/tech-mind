@@ -1,12 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../../store";
 import { tempCourse } from "../../../data/temp";
-import { CourseType } from "../../../types/course";
+import {
+  AdminCourseType,
+  CourseType,
+  GlobalCourseImagesStringType,
+} from "../../../types/course";
 import { StringLang, StringLangs } from "../../../types/common";
-import { GlobalImagesStringType } from "../../../components/Admin/Helper/ButtonAddRecord";
 import { getRandomNum } from "../../../lib/utils";
-
-export type AdminCourseType = Omit<CourseType, "related_courses">;
 
 const initialState: { course: AdminCourseType; isSent: boolean } = {
   course: tempCourse,
@@ -20,13 +21,15 @@ interface CourseMetaNumbers {
   real_projects: string;
 }
 
-interface CourseObjectives {
-  list: {
-    name: StringLang;
-    description: StringLang;
-    icon: string;
-    _id?: string;
-  }[];
+export interface CourseObjectivesType {
+  name: StringLang;
+  description: StringLang;
+  icon: string;
+  _id?: string;
+}
+
+interface CourseObjectivesParams {
+  list: CourseObjectivesType[];
   isOn: boolean;
 }
 
@@ -70,7 +73,7 @@ export const CourseSlice = createSlice({
     },
     updateCourseObjectives: (
       state,
-      action: PayloadAction<CourseObjectives>
+      action: PayloadAction<CourseObjectivesParams>
     ) => {
       const list = action.payload.list.map(({ name, description, icon }) => ({
         name,
@@ -110,7 +113,7 @@ export const CourseSlice = createSlice({
     },
     updateCourseImages: (
       state,
-      action: PayloadAction<GlobalImagesStringType>
+      action: PayloadAction<GlobalCourseImagesStringType>
     ) => {
       const { icon, main_img, objectives, other_src } = action.payload;
       if (icon) state.course.icon = icon;
@@ -123,7 +126,7 @@ export const CourseSlice = createSlice({
           return obj;
         });
     },
-    updateIsSent: (state, action: PayloadAction<boolean>) => {
+    updateCourseIsSent: (state, action: PayloadAction<boolean>) => {
       state.isSent = action.payload;
     },
   },
@@ -140,7 +143,7 @@ export const {
   updateIsDependentCourse,
   updateCourseQuestions,
   updateCourseImages,
-  updateIsSent,
+  updateCourseIsSent,
   resetCourse,
 } = CourseSlice.actions;
 

@@ -26,6 +26,9 @@ export interface CourseType extends SimpleCourse {
     icon: string;
   }[];
 }
+
+export type AdminCourseType = Omit<CourseType, "related_courses">;
+
 export interface RelatedCoursesType {
   _id: string;
   name: StringLang;
@@ -41,4 +44,11 @@ export interface CourseCardType {
   duration: string;
   lectures: string;
   is_dependent: boolean;
+}
+
+export interface GlobalCourseImagesStringType {
+  icon: string;
+  main_img: string;
+  other_src: string;
+  objectives: string[];
 }

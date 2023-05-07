@@ -1,8 +1,6 @@
 import { CourseType } from "../types/course";
+import { AdminDiplomaType } from "../types/deploma";
 
-const test = {
-  related_courses: [""],
-};
 export const tempCourse: CourseType = {
   name: {
     EN: "",
@@ -50,4 +48,43 @@ export const tempCourse: CourseType = {
   have_objectives: false,
   objectives: [],
   related_courses: [],
+};
+
+export const tempDiploma: AdminDiplomaType = {
+  name: {
+    EN: "",
+    AR: "",
+  },
+  description: {
+    EN: "",
+    AR: "",
+  },
+  overview: {
+    EN: [""],
+    AR: [""],
+  },
+  what_you_will_learn: {
+    EN: [""],
+    AR: [""],
+  },
+  who_is_this_course_for: {
+    EN: [""],
+    AR: [""],
+  },
+  main_img: "",
+  other_src: "",
+  fqa: [
+    {
+      q: {
+        EN: "",
+        AR: "",
+      },
+      a: {
+        EN: [""],
+        AR: [""],
+      },
+      _id: "",
+    },
+  ],
+  have_video: false,
 };

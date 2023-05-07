@@ -4,50 +4,57 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import useGet from "../../../hooks/useGet";
 import { CourseType, RelatedCoursesType } from "../../../types/course";
 import { useParams } from "react-router-dom";
 import { FormSelect } from "react-bootstrap";
 import AddField from "../Helper/AddField";
-import { addRelatedCourse, deleteRelatedCourse } from "../../../api/get-api";
+import {
+  addDiplomaCourse,
+  addRelatedCourse,
+  deleteDiplomaCourse,
+  deleteRelatedCourse,
+} from "../../../api/get-api";
 import Swal from "sweetalert2";
+import { CourseObjectivesType } from "../../../store/slices/Admin/CourseSlice";
 
-const AdminRelatedCourses = () => {
+interface Params {
+  courses: CourseObjectivesType[];
+}
+
+const AdminDiplomaCourses: FC<Params> = ({ courses }) => {
   const { id } = useParams();
   const [collapse, setCollapse] = useState<boolean>(false);
-  const [relatedCourses, setRelatedCourses] = useState<RelatedCoursesType[]>(
-    []
+  const [diplomaCourses, setDiplomaCourses] = useState<CourseObjectivesType[]>(
+    courses || []
   );
-  const [allCourses, setAllCourses] = useState<CourseType[]>([]);
+  const [allCourses, setAllCourses] = useState<CourseObjectivesType[]>([]);
   const [select, setSelect] = useState<string>(null);
   const [loading, setLoading] = useState(false);
-  const [isRenderd, setIsRendered] = useState(true);
   const { makeRequest } = useGet();
 
   useEffect(() => {
-    if (!isRenderd) return;
+    setSelect(allCourses[0]?._id);
+  }, [allCourses, allCourses]);
+
+  useEffect(() => {
     const makeFetch = async () => {
       setLoading(true);
-      const response = await makeRequest("courses/related/" + id);
-      const tempRelatedCourses = response as RelatedCoursesType[];
-      setRelatedCourses(tempRelatedCourses);
       //   --------
       const response2 = await makeRequest("courses");
       const tempAllCourses = response2 as CourseType[];
 
       const theRestOfCourses = tempAllCourses.filter((course) => {
-        const isExist = tempRelatedCourses.find((c) => c._id === course._id);
+        const isExist = courses.find((c) => c._id === course._id);
         const isCurrentCourse = course._id === id;
         return !isExist && !isCurrentCourse;
       });
       setAllCourses(theRestOfCourses);
-      setSelect(theRestOfCourses[0]?._id);
       setLoading(false);
-      setIsRendered(false);
     };
     makeFetch();
-  }, [isRenderd]);
+  }, []);
 
   const addCourse = async () => {
     const confirmation = await Swal.fire({
@@ -56,19 +63,26 @@ const AdminRelatedCourses = () => {
       html: "Are you sure you want to Add this course as related?",
       showDenyButton: true,
     });
-
     if (!confirmation.isConfirmed) return;
 
     const courseId = select;
-    const response = await addRelatedCourse(id, courseId);
-    console.log(response);
-    Swal.fire("Added", "Successfully Added", "success");
+    try {
+      setLoading(true);
+      const response = await addDiplomaCourse(id, courseId);
+      Swal.fire("Added", "Successfully Added", "success");
+      // update visable courses
+      setDiplomaCourses((p) => [
+        ...p,
+        allCourses.find((course) => course._id === courseId),
+      ]);
+      setAllCourses((p) => [...p].filter((course) => course._id !== courseId));
+    } catch (err) {
+      Swal.fire("Sorry", "Somthing went Wrong", "error");
+    }
     setLoading(false);
-    setIsRendered(true);
   };
 
   const deleteCourse = async (courseId: string) => {
-    setLoading(true);
     const confirmation = await Swal.fire({
       icon: "question",
       title: "Delete?",
@@ -78,17 +92,29 @@ const AdminRelatedCourses = () => {
 
     if (!confirmation.isConfirmed) return;
 
-    const response = await deleteRelatedCourse(id, courseId);
-    console.log(response);
-    Swal.fire("Deleted", "Successfully Deleted", "success");
-    setIsRendered(true);
+    try {
+      setLoading(true);
+      const response = await deleteDiplomaCourse(id, courseId);
+      console.log(response);
+      Swal.fire("Deleted", "Successfully Deleted", "success");
+      setAllCourses((p) => [
+        ...p,
+        diplomaCourses.find((course) => course._id === courseId),
+      ]);
+      setDiplomaCourses((p) =>
+        [...p].filter((course) => course._id !== courseId)
+      );
+    } catch (err) {
+      Swal.fire("Error", "Somthing Went Wrong", "error");
+    }
+
     setLoading(false);
   };
 
   return (
     <>
       <div className="mb-4 d-flex justify-content-between align-items-center">
-        <h3>Related Courses</h3>
+        <h3>Diploma Courses</h3>
         <FontAwesomeIcon
           className="fs-3"
           icon={collapse ? faCaretUp : faCaretDown}
@@ -102,15 +128,15 @@ const AdminRelatedCourses = () => {
             <h2>Loading....</h2>
           ) : (
             <>
-              {relatedCourses.length === 0 ? (
+              {diplomaCourses.length === 0 ? (
                 <h2>There are no related course to this course!</h2>
               ) : (
-                relatedCourses.map((course) => (
+                diplomaCourses.map((course) => (
                   <div key={course._id}>
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="d-flex gap-2 align-items-center ">
                         <img
-                          src={course.main_img}
+                          src={course.icon}
                           alt={course.name.EN}
                           width={100}
                         />
@@ -129,6 +155,7 @@ const AdminRelatedCourses = () => {
                   </div>
                 ))
               )}
+
               <FormSelect
                 onChange={(e) => {
                   setSelect(e.target.value);
@@ -142,7 +169,7 @@ const AdminRelatedCourses = () => {
                 ))}
               </FormSelect>
               <div className="mt-2">
-                <AddField addFunction={addCourse} name="Add Related" />
+                <AddField addFunction={addCourse} name="Add Course" />
               </div>
             </>
           )}
@@ -152,4 +179,4 @@ const AdminRelatedCourses = () => {
   );
 };
 
-export default AdminRelatedCourses;
+export default AdminDiplomaCourses;

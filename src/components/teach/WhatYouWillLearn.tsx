@@ -12,10 +12,10 @@ interface ParamsType {
     EN: string[];
   };
   src: string;
-  isDeploma: boolean;
+  have_video?: boolean;
 }
 
-const WhatYouWillLearn = ({ list, src, isDeploma }: ParamsType) => {
+const WhatYouWillLearn = ({ list, src, have_video }: ParamsType) => {
   const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
@@ -31,7 +31,11 @@ const WhatYouWillLearn = ({ list, src, isDeploma }: ParamsType) => {
             <ListColumn list={list} />
           </Col>
           <Col data-aos="flip-up" data-aos-delay="350" lg="6">
-            <img width="100%" src={src} />
+            {have_video ? (
+              <video autoPlay muted width="100%" src={src} loop />
+            ) : (
+              <img width="100%" src={src} />
+            )}
           </Col>
         </Row>
       </Container>

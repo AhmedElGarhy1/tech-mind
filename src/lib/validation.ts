@@ -1,5 +1,6 @@
 import { StringLang, StringLangs } from "../types/common";
 import { CourseType } from "../types/course";
+import { AdminDiplomaType } from "../types/deploma";
 
 interface FQAType {
   q: StringLang;
@@ -122,4 +123,16 @@ export const validateCourse = (course: CourseType) => {
       "Course Objectives is missing and the course have objectives"
     );
   }
+};
+
+export const validateDiploma = (diploma: AdminDiplomaType) => {
+  let msg = "Invalid ";
+
+  if (!diploma) throw Error("Please Provide all Info to create the diploma");
+
+  checkTextArEn(diploma.name, msg + "Name");
+  checkTextArEn(diploma.description, msg + "Description");
+  checkArrayArEn(diploma.overview, msg + "Overview");
+  checkArrayArEn(diploma.what_you_will_learn, msg + "What you will learn text");
+  checkFQA(diploma.fqa, msg + "FQA");
 };

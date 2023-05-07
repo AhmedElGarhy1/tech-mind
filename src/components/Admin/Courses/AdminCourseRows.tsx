@@ -1,6 +1,10 @@
 import { FC } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEye,
+  faPenToSquare,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { CourseCardType } from "../../../types/course";
 
@@ -28,22 +32,29 @@ const AdminCourseRows: FC<Props> = ({ courses, handleDelete }) => {
                 </div>
               </div>
               <div>
-                <Link
-                  title="Edit"
-                  to={`/admin/courses/${course._id}`}
-                  className="me-3">
+                {course.is_dependent && (
+                  <Link
+                    title="Preview"
+                    to={`/courses/${course._id}`}
+                    target="_blank">
+                    <FontAwesomeIcon
+                      className="text-secondary-color fs-5"
+                      icon={faEye}
+                    />
+                  </Link>
+                )}
+                <Link title="Edit" to={course._id} className="mx-4">
                   <FontAwesomeIcon
-                    className="text-secondary-color fs-6"
+                    className="text-secondary-color fs-5"
                     icon={faPenToSquare}
                   />
                 </Link>
                 <span
                   onClick={() => handleDelete(course._id, course.main_img)}
                   role="button"
-                  title="Delete"
-                  className="ms-3">
+                  title="Delete">
                   <FontAwesomeIcon
-                    className="text-secondary-color fs-6"
+                    className="text-secondary-color fs-5"
                     icon={faTrash}
                   />
                 </span>

@@ -13,10 +13,19 @@ import { StringLang, StringLangs } from "../../../types/common";
 import SwitchElement from "./SwitchElement";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import {
+  selectCourseImages,
   selectCourseIsSent,
   selectCourseWhoIsThisCourseFor,
   updateCourseWhoIsThisCourseFor,
 } from "../../../store/slices/Admin/CourseSlice";
+import { GlobalCourseImagesStringType } from "../../../types/course";
+import { GlobalDiplomaImagesStringType } from "../../../types/deploma";
+import {
+  selectDiplomaImages,
+  selectDiplomaIsSent,
+  selectDiplomaWhoIsThisDiplomaFor,
+  updateDiplomaWhoIsThisDiplomaFor,
+} from "../../../store/slices/Admin/DiplomSlice";
 
 interface Params {
   type: "Course" | "Diploma";
@@ -28,23 +37,40 @@ interface overviewElement {
   id: number;
 }
 
-const WhoIsThisCourseFor: FC<Params> = ({ type }) => {
-  const isSent = useAppSelector(selectCourseIsSent);
-  const data = useAppSelector(selectCourseWhoIsThisCourseFor);
-  const [collapse, setCollapse] = useState<boolean>(false);
+interface selectType {
+  who: overviewElement[];
+  have_target?: boolean;
+}
 
-  const [isOn, setIsOn] = useState<boolean>(data.have_target);
-  const [list, setList] = useState<overviewElement[]>(data.who);
+const WhoIsThisCourseFor: FC<Params> = ({ type }) => {
+  let data: selectType;
+  let isSent: boolean;
+  let images: GlobalCourseImagesStringType | GlobalDiplomaImagesStringType;
+  if (type === "Course") {
+    data = useAppSelector(selectCourseWhoIsThisCourseFor);
+    isSent = useAppSelector(selectCourseIsSent);
+    images = useAppSelector(selectCourseImages);
+  } else if (type === "Diploma") {
+    data = useAppSelector(selectDiplomaWhoIsThisDiplomaFor);
+    isSent = useAppSelector(selectDiplomaIsSent);
+    images = useAppSelector(selectDiplomaImages);
+  }
+
+  const [collapse, setCollapse] = useState<boolean>(false);
+  const [isOn, setIsOn] = useState<boolean>(type === "Diploma");
+  const [list, setList] = useState<overviewElement[]>(data.who || []);
 
   useEffect(() => {
     setList(data.who);
-    setIsOn(data.have_target);
+    if (type === "Course") setIsOn(data?.have_target);
   }, [data]);
 
   // redux
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(updateCourseWhoIsThisCourseFor({ list, isOn }));
+    if (type === "Course")
+      dispatch(updateCourseWhoIsThisCourseFor({ list, isOn }));
+    else dispatch(updateDiplomaWhoIsThisDiplomaFor(list));
   }, [isSent]);
   // --------------
 
@@ -118,7 +144,9 @@ const WhoIsThisCourseFor: FC<Params> = ({ type }) => {
             </div>
           ))}
           <AddField addFunction={addOne} />
-          <SwitchElement changeStatus={changeSwitchStatus} isOn={isOn} />
+          {type === "Course" && (
+            <SwitchElement changeStatus={changeSwitchStatus} isOn={isOn} />
+          )}
         </div>
       )}
     </>

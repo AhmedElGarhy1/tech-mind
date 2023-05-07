@@ -1,6 +1,7 @@
 import { LoaderFunctionArgs } from "react-router-dom";
 import { backendReq } from "./basicRequest";
-import { CourseType } from "../types/course";
+import { AdminCourseType, CourseType } from "../types/course";
+import { AdminDiplomaType } from "../types/deploma";
 // import Data from "../data/productsData";
 // * -------------------------- diplomas endpoints --------------------------
 const getAllDiplomas = async () => {
@@ -14,6 +15,37 @@ const getDiploma = async ({ params }: LoaderFunctionArgs) => {
   const url = `/diplomas/${id}`;
   const response = await backendReq(url, "get");
   return response.data;
+};
+
+// not loader
+const deleteDiploma = async (id: string) => {
+  const url = `/diplomas/${id}`;
+  const response = await backendReq(url, "delete");
+  return response;
+};
+
+const addDiploma = async (diploma: AdminDiplomaType) => {
+  const url = `/diplomas`;
+  const response = await backendReq(url, "post", diploma);
+  return response;
+};
+
+const updateDiploma = async (diplomaId: string, diploma: AdminDiplomaType) => {
+  const url = `/diplomas/${diplomaId}`;
+  const response = await backendReq(url, "put", diploma);
+  return response;
+};
+
+const addDiplomaCourse = async (diplomaId: string, courseId: string) => {
+  const url = `/diplomas/course/${diplomaId}`;
+  const response = await backendReq(url, "post", { course_id: courseId });
+  return response;
+};
+
+const deleteDiplomaCourse = async (diplomaId: string, courseId: string) => {
+  const url = `/diplomas/course/${diplomaId}`;
+  const response = await backendReq(url, "delete", { course_id: courseId });
+  return response;
 };
 //* -------------------------- courses endpoints --------------------------
 
@@ -69,7 +101,7 @@ const addCourse = async (course: CourseType) => {
 const updateCourse = async (_id: string, course: CourseType) => {
   const url = `/courses/${_id}`;
   console.log(url);
-  const response = await backendReq(url, "patch", course);
+  const response = await backendReq(url, "put", course);
   return response;
 };
 
@@ -89,6 +121,7 @@ const addRelatedCourse = async (courseId: string, otherCourseId: string) => {
   return response;
 };
 
+// not loader
 const deleteRelatedCourse = async (courseId: string, otherCourseId: string) => {
   const url = `/courses/related/${courseId}`;
   const response = await backendReq(url, "delete", {
@@ -104,6 +137,24 @@ const sendMessage = async (data: any) => {
   return response;
 };
 
+const getAllMessages = async () => {
+  const url = `/messages`;
+  const response = await backendReq(url, "get");
+  return response;
+};
+const deleteMessage = async (id: string) => {
+  const url = `/messages/${id}`;
+  const response = await backendReq(url, "delete");
+  return response;
+};
+
+// loader
+const getMessage = async ({ params }: LoaderFunctionArgs) => {
+  const id = params.id;
+  const url = `/messages/${id}`;
+  const response = await backendReq(url, "get");
+  return response.data;
+};
 //* -------------------------- reservation endpoint --------------------------
 const makeReservation = async (data: any) => {
   const url = `/reservations`;
@@ -114,6 +165,31 @@ const getAllReservations = async () => {
   const url = `/reservations`;
   const response = await backendReq(url, "get");
   return response;
+};
+const deleteReservation = async (id: string) => {
+  const url = `/reservations/${id}`;
+  const response = await backendReq(url, "delete");
+  return response;
+};
+// --------------------------- add/update  course/diploma
+const sendRecorde = async (
+  data: AdminCourseType | AdminDiplomaType,
+  type: "Course" | "Diploma",
+  actionType: "add" | "update"
+) => {
+  if (type === "Course") {
+    if (actionType === "add") {
+      return await addCourse(data as AdminCourseType);
+    } else {
+      return await updateCourse(data._id, data as AdminCourseType);
+    }
+  } else {
+    if (actionType === "add") {
+      return await addDiploma(data as AdminDiplomaType);
+    } else {
+      return await updateDiploma(data._id, data as AdminDiplomaType);
+    }
+  }
 };
 
 export {
@@ -126,6 +202,7 @@ export {
   sendMessage,
   makeReservation,
   getAllReservations,
+  getAllMessages,
   deleteCourse,
   addCourse,
   getCourse,
@@ -133,4 +210,13 @@ export {
   getCourseLoaderForAdmin,
   addRelatedCourse,
   deleteRelatedCourse,
+  deleteDiploma,
+  addDiploma,
+  updateDiploma,
+  deleteDiplomaCourse,
+  addDiplomaCourse,
+  sendRecorde,
+  deleteMessage,
+  deleteReservation,
+  getMessage,
 };

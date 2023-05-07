@@ -13,16 +13,36 @@ import {
   selectCourseIsSent,
   updateCourseInfo,
 } from "../../../store/slices/Admin/CourseSlice";
+import {
+  selectDiplomaImages,
+  selectDiplomaInfo,
+  selectDiplomaIsSent,
+  updateDiplomaInfo,
+} from "../../../store/slices/Admin/DiplomSlice";
+import { GlobalCourseImagesStringType } from "../../../types/course";
+import { GlobalDiplomaImagesStringType } from "../../../types/deploma";
 
 interface Param {
   type: "Course" | "Diploma";
-  setImage: (image: File) => void;
+  setImage?: (image: File) => void;
 }
-
+interface DataType {
+  name: StringLang;
+  description: StringLang;
+}
 const Info: FC<Param> = ({ type, setImage }) => {
-  const data = useAppSelector(selectCourseInfo);
-  const isSent = useAppSelector(selectCourseIsSent);
-  const images = useAppSelector(selectCourseImages);
+  let data: DataType;
+  let isSent: boolean;
+  let images: GlobalCourseImagesStringType | GlobalDiplomaImagesStringType;
+  if (type === "Course") {
+    data = useAppSelector(selectCourseInfo);
+    isSent = useAppSelector(selectCourseIsSent);
+    images = useAppSelector(selectCourseImages);
+  } else if (type === "Diploma") {
+    data = useAppSelector(selectDiplomaInfo);
+    isSent = useAppSelector(selectDiplomaIsSent);
+    images = useAppSelector(selectDiplomaImages);
+  }
 
   const dispatch = useAppDispatch();
   const [collapse, setCollapse] = useState<boolean>(true);
@@ -39,12 +59,8 @@ const Info: FC<Param> = ({ type, setImage }) => {
   // update redux store
   useEffect(() => {
     if (!start) return;
-
-    if (type === "Course") {
-      dispatch(updateCourseInfo({ name, description }));
-    } else {
-      // dispatch(setImage(null));
-    }
+    if (type === "Course") dispatch(updateCourseInfo({ name, description }));
+    else dispatch(updateDiplomaInfo({ name, description }));
   }, [isSent]);
   // --------------------
   const updateName = (_name: StringLang) => {
@@ -56,7 +72,7 @@ const Info: FC<Param> = ({ type, setImage }) => {
   return (
     <>
       <div className="mb-4 d-flex justify-content-between align-items-center">
-        <h3>Course Info</h3>
+        <h3>{type} Info</h3>
         <FontAwesomeIcon
           className="fs-3"
           icon={collapse ? faCaretUp : faCaretDown}
@@ -76,11 +92,14 @@ const Info: FC<Param> = ({ type, setImage }) => {
             update={updateDescription}
             header="Description"
           />
-          <UploadImage
-            imgSrc={images.icon}
-            setImage={setImage}
-            header="Course Icon"
-          />
+          {type === "Course" && (
+            <UploadImage
+              // @ts-ignore
+              imgSrc={images.icon}
+              setImage={setImage}
+              header="Course Icon"
+            />
+          )}
         </div>
       )}
     </>

@@ -17,6 +17,14 @@ import {
   selectCourseOverview,
   updateCourseOverview,
 } from "../../../store/slices/Admin/CourseSlice";
+import {
+  selectDiplomaImages,
+  selectDiplomaIsSent,
+  selectDiplomaOverview,
+  updateDiplomaOverview,
+} from "../../../store/slices/Admin/DiplomSlice";
+import { GlobalCourseImagesStringType } from "../../../types/course";
+import { GlobalDiplomaImagesStringType } from "../../../types/deploma";
 
 interface Params {
   setImage: (image: File) => void;
@@ -28,11 +36,18 @@ interface overviewElement extends StringLang {
 }
 
 const OverviewSection: FC<Params> = ({ type, setImage }) => {
-  const data = useAppSelector(selectCourseOverview);
-  const isSent = useAppSelector(selectCourseIsSent);
-  const images = useAppSelector(selectCourseImages);
-
-  const [temp, setTemp] = useState(false);
+  let data: overviewElement[];
+  let isSent: boolean;
+  let images: GlobalCourseImagesStringType | GlobalDiplomaImagesStringType;
+  if (type === "Course") {
+    data = useAppSelector(selectCourseOverview);
+    isSent = useAppSelector(selectCourseIsSent);
+    images = useAppSelector(selectCourseImages);
+  } else if (type === "Diploma") {
+    data = useAppSelector(selectDiplomaOverview);
+    isSent = useAppSelector(selectDiplomaIsSent);
+    images = useAppSelector(selectDiplomaImages);
+  }
 
   const [collapse, setCollapse] = useState<boolean>(false);
   const [overviewList, setOverviewList] = useState<overviewElement[]>(data);
@@ -44,7 +59,8 @@ const OverviewSection: FC<Params> = ({ type, setImage }) => {
   // redux
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(updateCourseOverview(overviewList));
+    if (type === "Course") dispatch(updateCourseOverview(overviewList));
+    else dispatch(updateDiplomaOverview(overviewList));
   }, [isSent]);
   // ------------------|
 

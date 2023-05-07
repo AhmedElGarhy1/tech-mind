@@ -6,13 +6,29 @@ import {
   selectCourseImages,
   selectCourseIsSent,
   updateCourseImages,
-  updateIsSent,
+  updateCourseIsSent,
 } from "../../../store/slices/Admin/CourseSlice";
-import { addCourse, updateCourse } from "../../../api/get-api";
+import { sendRecorde } from "../../../api/get-api";
 import Swal from "sweetalert2";
-import { GlobalImagesFilesType } from "../../../pages/Admin/Courses/AddCourse";
 import { sendCourseImagesToFirebase } from "../../../lib/uploadImage";
-import { validateCourse } from "../../../lib/validation";
+import { validateCourse, validateDiploma } from "../../../lib/validation";
+import {
+  AdminCourseType,
+  GlobalCourseImagesStringType,
+} from "../../../types/course";
+import {
+  selectDiplomaFull,
+  selectDiplomaImages,
+  selectDiplomaIsSent,
+  updateDiplomaImages,
+  updateDiplomaIsSent,
+} from "../../../store/slices/Admin/DiplomSlice";
+import {
+  AdminDiplomaType,
+  GlobalDiplomaImagesStringType,
+} from "../../../types/deploma";
+import { GlobalImagesFilesType } from "../../../pages/Admin/Courses/AddCourse";
+import { PostResponse } from "../../../types/response";
 
 interface Params {
   type: "Course" | "Diploma";
@@ -21,28 +37,32 @@ interface Params {
   resetImages: () => void;
 }
 
-export interface GlobalImagesStringType {
-  icon: string;
-  main_img: string;
-  other_src: string;
-  objectives: string[];
-}
-
 const ButtonAddRecord: FC<Params> = ({
   type,
   images,
   actionType,
   resetImages,
 }) => {
-  const course = useAppSelector(selectCourseFull);
-  const stateImages = useAppSelector(selectCourseImages);
-  const isSent = useAppSelector(selectCourseIsSent);
+  let data: AdminCourseType | AdminDiplomaType;
+  let isSent: boolean;
+  let stateImages: GlobalCourseImagesStringType | GlobalDiplomaImagesStringType;
+  if (type === "Course") {
+    data = useAppSelector(selectCourseFull);
+    isSent = useAppSelector(selectCourseIsSent);
+    stateImages = useAppSelector(selectCourseImages);
+  } else if (type === "Diploma") {
+    data = useAppSelector(selectDiplomaFull);
+    isSent = useAppSelector(selectDiplomaIsSent);
+    stateImages = useAppSelector(selectDiplomaImages);
+  }
+
   const dispatch = useAppDispatch();
 
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [canWeSend, setCanWeSend] = useState<boolean>(false);
 
+  // step 2
   useEffect(() => {
     const sendCourse = async () => {
       try {
@@ -51,7 +71,10 @@ const ButtonAddRecord: FC<Params> = ({
           setSent(true);
           return;
         }
-        validateCourse(course);
+
+        if (type === "Course") validateCourse(data as AdminCourseType);
+        else validateDiploma(data as AdminDiplomaType);
+
         await sendImages();
         setCanWeSend(true);
       } catch (err) {
@@ -60,37 +83,26 @@ const ButtonAddRecord: FC<Params> = ({
         }
         setLoading(false);
       } finally {
-        dispatch(updateIsSent(false));
+        if (type === "Course") dispatch(updateCourseIsSent(false));
+        else dispatch(updateDiplomaIsSent(false));
       }
     };
     sendCourse();
   }, [isSent]);
 
+  // step 4
   useEffect(() => {
     if (!canWeSend) return;
     const fun = async () => {
       try {
-        let res;
-        if (type === "Course") {
-          if (actionType === "add") {
-            res = await addCourse(course);
-          } else {
-            res = await updateCourse(course._id, course);
-          }
-        } else {
-          // if (actionType === "add") {
-          //   res = await addCourse(course);
-          // } else {
-          //   res = await updateCourse(course._id, course);
-          // }
-        }
+        let res: PostResponse = await sendRecorde(data, type, actionType);
         // reset the images to prevent send them again
         resetImages();
         if (res.ok)
-          Swal.fire("The Course is Saved Successfully", "Done!", "success");
+          Swal.fire(`The ${type} is Saved Successfully`, "Done!", "success");
         else {
           let msg = res.msg;
-          if (msg.includes("duplicate key")) msg = "Course Name is Duplicated";
+          if (msg.includes("duplicate key")) msg = `${type} Name is Duplicated`;
           Swal.fire(msg, "need some modifications", "error");
         }
       } catch (err) {
@@ -102,18 +114,23 @@ const ButtonAddRecord: FC<Params> = ({
     fun();
   }, [canWeSend]);
 
+  // step 3
   const sendImages = async () => {
-    const finalImagesStrings = (await sendCourseImagesToFirebase(
-      images,
-      stateImages
-    )) as GlobalImagesStringType;
-    console.log(finalImagesStrings);
-    dispatch(updateCourseImages(finalImagesStrings));
+    const temp = await sendCourseImagesToFirebase(images, stateImages, type);
+    if (type === "Course") {
+      const finalImagesStrings = temp as GlobalCourseImagesStringType;
+      dispatch(updateCourseImages(finalImagesStrings));
+    } else {
+      const finalImagesStrings = temp as GlobalDiplomaImagesStringType;
+      dispatch(updateDiplomaImages(finalImagesStrings));
+    }
   };
 
+  // step 1
   const handleClick = async () => {
     Swal.fire("Uploading", `<p> Upload images + upload data </p>`, "question");
-    dispatch(updateIsSent(true));
+    if (type === "Course") dispatch(updateCourseIsSent(true));
+    else dispatch(updateDiplomaIsSent(true));
     setLoading(true);
   };
 

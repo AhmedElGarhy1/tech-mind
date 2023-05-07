@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import { filterCourses } from "../../../lib/utils";
+import { filterRecords } from "../../../lib/utils";
 import AdminCourseRows from "../../../components/Admin/Courses/AdminCourseRows";
 import { deleteCourse } from "../../../api/get-api";
 import { PostResponse } from "../../../types/response";
@@ -12,12 +12,14 @@ import { deleteImage } from "../../../lib/uploadImage";
 
 const AllCourses: FC = () => {
   const data = useLoaderData() as CourseCardType[];
-  const [courses, setCourses] = useState<CourseCardType[]>(data);
+  const [allData, setAllData] = useState<CourseCardType[]>(data || []);
+  const [courses, setCourses] = useState<CourseCardType[]>(data || []);
   const [error, setError] = useState<string | null>(null);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const q = event.target.value;
-    setCourses(filterCourses(data, q));
+    const q = event.target.value.trim();
+    const newCourses = filterRecords(allData, q) as CourseCardType[];
+    setCourses(newCourses);
   };
 
   const handleDelete = async (id: string, img: string) => {
@@ -41,6 +43,7 @@ const AllCourses: FC = () => {
     }
     Swal.fire("Deleted", "Successfully Deleted", "success");
     setCourses((prev) => [...prev].filter((e) => e._id !== id));
+    setAllData((prev) => [...prev].filter((e) => e._id !== id));
   };
 
   return (
@@ -54,6 +57,7 @@ const AllCourses: FC = () => {
       <div className="position-relative mt-2">
         <input
           className="d-block w-100 bg-transparent shadow-none rounded-1 py-2 input-border"
+          placeholder="Search..."
           type="text"
           onChange={handleQueryChange}
           style={{

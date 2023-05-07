@@ -12,6 +12,9 @@ import {
   getAllDiplomas,
   getAllCourses,
   getCourseLoaderForAdmin,
+  getAllMessages,
+  getAllReservations,
+  getMessage,
 } from "../api/get-api";
 import { AdminLayout, MainLayout, ViewLayout } from "../Layouts";
 import NotFound from "../Error/NotFound";
@@ -41,6 +44,10 @@ import {
   AddCourse,
 } from "../pages/Admin";
 import UpdateCourse from "../pages/Admin/Courses/UpdateCourse";
+import AddDiploma from "../pages/Admin/Diplomas/AddDiploma";
+import Reservations from "../pages/Admin/Reservations";
+import Messages from "../pages/Admin/Messages/Messages";
+import SingleMessage from "../pages/Admin/Messages/SingleMessage";
 
 export default createBrowserRouter(
   createRoutesFromElements(
@@ -122,8 +129,57 @@ export default createBrowserRouter(
               errorElement={<NotFound />}
             />
           </Route>
-          <Route path="diplomas" element={<AllDiplomas />}>
-            <Route path=":id" element={<UpdateDiploma />} />
+
+          <Route path="diplomas">
+            <Route
+              index
+              loader={getAllDiplomas}
+              element={
+                <ReactSuspense>
+                  <AllDiplomas />
+                </ReactSuspense>
+              }
+            />
+            <Route path="add" element={<AddDiploma type="add" />} />
+            <Route
+              path=":id"
+              loader={getDiploma}
+              element={
+                <ReactSuspense>
+                  <UpdateDiploma />
+                </ReactSuspense>
+              }
+              errorElement={<NotFound />}
+            />
+          </Route>
+          <Route
+            path="enrollments"
+            loader={getAllReservations}
+            element={
+              <ReactSuspense>
+                <Reservations />
+              </ReactSuspense>
+            }
+          />
+          <Route path="messages">
+            <Route
+              index
+              loader={getAllMessages}
+              element={
+                <ReactSuspense>
+                  <Messages />
+                </ReactSuspense>
+              }
+            />
+            <Route
+              path=":id"
+              loader={getMessage}
+              element={
+                <ReactSuspense>
+                  <SingleMessage />
+                </ReactSuspense>
+              }
+            />
           </Route>
         </Route>
         <Route path="login" element={<AdminLogin />} />

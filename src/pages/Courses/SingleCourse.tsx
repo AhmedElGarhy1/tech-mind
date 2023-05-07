@@ -57,7 +57,6 @@ const SingleCourse = () => {
           )}
           <RelatedCourses id={id} />
           <WhatYouWillLearn
-            isDeploma={false}
             list={course.what_you_will_learn}
             src={course.other_src}
           />

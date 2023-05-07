@@ -10,6 +10,7 @@
   --secondary-color-hover: #1898b5;
   --yellow-color: #f2be22;
   --main-transition: 0.3s !important;
+  --border-color: #d9d9d9;
 }
 
 * {
@@ -41,7 +42,7 @@ html {
   background-color: var(--admin-section-color);
 }
 .input-border {
-  border: 1px solid #d9d9d9;
+  border: 1px solid var(--border-color) !important;
 }
 
 .main-btn {
@@ -398,4 +399,8 @@ footer a:hover {
   .about-programs {
     width: 100%;
   }
+}
+
+.drop-toggle.dropdown-toggle::after {
+  display: none;
 }

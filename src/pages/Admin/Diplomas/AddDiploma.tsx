@@ -1,16 +1,14 @@
 import React, { FC, useEffect, useState } from "react";
 import OverviewSection from "../../../components/Admin/Helper/OverviewSection";
 import Info from "../../../components/Admin/Helper/Info";
-import CourseMetaData from "../../../components/Admin/Courses/CourseMetaData";
 import WhatWillYouLearn from "../../../components/Admin/Helper/WhatWillYouLearn";
-import IsDependentCourse from "../../../components/Admin/Courses/IsDependentCourse";
-import CourseObjectives from "../../../components/Admin/Courses/CourseObjectives";
 import Questions from "../../../components/Admin/Helper/Questions";
 import WhoIsThisCourseFor from "../../../components/Admin/Helper/whoIsThisCourseFor";
 import ButtonAddRecord from "../../../components/Admin/Helper/ButtonAddRecord";
-import AdminRelatedCourses from "../../../components/Admin/Courses/RelatedCourses";
 import { useAppDispatch } from "../../../store/hooks";
-import { resetCourse } from "../../../store/slices/Admin/CourseSlice";
+import { CourseObjectivesType } from "../../../store/slices/Admin/CourseSlice";
+import AdminDiplomaCourses from "../../../components/Admin/Diplomas/AdminDiplomaCourses";
+import { resetDiploma } from "../../../store/slices/Admin/DiplomSlice";
 
 export interface GlobalImagesFilesType {
   icon: File;
@@ -21,10 +19,11 @@ export interface GlobalImagesFilesType {
 
 interface Params {
   type: "update" | "add";
+  courses?: CourseObjectivesType[];
 }
 
-const AddCourse: FC<Params> = ({ type: actionType }) => {
-  const type = "Course";
+const AddDiploma: FC<Params> = ({ type: actionType, courses }) => {
+  const type = "Diploma";
   const dispatch = useAppDispatch();
   const [globalImages, setGlobalImages] = useState<GlobalImagesFilesType>({
     icon: null,
@@ -34,20 +33,14 @@ const AddCourse: FC<Params> = ({ type: actionType }) => {
   });
 
   useEffect(() => {
-    if (actionType === "add") dispatch(resetCourse());
+    if (actionType === "add") dispatch(resetDiploma());
   }, []);
-
-  const setIcon = (image: File) =>
-    setGlobalImages((p) => ({ ...p, icon: image }));
 
   const setMainImage = (image: File) =>
     setGlobalImages((p) => ({ ...p, main_img: image }));
 
   const setOtherSrc = (image: File) =>
     setGlobalImages((p) => ({ ...p, other_src: image }));
-
-  const setObjectivesImage = (images: File[]) =>
-    setGlobalImages((p) => ({ ...p, objectives: [...images] }));
 
   const resetGlobalImages = () =>
     setGlobalImages({
@@ -62,30 +55,22 @@ const AddCourse: FC<Params> = ({ type: actionType }) => {
       {actionType === "update" && (
         <div className="bg-white rounded-2 p-3 pe-5">
           <div className="w-100">
-            <AdminRelatedCourses />
+            <AdminDiplomaCourses courses={courses} />
           </div>
         </div>
       )}
       <div className="bg-white rounded-2 p-3 pe-5">
         <div className="w-100">
-          <Info type={type} setImage={setIcon} />
+          <Info type={type} />
         </div>
       </div>
-      <div className="bg-white rounded-2 p-3 pe-5">
-        <div className="w-100">
-          <CourseMetaData />
-        </div>
-      </div>
+
       <div className="bg-white rounded-2 p-3 pe-5">
         <div className="w-100">
           <OverviewSection setImage={setMainImage} type={type} />
         </div>
       </div>
-      <div className="bg-white rounded-2 p-3 pe-5">
-        <div className="w-100">
-          <CourseObjectives setImages={setObjectivesImage} />
-        </div>
-      </div>
+
       <div className="bg-white rounded-2 p-3 pe-5">
         <div className="w-100">
           <WhatWillYouLearn setImage={setOtherSrc} type={type} />
@@ -96,15 +81,7 @@ const AddCourse: FC<Params> = ({ type: actionType }) => {
           <WhoIsThisCourseFor type={type} />
         </div>
       </div>
-      <div
-        style={{
-          background: "#33333333",
-        }}
-        className="rounded-2 p-3 pe-5">
-        <div className="w-100">
-          <IsDependentCourse />
-        </div>
-      </div>
+
       <div className="bg-white rounded-2 p-3 pe-5">
         <div className="w-100">
           <Questions type={type} />
@@ -121,4 +98,4 @@ const AddCourse: FC<Params> = ({ type: actionType }) => {
   );
 };
 
-export default AddCourse;
+export default AddDiploma;

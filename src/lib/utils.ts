@@ -1,9 +1,13 @@
+import { DiplomaCardType } from "../components/Diplomas/DiplomaCard";
 import { CourseCardType } from "../types/course";
 
 export const formateEmail = (email: string): Boolean =>
   /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 
-export const filterCourses = (courses: CourseCardType[], query: string) => {
+export const filterRecords = (
+  courses: CourseCardType[] | DiplomaCardType[],
+  query: string
+) => {
   return courses.filter((course) => {
     const q = new RegExp(query.toLowerCase(), "g");
     const nameEN = course.name.EN.toLowerCase();
@@ -38,3 +42,12 @@ export const validateEmail = (email: string): string => {
 export const sleep = async (ms: number) =>
   new Promise((r, j) => setTimeout(() => r(null), ms));
 export const getRandomNum = () => Math.random() * Date.now();
+
+export const getTwoCharsFromName = (name: string) => {
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+};

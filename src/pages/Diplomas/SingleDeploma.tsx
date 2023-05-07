@@ -44,8 +44,8 @@ const SingleDeploma = () => {
             list={deploma.courses}
           />
           <WhatYouWillLearn
-            isDeploma={true}
             src={deploma.other_src}
+            have_video={deploma.have_video}
             list={deploma.what_you_will_learn}
           />
           <WhoThisCourseFor list={deploma.who_is_this_course_for} />
