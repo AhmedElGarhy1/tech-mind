@@ -53,10 +53,10 @@ const ContactForm = () => {
         setMessage("");
         setResMessage("");
         Swal.fire("Good job!", "Your Message had been Sent!", "success");
-        setLoading(false);
       }
     } catch (err) {
-      setResMessage("All Fields Must be filled");
+      setResMessage("Somthing went went in server");
+    } finally {
       setLoading(false);
     }
   };

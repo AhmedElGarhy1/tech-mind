@@ -37,7 +37,7 @@ const CourseSlider = () => {
         "/courses?is_dependent=true&limit=8"
       )) as CourseCardType[];
 
-      setCourses(data);
+      setCourses(data || []);
     };
 
     makeFetch();

@@ -30,7 +30,7 @@ const DiplomasSlider = () => {
       const data = (await makeRequest(
         "/diplomas?limit=5"
       )) as DiplomaCardType[];
-      setDiplomas(data);
+      setDiplomas(data || []);
     };
 
     makeFetch();
