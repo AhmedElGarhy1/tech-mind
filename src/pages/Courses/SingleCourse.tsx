@@ -55,7 +55,7 @@ const SingleCourse = () => {
           {course.have_objectives && (
             <DeplomaCourses list={course.objectives} isDeploma={false} />
           )}
-          <RelatedCourses id={id} />
+          <RelatedCourses id={id} is_dependent={!deploma} />
           <WhatYouWillLearn
             list={course.what_you_will_learn}
             src={course.other_src}

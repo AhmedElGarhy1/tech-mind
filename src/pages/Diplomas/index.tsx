@@ -10,7 +10,6 @@ import DiplomaCard, {
 
 const Diplomas = () => {
   const diplomas = useLoaderData() as DiplomaCardType[];
-  console.log(diplomas);
   return (
     <div>
       <Hero

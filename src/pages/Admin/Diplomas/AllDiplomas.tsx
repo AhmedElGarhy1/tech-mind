@@ -4,10 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { filterRecords } from "../../../lib/utils";
-import AdminCourseRows from "../../../components/Admin/Courses/AdminCourseRows";
-import { deleteCourse, deleteDiploma } from "../../../api/get-api";
+import { deleteDiploma } from "../../../api/get-api";
 import { PostResponse } from "../../../types/response";
-import { deleteImage } from "../../../lib/uploadImage";
 import { DiplomaCardType } from "../../../components/Diplomas/DiplomaCard";
 import AdminDiplomaRows from "../../../components/Admin/Diplomas/AdminDiplomaRows";
 
@@ -34,7 +32,6 @@ const AllDiplomas: FC = () => {
     if (!confirmation.isConfirmed) return;
 
     const response: PostResponse = await deleteDiploma(id);
-    deleteImage(img, "Diploma");
     if (!response.ok) {
       setError(response.msg);
       setTimeout(() => {

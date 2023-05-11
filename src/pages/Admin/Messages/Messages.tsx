@@ -4,8 +4,10 @@ import { useLoaderData } from "react-router-dom";
 import AllMessages from "../../../components/Admin/Messages/AllMessages";
 import { MessageType } from "../../../types/message";
 import { deleteMessage } from "../../../api/get-api";
-import { PostResponse } from "../../../types/response";
+import type { PostResponse } from "../../../types/response";
 import Swal from "sweetalert2";
+
+import messageImage from "../../../assets/Online world-cuate.png";
 
 const Messages = () => {
   const data = (useLoaderData() as any).data as MessageType[];
@@ -23,7 +25,20 @@ const Messages = () => {
   return (
     <div>
       <h1 className="mt-5 mb-4">Messages</h1>
-      {/* <AllMessages handleDelete={handleDelete} list={messages} /> */}
+      {messages.length > 0 ? (
+        <AllMessages handleDelete={handleDelete} list={messages} />
+      ) : (
+        <div>
+          <img
+            style={{
+              width: "50%",
+              marginTop: -37,
+            }}
+            className="d-block mx-auto"
+            src={messageImage}
+          />
+        </div>
+      )}
     </div>
   );
 };

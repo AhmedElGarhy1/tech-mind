@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsis,
   faEnvelope,
+  faPaperPlane,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -58,9 +59,17 @@ const MessageCard: FC<Params> = ({ message, handleDelete }) => {
             <FontAwesomeIcon className="fs-4 me-2 " icon={faEnvelope} />
             <span className="text-black-50">{message.email}</span>
           </li>
-          <li className=" d-flex align-items-center fw-semibold ">
-            <FontAwesomeIcon className="fs-4 me-2 " icon={faPhone} />
-            <span className="text-black-50">{message.phone}</span>
+          <li className=" d-flex align-items-center justify-content-between fw-semibold ">
+            <div className="d-flex align-items-center">
+              <FontAwesomeIcon className="fs-4 me-2 " icon={faPhone} />
+              <span className="text-black-50">{message.phone}</span>
+            </div>
+            <a href={`mailto:${message.email}`}>
+              <FontAwesomeIcon
+                className="fs-5 text-black"
+                icon={faPaperPlane}
+              />
+            </a>
           </li>
         </ul>
       </Card.Body>

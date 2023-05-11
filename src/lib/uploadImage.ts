@@ -1,9 +1,4 @@
-import {
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-  deleteObject,
-} from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import storage from "../config/firebaseConfig";
 import { GlobalImagesFilesType } from "../pages/Admin/Courses/AddCourse";
 import { GlobalCourseImagesStringType } from "../types/course";
@@ -25,19 +20,6 @@ export const uploadFile = async (
   } catch (err) {
     console.log(err);
     return null;
-  }
-};
-export const deleteImage = async (
-  fileName: string,
-  path: "Course" | "Diploma"
-): Promise<{ name: string; value: string } | string | null> => {
-  try {
-    if (!fileName) return null;
-
-    const storageRef = ref(storage, `${path.toLocaleLowerCase()}s/${fileName}`);
-    await deleteObject(storageRef);
-  } catch (err) {
-    console.log(err);
   }
 };
 

@@ -8,7 +8,6 @@ import AdminCourseRows from "../../../components/Admin/Courses/AdminCourseRows";
 import { deleteCourse } from "../../../api/get-api";
 import { PostResponse } from "../../../types/response";
 import { CourseCardType } from "../../../types/course";
-import { deleteImage } from "../../../lib/uploadImage";
 
 const AllCourses: FC = () => {
   const data = useLoaderData() as CourseCardType[];
@@ -33,7 +32,6 @@ const AllCourses: FC = () => {
     if (!confirmation.isConfirmed) return;
 
     const response: PostResponse = await deleteCourse(id);
-    deleteImage(img, "Course");
     if (!response.ok) {
       setError(response.msg);
       setTimeout(() => {

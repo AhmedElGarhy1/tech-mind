@@ -10,6 +10,7 @@ import { currentLanguage } from "../../lib/utils";
 
 interface ParamsType {
   id: string;
+  is_dependent: boolean;
 }
 
 const breakpoints = {
@@ -23,7 +24,7 @@ const breakpoints = {
   },
 };
 
-const RelatedCourses = ({ id }: ParamsType) => {
+const RelatedCourses = ({ id, is_dependent }: ParamsType) => {
   const { loading, error, makeRequest } = useGet();
   const isEnglish = useAppSelector(selectIsEnglish);
 
@@ -33,7 +34,8 @@ const RelatedCourses = ({ id }: ParamsType) => {
 
   useEffect(() => {
     const makeFetch = async () => {
-      const response = await makeRequest("courses/related/" + id);
+      const url = `courses/related/${id}?is_dependent=${is_dependent || false}`;
+      const response = await makeRequest(url);
       const relatedCourses = response as RelatedCoursesType[];
       setCourses(relatedCourses);
     };
