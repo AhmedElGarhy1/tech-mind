@@ -4,8 +4,8 @@ import { AdminCourseType, CourseType } from "../types/course";
 import { AdminDiplomaType } from "../types/deploma";
 // import Data from "../data/productsData";
 // * -------------------------- diplomas endpoints --------------------------
-const getAllDiplomas = async () => {
-  const url = `/diplomas`;
+const getAllDiplomas = async (page: number = 1) => {
+  const url = `/diplomas?limit=20&page=${page}`;
   const response = await backendReq(url, "get");
   return response.data;
 };
@@ -63,14 +63,14 @@ const getCourseLoaderForAdmin = async ({ params }: LoaderFunctionArgs) => {
   return response.data;
 };
 
-const getAllDependentCourses = async () => {
-  const url = `/courses?is_dependent=true`;
+const getAllDependentCourses = async (page: number = 1) => {
+  const url = `/courses?is_dependent=true&limit=20&page=${page}`;
   const response = await backendReq(url, "get");
   return response.data;
 };
 
-const getAllCourses = async () => {
-  const url = `/courses`;
+const getAllCourses = async (page: number = 1) => {
+  const url = `/courses?limit=20&page=${page}`;
   const response = await backendReq(url, "get");
   return response.data;
 };
@@ -137,8 +137,8 @@ const sendMessage = async (data: any) => {
   return response;
 };
 
-const getAllMessages = async () => {
-  const url = `/messages`;
+const getAllMessages = async (pageNum: number = 1) => {
+  const url = `/messages?limit=20&page=${pageNum}`;
   const response = await backendReq(url, "get");
   return response;
 };
@@ -161,7 +161,7 @@ const makeReservation = async (data: any) => {
   const response = await backendReq(url, "post", data);
   return response;
 };
-const getAllReservations = async () => {
+const getAllReservations = async (pageNum: number = 1) => {
   const url = `/reservations`;
   const response = await backendReq(url, "get");
   return response;

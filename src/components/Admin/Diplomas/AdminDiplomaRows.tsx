@@ -27,7 +27,7 @@ const AdminDiplomaRows: FC<Props> = ({ diplomas, handleDelete }) => {
                   <h5>{diploma.name.EN}</h5>
                 </div>
               </div>
-              <div>
+              <div className="text-center">
                 <Link
                   title="Preview"
                   to={`/diplomas/${diploma._id}`}

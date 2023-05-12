@@ -31,7 +31,7 @@ const AdminCourseRows: FC<Props> = ({ courses, handleDelete }) => {
                   </span>
                 </div>
               </div>
-              <div>
+              <div className="text-center">
                 {course.is_dependent && (
                   <Link
                     title="Preview"

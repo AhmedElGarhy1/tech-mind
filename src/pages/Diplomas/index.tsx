@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import { useLoaderData } from "react-router-dom";
 
@@ -7,9 +7,34 @@ import BreadCrumb from "../../components/BreadCrumb";
 import DiplomaCard, {
   DiplomaCardType,
 } from "../../components/Diplomas/DiplomaCard";
+import { getAllDiplomas } from "../../api/get-api";
+import LoadingButton from "../../components/teach/LoadingButton";
 
 const Diplomas = () => {
-  const diplomas = useLoaderData() as DiplomaCardType[];
+  const basicDiplomas = useLoaderData() as DiplomaCardType[];
+
+  const [page, setPage] = useState<number>(1);
+  const [haveLoad, setHaveLoad] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [diplomas, setDiplomas] = useState<DiplomaCardType[]>([]);
+  useLayoutEffect(() => {
+    if (page === 1) return setDiplomas(basicDiplomas || []);
+
+    const getMoreCourses = async (pageNum: number) => {
+      try {
+        setLoading(true);
+        const tempDiplomas = await getAllDiplomas(pageNum);
+        setLoading(false);
+        if (!(tempDiplomas && tempDiplomas.length > 0))
+          return setHaveLoad(false);
+        setDiplomas((p) => [...p, ...tempDiplomas]);
+      } catch (err) {
+        console.log("ERROR");
+      }
+    };
+
+    getMoreCourses(page);
+  }, [page]);
   return (
     <div>
       <Hero
@@ -50,6 +75,7 @@ const Diplomas = () => {
               </div>
             ))}
           </Row>
+          {haveLoad && <LoadingButton loading={loading} setPage={setPage} />}
         </Container>
       </div>
     </div>

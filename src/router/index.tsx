@@ -68,7 +68,7 @@ export default createBrowserRouter(
           <Route
             index
             element={<ReactSuspense>{<Diplomas />}</ReactSuspense>}
-            loader={getAllDiplomas}
+            loader={() => getAllDiplomas()}
             errorElement={<NotFound />}
           />
           <Route path=":id">
@@ -90,7 +90,7 @@ export default createBrowserRouter(
           <Route
             index
             element={<ReactSuspense>{<Courses />}</ReactSuspense>}
-            loader={getAllDependentCourses}
+            loader={() => getAllDependentCourses()}
             errorElement={<NotFound />}
           />
           <Route
@@ -112,7 +112,7 @@ export default createBrowserRouter(
           <Route path="courses">
             <Route
               index
-              loader={getAllCourses}
+              loader={() => getAllCourses()}
               element={
                 <ReactSuspense>
                   <AllCourses />
@@ -135,7 +135,7 @@ export default createBrowserRouter(
           <Route path="diplomas">
             <Route
               index
-              loader={getAllDiplomas}
+              loader={() => getAllDiplomas()}
               element={
                 <ReactSuspense>
                   <AllDiplomas />
@@ -157,7 +157,7 @@ export default createBrowserRouter(
 
           <Route
             path="registrations"
-            loader={getAllReservations}
+            loader={() => getAllReservations()}
             element={
               <ReactSuspense>
                 <Reservations />
@@ -167,7 +167,7 @@ export default createBrowserRouter(
           <Route path="messages">
             <Route
               index
-              loader={getAllMessages}
+              loader={() => getAllMessages()}
               element={
                 <ReactSuspense>
                   <Messages />

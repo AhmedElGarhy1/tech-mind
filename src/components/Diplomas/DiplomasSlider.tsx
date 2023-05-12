@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import useGet from "../../hooks/useGet";
 
 import { Autoplay } from "swiper";
+import { Navigation } from "swiper";
 import ExploreLink from "../Home/ExploreLink";
 import DiplomaCard, { DiplomaCardType } from "./DiplomaCard";
 import { useAppSelector } from "../../store/hooks";
@@ -28,7 +29,7 @@ const DiplomasSlider = () => {
   useEffect(() => {
     const makeFetch = async () => {
       const data = (await makeRequest(
-        "/diplomas?limit=5"
+        "/diplomas?limit=8"
       )) as DiplomaCardType[];
       setDiplomas(data || []);
     };
@@ -53,8 +54,10 @@ const DiplomasSlider = () => {
         ) : (
           <Swiper
             dir="ltr"
-            modules={[Autoplay]}
-            autoplay={{ delay: 7000 }}
+            // navigation
+            modules={[Autoplay, Navigation]}
+            loop
+            autoplay={{ delay: 5000 }}
             spaceBetween={25}
             breakpoints={breakpoints}>
             {diplomas.map((diploma) => (

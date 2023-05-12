@@ -17,7 +17,6 @@ interface Params {
 }
 
 const MessageCard: FC<Params> = ({ message, handleDelete }) => {
-  console.log(message);
   return (
     <Card
       style={{

@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import { useLoaderData } from "react-router-dom";
 import CourseCard from "../../components/Courses/CourseCard";
 import Hero from "../../components/Hero";
 import BreadCrumb from "../../components/BreadCrumb";
 import { CourseCardType } from "../../types/course";
+import { currentLanguage } from "../../lib/utils";
+import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { useAppSelector } from "../../store/hooks";
+import { getAllDependentCourses } from "../../api/get-api";
+import LoadingButton from "../../components/teach/LoadingButton";
 
 const Courses = () => {
-  const courses = useLoaderData() as CourseCardType[];
+  const basicCourses = useLoaderData() as CourseCardType[];
+
+  const [page, setPage] = useState<number>(1);
+  const [haveLoad, setHaveLoad] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [courses, setCourses] = useState<CourseCardType[]>([]);
+  useLayoutEffect(() => {
+    if (page === 1) return setCourses(basicCourses || []);
+
+    const getMoreCourses = async (pageNum: number) => {
+      try {
+        setLoading(true);
+        const tempCourses = await getAllDependentCourses(pageNum);
+        setLoading(false);
+        if (!(tempCourses && tempCourses.length > 0)) return setHaveLoad(false);
+        setCourses((p) => [...p, ...tempCourses]);
+      } catch (err) {
+        console.log("ERROR");
+      }
+    };
+
+    getMoreCourses(page);
+  }, [page]);
   return (
     <div>
       <Hero
@@ -48,6 +75,7 @@ const Courses = () => {
               </div>
             ))}
           </Row>
+          {haveLoad && <LoadingButton loading={loading} setPage={setPage} />}
         </Container>
       </div>
     </div>
