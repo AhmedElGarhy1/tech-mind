@@ -19,6 +19,15 @@ const Messages = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleDelete = (id: string) => async () => {
+    const confirmation = await Swal.fire({
+      icon: "question",
+      title: "Delete?",
+      html: "Are you sure you want to delete?",
+      showDenyButton: true,
+    });
+
+    if (!confirmation.isConfirmed) return;
+
     deleteMessage(id).then((response) => {
       const temp = response as PostResponse;
       if (!temp.ok) return Swal.fire("Sorry", temp.msg, "error");

@@ -23,41 +23,43 @@ const SingleDeploma = () => {
   }, []);
 
   const data = useLoaderData();
-  const deploma = data as DeplomaType;
+  const diploma = data as DeplomaType;
   // const navigate = useNavigate();
 
   return (
     <div>
-      {deploma && (
+      {diploma && (
         <>
           <Hero
-            name={deploma.name}
-            description={deploma.description}
-            tech_id={deploma._id}
+            name={diploma.name}
+            description={diploma.description}
+            tech_id={diploma._id}
+            tech_name={diploma.name}
+            isDiploma={true}
           />
-          <BreadCrumb name={deploma.name} />
+          <BreadCrumb name={diploma.name} />
 
-          <Overview course={deploma} />
+          <Overview course={diploma} />
           <DeplomaCourses
             isDeploma={true}
-            deplomaID={deploma._id}
-            list={deploma.courses}
+            deplomaID={diploma._id}
+            list={diploma.courses}
           />
           <WhatYouWillLearn
-            src={deploma.other_src}
-            have_video={deploma.have_video}
-            list={deploma.what_you_will_learn}
+            src={diploma.other_src}
+            have_video={diploma.have_video}
+            list={diploma.what_you_will_learn}
           />
-          <WhoThisCourseFor list={deploma.who_is_this_course_for} />
+          <WhoThisCourseFor list={diploma.who_is_this_course_for} />
           <WhyTechMind />
           <Stats
-            duration={deploma.duration}
-            real_projects={deploma.real_projects}
-            lectures={deploma.lectures}
-            name={deploma.name}
-            workshops={deploma.workshops}
+            duration={diploma.duration}
+            real_projects={diploma.real_projects}
+            lectures={diploma.lectures}
+            name={diploma.name}
+            workshops={diploma.workshops}
           />
-          <FAQ list={deploma.fqa} />
+          <FAQ list={diploma.fqa} />
         </>
       )}
     </div>

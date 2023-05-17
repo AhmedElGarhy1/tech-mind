@@ -5,7 +5,12 @@ if (import.meta.env.VITE_ENV === "dev") temp = "http://localhost:7000";
 
 export const BASE_URL = temp;
 
-const backendReq = async (url: string, method: string, obj?: object) => {
+const backendReq = async (
+  url: string,
+  method: string,
+  obj?: object,
+  ...rest: any[]
+) => {
   const options = {
     method,
     url: BASE_URL + "/api" + url,
@@ -14,6 +19,7 @@ const backendReq = async (url: string, method: string, obj?: object) => {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
+    ...rest,
   };
   let response;
   try {

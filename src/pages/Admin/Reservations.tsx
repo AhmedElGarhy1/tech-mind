@@ -1,68 +1,63 @@
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 import AllReservationRows from "../../components/Admin/Reservations/AllReservationRows";
 import { useLoaderData } from "react-router-dom";
 import type { ReservationType } from "../../types/reservation";
-import { Col, Row } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
-import { getTwoCharsFromName } from "../../lib/utils";
+import { deleteReservation, getAllReservations } from "../../api/get-api";
+import LoadingButton from "../../components/teach/LoadingButton";
+import { PostResponse } from "../../types/response";
+import Swal from "sweetalert2";
 
 const Reservations = () => {
-  const registrations = (useLoaderData() as any).data as ReservationType[];
+  const data = (useLoaderData() as any).data as ReservationType[];
+  const [registrations, setRegistrations] = useState<ReservationType[]>([]);
+
+  const [page, setPage] = useState<number>(1);
+  const [haveLoad, setHaveLoad] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useLayoutEffect(() => {
+    if (page === 1) return setRegistrations(data || []);
+
+    const getMoreCourses = async (pageNum: number) => {
+      try {
+        setLoading(true);
+        const temp = await getAllReservations(pageNum);
+        setLoading(false);
+        const tempMessages = temp.data;
+        if (!(tempMessages && tempMessages.length > 0))
+          return setHaveLoad(false);
+        setRegistrations((p) => [...p, ...tempMessages]);
+      } catch (err) {
+        console.log("ERROR");
+      }
+    };
+
+    getMoreCourses(page);
+  }, [page]);
+
+  const handleDelete = async (id: string) => {
+    const confirmation = await Swal.fire({
+      icon: "question",
+      title: "Delete?",
+      html: "Are you sure you want to delete?",
+      showDenyButton: true,
+    });
+
+    if (!confirmation.isConfirmed) return;
+
+    deleteReservation(id).then((response) => {
+      const temp = response as PostResponse;
+      if (!temp.ok) return Swal.fire("Sorry", temp.msg, "error");
+      Swal.fire("Deleted", temp.msg, "success");
+      setRegistrations((p) => [...p].filter((ele) => ele._id !== id));
+    });
+  };
 
   return (
     <div>
       <h1 className=" mt-5 mb-5">Registration</h1>
-      {registrations.map((ele) => (
-        <Row
-          key={ele._id}
-          className="text-md-start text-center bg-white input-border py-2 d-flex align-items-center justify-content-between rounded-3 mb-3 w-100 m-0 gy-3 gy-md-0">
-          <Col
-            md={3}
-            className="d-flex align-items-center justify-content-md-start justify-content-center gap-3 fs-5">
-            <div
-              style={{
-                width: 46,
-                height: 46,
-              }}
-              className="d-flex align-items-center justify-content-center rounded-pill bg-border-color fs-6 flex-shrink-0 fw-semibold">
-              {getTwoCharsFromName(ele.name)}
-            </div>
-            <span title={ele.name}>{ele.name}</span>
-          </Col>
-          <Col md={3}>
-            <div className="d-flex align-items-center justify-content-md-start justify-content-center fw-semibold ">
-              <FontAwesomeIcon className="fs-4 me-2 " icon={faEnvelope} />
-              <span className="text-black-50">{ele.email}</span>
-            </div>
-          </Col>
-          <Col md={3}>
-            <div className="d-flex align-items-center justify-content-md-start justify-content-center fw-semibold ">
-              <FontAwesomeIcon className="fs-4 me-2 " icon={faPhone} />
-              <span className="text-black-50">{ele.phone}</span>
-            </div>
-          </Col>
-          <Col md={3}>
-            <div className="d-flex align-items-center justify-content-md-start justify-content-center fw-semibold ">
-              <span className="text-black-50">
-                {ele.fromCourse ? (
-                  <>
-                    {ele.fromCourse?.name.EN}{" "}
-                    <span className="fs-bold text-black"> -- Course</span>
-                  </>
-                ) : ele.fromDiploma ? (
-                  <>
-                    {ele.fromDiploma?.name.EN}{" "}
-                    <span className="fs-bold text-black"> -- Diploma</span>
-                  </>
-                ) : (
-                  <span className="fs-bold text-black">ERROR</span>
-                )}
-              </span>
-            </div>
-          </Col>
-        </Row>
-      ))}
+      <AllReservationRows handleDelete={handleDelete} list={registrations} />
+      {haveLoad && <LoadingButton loading={loading} setPage={setPage} />}
     </div>
   );
 };

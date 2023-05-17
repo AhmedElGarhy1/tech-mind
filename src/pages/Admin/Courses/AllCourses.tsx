@@ -5,15 +5,19 @@ import React, { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { filterRecords } from "../../../lib/utils";
 import AdminCourseRows from "../../../components/Admin/Courses/AdminCourseRows";
-import { deleteCourse, getAllDependentCourses } from "../../../api/get-api";
+import { deleteCourse, getAllCourses } from "../../../api/get-api";
 import { PostResponse } from "../../../types/response";
 import { CourseCardType } from "../../../types/course";
 import LoadingButton from "../../../components/teach/LoadingButton";
 
+const controller = new AbortController();
+
 const AllCourses: FC = () => {
   const basicCourses = useLoaderData() as CourseCardType[];
 
-  const [allData, setAllData] = useState<CourseCardType[]>(basicCourses || []);
+  const [query, setQuery] = useState<string>("");
+  const [queryLoading, setQueryLoading] = useState<boolean>(false);
+
   const [courses, setCourses] = useState<CourseCardType[]>(basicCourses || []);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,12 +25,23 @@ const AllCourses: FC = () => {
   const [haveLoad, setHaveLoad] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const q = event.target.value.trim();
-    const newCourses = filterRecords(allData, q) as CourseCardType[];
-    setCourses(newCourses);
+  const handleQueryChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setQueryLoading(true);
+    const q = event.target.value;
+    setQuery(q);
+    setPage(1);
+    try {
+      controller.abort();
+      const newCourses = await getAllCourses(1, q, controller.signal);
+      setCourses(newCourses);
+      setQueryLoading(false);
+      setHaveLoad(true);
+    } catch (err) {
+      setQueryLoading(false);
+      console.log("SOMTHING WENT WRONG");
+    }
   };
 
   const handleDelete = async (id: string, img: string) => {
@@ -49,21 +64,21 @@ const AllCourses: FC = () => {
     }
     Swal.fire("Deleted", "Successfully Deleted", "success");
     setCourses((prev) => [...prev].filter((e) => e._id !== id));
-    setAllData((prev) => [...prev].filter((e) => e._id !== id));
   };
 
   useLayoutEffect(() => {
     if (page === 1) return setCourses(basicCourses || []);
-
     const getMoreCourses = async (pageNum: number) => {
       try {
         setLoading(true);
-        const tempCourses = await getAllDependentCourses(pageNum);
+        const tempCourses = await getAllCourses(
+          pageNum,
+          query,
+          controller.signal
+        );
         setLoading(false);
         if (!(tempCourses && tempCourses.length > 0)) return setHaveLoad(false);
-        setAllData((p) => [...p, ...tempCourses]);
         setCourses((p) => [...p, ...tempCourses]);
-        if (inputRef.current) inputRef.current.value = "";
       } catch (err) {
         console.log("ERROR");
       }
@@ -85,7 +100,7 @@ const AllCourses: FC = () => {
           className="d-block w-100 bg-transparent shadow-none rounded-1 py-2 input-border"
           placeholder="Search..."
           type="text"
-          ref={inputRef}
+          value={query}
           onChange={handleQueryChange}
           style={{
             outline: "none",
@@ -103,7 +118,11 @@ const AllCourses: FC = () => {
         />
       </div>
       {error && <p className="text-center text-danger mt-2">{error}</p>}
-      <AdminCourseRows courses={courses} handleDelete={handleDelete} />
+      {queryLoading ? (
+        "Loading..."
+      ) : (
+        <AdminCourseRows courses={courses} handleDelete={handleDelete} />
+      )}
       {haveLoad && <LoadingButton loading={loading} setPage={setPage} />}
     </div>
   );

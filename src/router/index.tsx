@@ -42,12 +42,12 @@ import {
   UpdateDiploma,
   AllCourses,
   AddCourse,
+  AllMessages,
+  Reservations,
+  SingleMessage,
+  UpdateCourse,
+  AddDiploma,
 } from "../pages/Admin";
-import UpdateCourse from "../pages/Admin/Courses/UpdateCourse";
-import AddDiploma from "../pages/Admin/Diplomas/AddDiploma";
-import Reservations from "../pages/Admin/Reservations";
-import Messages from "../pages/Admin/Messages/Messages";
-import SingleMessage from "../pages/Admin/Messages/SingleMessage";
 
 export default createBrowserRouter(
   createRoutesFromElements(
@@ -170,7 +170,7 @@ export default createBrowserRouter(
               loader={() => getAllMessages()}
               element={
                 <ReactSuspense>
-                  <Messages />
+                  <AllMessages />
                 </ReactSuspense>
               }
             />

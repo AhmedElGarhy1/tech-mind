@@ -30,12 +30,12 @@ interface DataType {
 }
 
 const SingleCourse = () => {
+  const data = useLoaderData() as DataType;
   const dispatch = useAppDispatch();
 
   const { id } = useParams();
-  const data = useLoaderData() as DataType;
   const course = data.course;
-  const deploma = data.deploma;
+  const diploma = data.deploma;
 
   useEffect(() => {
     dispatch(removeLoading());
@@ -48,14 +48,16 @@ const SingleCourse = () => {
           <Hero
             name={course.name}
             description={course.description}
-            tech_id={course._id}
+            tech_id={diploma ? diploma._id : course._id}
+            tech_name={diploma ? diploma.name : course.name}
+            isDiploma={!!diploma}
           />
-          <BreadCrumb name={course.name} deplomaName={deploma?.name} />
+          <BreadCrumb name={course.name} deplomaName={diploma?.name} />
           <Overview course={course} />
           {course.have_objectives && (
             <DeplomaCourses list={course.objectives} isDeploma={false} />
           )}
-          <RelatedCourses id={id} is_dependent={!deploma} />
+          <RelatedCourses id={id} is_dependent={!diploma} />
           <WhatYouWillLearn
             list={course.what_you_will_learn}
             src={course.other_src}
@@ -63,7 +65,7 @@ const SingleCourse = () => {
           {course.have_target && (
             <WhoThisCourseFor list={course.who_is_this_course_for} />
           )}
-          {course.is_dependent && !deploma?._id && <WhyTechMind />}
+          {course.is_dependent && !diploma?._id && <WhyTechMind />}
           <Stats
             duration={course.duration}
             lectures={course.lectures}

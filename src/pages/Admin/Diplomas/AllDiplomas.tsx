@@ -10,12 +10,13 @@ import { DiplomaCardType } from "../../../components/Diplomas/DiplomaCard";
 import AdminDiplomaRows from "../../../components/Admin/Diplomas/AdminDiplomaRows";
 import LoadingButton from "../../../components/teach/LoadingButton";
 
+const controller = new AbortController();
+
 const AllDiplomas: FC = () => {
   const basicDiplomas = useLoaderData() as DiplomaCardType[];
 
-  const [allData, setAllData] = useState<DiplomaCardType[]>(
-    basicDiplomas || []
-  );
+  const [queryLoading, setQueryLoading] = useState(false);
+  const [query, setQuery] = useState("");
   const [diplomas, setDiplomas] = useState<DiplomaCardType[]>(
     basicDiplomas || []
   );
@@ -25,12 +26,23 @@ const AllDiplomas: FC = () => {
   const [haveLoad, setHaveLoad] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const q = event.target.value.trim();
-    const newDiplomas = filterRecords(allData, q) as DiplomaCardType[];
-    setDiplomas(newDiplomas);
+  const handleQueryChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setQueryLoading(true);
+    const q = event.target.value;
+    setQuery(q);
+    setPage(1);
+    try {
+      controller.abort();
+      const newDiplomas = await getAllDiplomas(1, q, controller.signal);
+      setDiplomas(newDiplomas);
+      setQueryLoading(false);
+      setHaveLoad(true);
+    } catch (err) {
+      setQueryLoading(false);
+      console.log("SOMTHING WENT WRONG");
+    }
   };
 
   const handleDelete = async (id: string, img: string) => {
@@ -53,7 +65,6 @@ const AllDiplomas: FC = () => {
     }
     Swal.fire("Deleted", "Successfully Deleted", "success");
     setDiplomas((prev) => [...prev].filter((e) => e._id !== id));
-    setAllData((prev) => [...prev].filter((e) => e._id !== id));
   };
 
   useLayoutEffect(() => {
@@ -62,12 +73,10 @@ const AllDiplomas: FC = () => {
     const getMoreCourses = async (pageNum: number) => {
       try {
         setLoading(true);
-        const tempCourses = await getAllDiplomas(pageNum);
+        const tempCourses = await getAllDiplomas(pageNum, query);
         setLoading(false);
         if (!(tempCourses && tempCourses.length > 0)) return setHaveLoad(false);
-        setAllData((p) => [...p, ...tempCourses]);
         setDiplomas((p) => [...p, ...tempCourses]);
-        if (inputRef.current) inputRef.current.value = "";
       } catch (err) {
         console.log("ERROR");
       }
@@ -88,7 +97,6 @@ const AllDiplomas: FC = () => {
         <input
           className="d-block w-100 bg-transparent shadow-none rounded-1 py-2 input-border"
           type="text"
-          ref={inputRef}
           placeholder="Search..."
           onChange={handleQueryChange}
           style={{
@@ -107,7 +115,11 @@ const AllDiplomas: FC = () => {
         />
       </div>
       {error && <p className="text-center text-danger mt-2">{error}</p>}
-      <AdminDiplomaRows diplomas={diplomas} handleDelete={handleDelete} />
+      {queryLoading ? (
+        "Loading..."
+      ) : (
+        <AdminDiplomaRows diplomas={diplomas} handleDelete={handleDelete} />
+      )}
       {haveLoad && <LoadingButton loading={loading} setPage={setPage} />}
     </div>
   );

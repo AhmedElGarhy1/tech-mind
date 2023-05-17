@@ -5,6 +5,7 @@ import ReservationPopup from "./Popup/ReservationPopup";
 import { useAppSelector } from "../store/hooks";
 import { selectIsEnglish } from "../store/slices/LangSlice";
 import { currentLanguage } from "../lib/utils";
+import { StringLang } from "../types/common";
 interface ParamsType {
   name: {
     AR: string;
@@ -16,9 +17,18 @@ interface ParamsType {
   };
   noBtn?: boolean;
   tech_id?: string;
+  tech_name?: StringLang;
+  isDiploma?: boolean;
 }
 
-const Hero = ({ name, description, noBtn, tech_id }: ParamsType) => {
+const Hero = ({
+  name,
+  description,
+  noBtn,
+  tech_id,
+  tech_name,
+  isDiploma,
+}: ParamsType) => {
   const isEnglish = useAppSelector(selectIsEnglish);
   const layoutRef = useRef<HTMLDivElement>();
 
@@ -70,6 +80,8 @@ const Hero = ({ name, description, noBtn, tech_id }: ParamsType) => {
                 layoutRef={layoutRef}
                 handleClose={handleClose}
                 show={show}
+                tech_name={tech_name}
+                isDiploma={isDiploma}
               />
             </>
           )}

@@ -1,18 +1,26 @@
 import React, { useState } from "react";
-import { formateEmail } from "../../lib/utils";
+import { currentLanguage, formateEmail } from "../../lib/utils";
 import { Form } from "react-bootstrap";
 import { makeReservation } from "../../api/get-api";
 import { PostResponse } from "../../types/response";
 import Swal from "sweetalert2";
 import { useAppSelector } from "../../store/hooks";
 import { selectIsEnglish } from "../../store/slices/LangSlice";
+import { StringLang } from "../../types/common";
 
 interface ReservationFormTypes {
   tech_id: string;
   handleClose: () => void;
+  tech_name: StringLang;
+  isDiploma: boolean;
 }
 
-const ReservationForm = ({ tech_id, handleClose }: ReservationFormTypes) => {
+const ReservationForm = ({
+  tech_id,
+  handleClose,
+  tech_name,
+  isDiploma,
+}: ReservationFormTypes) => {
   const isEnglish = useAppSelector(selectIsEnglish);
 
   const [name, setName] = useState("");
@@ -59,7 +67,7 @@ const ReservationForm = ({ tech_id, handleClose }: ReservationFormTypes) => {
 
   return (
     <Form className="text-black-50 mt-3">
-      <div className="mb-3">
+      <div className="mb-2">
         <label htmlFor="name" className="mb-1">
           {isEnglish ? "Full Name" : "الاسم الكامل"}
         </label>
@@ -70,7 +78,7 @@ const ReservationForm = ({ tech_id, handleClose }: ReservationFormTypes) => {
           id="name"
         />
       </div>
-      <div className="mb-3">
+      <div className="mb-2">
         <label htmlFor="email" className="mb-1">
           {isEnglish ? "Email address" : "عنوان البريد الإلكتروني"}
         </label>
@@ -82,7 +90,7 @@ const ReservationForm = ({ tech_id, handleClose }: ReservationFormTypes) => {
           id="email"
         />
       </div>
-      <div className="mb-3">
+      <div className="mb-2">
         <label htmlFor="phone" className="mb-1">
           {isEnglish ? "Phone Number" : "رقم التليفون"}
         </label>
@@ -92,6 +100,17 @@ const ReservationForm = ({ tech_id, handleClose }: ReservationFormTypes) => {
           type="text"
           className="form-control shadow-none"
           id="phone"
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="name" className="mb-1">
+          {isDiploma ? "Diploma" : "Course" + "Name"}
+        </label>
+        <input
+          disabled
+          value={tech_name[currentLanguage(isEnglish)]}
+          className="form-control shadow-none "
+          id="name"
         />
       </div>
 

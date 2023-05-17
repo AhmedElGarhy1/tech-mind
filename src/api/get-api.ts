@@ -4,9 +4,15 @@ import { AdminCourseType, CourseType } from "../types/course";
 import { AdminDiplomaType } from "../types/deploma";
 // import Data from "../data/productsData";
 // * -------------------------- diplomas endpoints --------------------------
-const getAllDiplomas = async (page: number = 1) => {
-  const url = `/diplomas?limit=20&page=${page}`;
-  const response = await backendReq(url, "get");
+const getAllDiplomas = async (
+  page: number = 1,
+  query?: string,
+  signal?: any
+) => {
+  const url = `/diplomas?limit=20&page=${page}${
+    query ? `&query=${query}` : ""
+  }`;
+  const response = await backendReq(url, "get", {}, signal);
   return response.data;
 };
 
@@ -69,9 +75,13 @@ const getAllDependentCourses = async (page: number = 1) => {
   return response.data;
 };
 
-const getAllCourses = async (page: number = 1) => {
-  const url = `/courses?limit=20&page=${page}`;
-  const response = await backendReq(url, "get");
+const getAllCourses = async (
+  page: number = 1,
+  query?: string,
+  signal?: any
+) => {
+  const url = `/courses?limit=20&page=${page}${query ? `&query=${query}` : ""}`;
+  const response = await backendReq(url, "get", {}, signal);
   return response.data;
 };
 
@@ -191,6 +201,12 @@ const sendRecorde = async (
     }
   }
 };
+// admin login
+const postLogin = async (obj: any) => {
+  const url = `/auth`;
+  const response = await backendReq(url, "post", obj);
+  return response;
+};
 
 export {
   getAllDiplomas,
@@ -219,4 +235,5 @@ export {
   deleteMessage,
   deleteReservation,
   getMessage,
+  postLogin,
 };

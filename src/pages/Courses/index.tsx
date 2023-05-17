@@ -18,6 +18,7 @@ const Courses = () => {
   const [haveLoad, setHaveLoad] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
   const [courses, setCourses] = useState<CourseCardType[]>([]);
+
   useLayoutEffect(() => {
     if (page === 1) return setCourses(basicCourses || []);
 
@@ -35,6 +36,7 @@ const Courses = () => {
 
     getMoreCourses(page);
   }, [page]);
+
   return (
     <div>
       <Hero
