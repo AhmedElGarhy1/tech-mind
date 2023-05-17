@@ -33,7 +33,7 @@ const AdminRelatedCourses = () => {
       const tempRelatedCourses = response as RelatedCoursesType[];
       setRelatedCourses(tempRelatedCourses);
       //   --------
-      const response2 = await makeRequest("courses");
+      const response2 = await makeRequest("courses?limit=1000000");
       const tempAllCourses = response2 as CourseType[];
 
       const theRestOfCourses = tempAllCourses.filter((course) => {
