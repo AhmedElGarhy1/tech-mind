@@ -7,7 +7,7 @@ interface InitialStateType {
 
 // Define the initial state using that type
 const initialState: InitialStateType = {
-  isLoading: false,
+  isLoading: true,
 };
 
 export const LoadingSlice = createSlice({

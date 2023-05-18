@@ -1,14 +1,17 @@
+import { lazy } from "react";
+
 import AdminLogin from "./AdminLogin";
 import Dashboard from "./Dashboard";
-import AllCourses from "./Courses/AllCourses";
 import AddCourse from "./Courses/AddCourse";
-import AllDiplomas from "./Diplomas/AllDiplomas";
-import UpdateDiploma from "./Diplomas/UpdateDiploma";
-import Reservations from "./Reservations";
-import AllMessages from "./Messages/Messages";
-import SingleMessage from "./Messages/SingleMessage";
-import UpdateCourse from "./Courses/UpdateCourse";
 import AddDiploma from "./Diplomas/AddDiploma";
+
+const AllCourses = lazy(() => import("./Courses/AllCourses"));
+const UpdateCourse = lazy(() => import("./Courses/UpdateCourse"));
+const AllDiplomas = lazy(() => import("./Diplomas/AllDiplomas"));
+const UpdateDiploma = lazy(() => import("./Diplomas/UpdateDiploma"));
+const Reservations = lazy(() => import("./Reservations"));
+const AllMessages = lazy(() => import("./Messages/Messages"));
+const SingleMessage = lazy(() => import("./Messages/SingleMessage"));
 
 export {
   AdminLogin,
