@@ -13,20 +13,21 @@ import centerImg from "../../assets/homeImages/center.png";
 import rightImg from "../../assets/homeImages/right.png";
 
 interface ParamsType {
-  img: string;
   list: StringLang[];
 }
 
-const GrowYourSkills = ({ img, list }: ParamsType) => {
+const GrowYourSkills = ({ list }: ParamsType) => {
   const isEnglish = useAppSelector(selectIsEnglish);
 
   return (
     <Container>
       <Row>
-        <div className="home-img col-12 col-md-6 d-none d-md-block">
-          <img className="right" src={rightImg} />
-          <img className="left" src={leftImg} />
-          <img className="center" src={centerImg} />
+        <div className="home-img col-12 col-md-6 d-none d-md-flex align-items-center justify-content-center">
+          <div data-en={isEnglish}>
+            <img className="right" src={rightImg} />
+            <img className="left" src={leftImg} />
+            <img className="center" src={centerImg} />
+          </div>
         </div>
         <div className="col-12 col-md-6">
           <h3

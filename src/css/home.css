@@ -53,8 +53,18 @@
 }
 
 .home-img {
-  position: relative;
   height: 500px;
+}
+.home-img > div {
+  width: 500px;
+  height: 500px;
+  position: relative;
+}
+.home-img > div[data-en="true"] {
+  margin-right: 200px;
+}
+.home-img > div[data-en="false"] {
+  margin-left: 100px;
 }
 .home-img img {
   position: absolute;
@@ -86,7 +96,7 @@
   }
 }
 @media (min-width: 991px) and (max-width: 1200px) {
-  .home-img {
+  /* .home-img {
     left: 80px;
-  }
+  } */
 }

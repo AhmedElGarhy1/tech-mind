@@ -20,10 +20,7 @@ const Home = () => {
       />
       <BreadCrumb />
 
-      <GrowYourSkills
-        img={homeData.main_img}
-        list={homeData.grow_your_skills}
-      />
+      <GrowYourSkills list={homeData.grow_your_skills} />
 
       <WhyTechMindHome list={homeData.why_choose_us} />
       <DiplomasSlider />

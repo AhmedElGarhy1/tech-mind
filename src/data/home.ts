@@ -21,7 +21,6 @@ export const homeData = {
     AR: "Tech Mind هي أكاديمية لتدريس مجالات علوم الكمبيوتر ، وتهدف إلى مساعدة الطلاب من خلال توفير محتوى عالي الجودة وقيِّم. بالإضافة إلى تنمية مهاراتهم الشخصية لإنتاج جيل واعي بمتطلبات سوق العمل.",
     EN: "Tech Mind an academic for teaching computer science fields.It aims to help students by providing high quality and valuable content. In addition to developing their personal skills to produce a generation that is aware of the requirements of the labor market.",
   },
-  main_img: "",
   grow_your_skills: [
     { AR: "دبلومات في تخصصات مختلفة", EN: "Diplomas in different Specialties" },
     {
