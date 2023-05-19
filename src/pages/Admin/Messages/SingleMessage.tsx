@@ -90,7 +90,7 @@ const SingleMessage = () => {
             height: "fit-content",
             width: 130,
           }}
-          className="px-2 bg-white input-border py-2 d-flex align-items-center justify-content-between rounded-3 me-3 fs-5 fw-normal">
+          className="px-2 bg-white input-border py-2 d-flex align-items-center justify-content-between rounded-3 me-3 fs-5 fw-normal flex-shrink-0">
           Message
         </div>
         <div className="bg-white flex-grow-1 input-border py-2 d-flex align-items-center justify-content-between rounded-3 px-2 text-black-50">
