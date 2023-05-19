@@ -36,27 +36,24 @@ const footer = {
     },
   ],
   services: [
-    { name: { AR: "تحليل البيانات", EN: "Data Analysis" }, href: "/" },
-    { name: { AR: "علم البيانات", EN: "Data Science" }, href: "/" },
-    { name: { AR: "لغة C ++", EN: "C++ Language" }, href: "/" },
-    {
-      name: { AR: "الذكاء الاصطناعي", EN: "Artificial Intelligence" },
-      href: "/",
-    },
+    { AR: "الذكاء الاصطناعى", EN: "Artificial Intelligence." },
+    { AR: "البرمجة", EN: "Programming" },
+    { AR: "علوم البيانات", EN: "Data Science" },
+    { AR: "تحليل البيانات", EN: "Data Analysis" },
   ],
   usefu_links: [
+    { name: { AR: "الصفحة الرئيسية", EN: "Home" }, href: "/" },
     { name: { AR: "نبذة عنا", EN: "About Us" }, href: "/about" },
-    { name: { AR: "المنشورات", EN: "Postes" }, href: "/postes" },
     { name: { AR: "الكورسات", EN: "Courses" }, href: "/courses" },
-    { name: { AR: "المقالات", EN: "Articles" }, href: "/articles" },
+    { name: { AR: "الدبلومات", EN: "Diplomas" }, href: "/diplomas" },
     { name: { AR: "تواصل معنا", EN: "Contact Us" }, href: "/contact" },
   ],
   contact: [
     {
       icon: faPhone,
-      name: "010111111111",
+      name: "01065588101",
     },
-    { icon: faEnvelope, name: "tickmindit@gmail.com" },
+    { icon: faEnvelope, name: "techmind812@gmail.com" },
     { icon: faLocationDot, name: "Zagazig" },
   ],
 };

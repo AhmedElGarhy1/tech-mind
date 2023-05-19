@@ -6,7 +6,7 @@ const whyTechMind = [
     },
     body: {
       EN: "When you participate in this course, you will get the course content for life, including lectures, codes, tests, summaries, videos and everything related to scientific content.",
-      AR: "عندما تشارك في هذه الدورة ، ستحصل على محتوى الدورة مدى الحياة ، بما في ذلك المحاضرات والرموز والاختبارات والملخصات ومقاطع الفيديو وكل ما يتعلق بالمحتوى العلمي.",
+      AR: "عندما تشارك في هذه الدورة ، ستحصل على محتوى الدورة مدى الحياة ، بما في ذلك المحاضرات والاختبارات والملخصات ومقاطع الفيديو وكل ما يتعلق بالمحتوى العلمي.",
     },
   },
   {

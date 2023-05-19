@@ -24,12 +24,8 @@ export const aboutData = {
   ],
   vision: [
     {
-      AR: "اعداد اكبر عدد من الطلاب للعمالة سوق.",
+      AR: "تدريب طلاب قادرين على مواكبة سوق العمل وتدعيمهم بخبرة عملية",
       EN: "Preparing the largest number of students for the labor market.",
-    },
-    {
-      AR: "أكاديمية البرمجة الأولى في الشرق شرق.",
-      EN: "The number one programming academy in the Middle East.",
     },
   ],
   services: [
@@ -50,7 +46,7 @@ export const aboutData = {
     },
   ],
   programs: [
-    { AR: "الموجهون المحترفون", EN: "Professional Mentors" },
+    { AR: "مدربون ذات خبرة في مجالاتهم", EN: "Professional Mentors" },
     { AR: "مشاريع عملية", EN: "Practical Projects" },
     { AR: "المتابعة مع الطلاب", EN: "Follow-up with students" },
     { AR: "التعلم التفاعلي", EN: "Interactive Learning" },
@@ -62,7 +58,7 @@ export const aboutData = {
       EN: "Training using many big projects.",
     },
     {
-      AR: "إتقان بنية البيانات والخوارزميات.",
+      AR: "إتقان هياكل البيانات والخوارزميات.",
       EN: "Data Structure and algorithms Mastering.",
     },
     {
@@ -73,20 +69,20 @@ export const aboutData = {
       AR: "كيفية استخدام LinkedIn كمنصة تسويق.",
       EN: "How to use LinkedIn as a marketing platform.",
     },
-    { AR: "كيف تكتب كود نظيف!.", EN: "How to write a clean code!." },
+    { AR: "كيف تكتب كود بشكل صحيح!.", EN: "How to write a clean code!." },
   ],
   soft_skills: [
     { AR: "كيف تصنع سيرة ذاتية.", EN: "How to create a CV." },
-    { AR: "كيف تقدم عملك.", EN: "How to present your work." },
+    { AR: "كيف تعرض عملك بشكل قوى", EN: "How to present your work." },
     {
       AR: "كيفية تحديد وفهم احتياجات ومشاكل عملك",
       EN: "How to define and understand your business needs and problems",
     },
     {
-      AR: "كيف تعمل بالقطعة في مجال عملك.",
+      AR: "كيف تعمل ك عامل حر في مجال عملك.",
       EN: "How to work as a freelancer in your field.",
     },
-    { AR: "كيف تتعامل مع المقابلات!", EN: "How to handle interviews!" },
+    { AR: "كيف تتعامل مع مقابلات العمل!", EN: "How to handle interviews!" },
   ],
 };
 

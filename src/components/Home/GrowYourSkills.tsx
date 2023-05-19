@@ -1,4 +1,5 @@
 import React from "react";
+
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row } from "react-bootstrap";
@@ -6,6 +7,10 @@ import { StringLang } from "../../types/common";
 import { selectIsEnglish } from "../../store/slices/LangSlice";
 import { useAppSelector } from "../../store/hooks";
 import { currentLanguage } from "../../lib/utils";
+
+import leftImg from "../../assets/homeImages/left.png";
+import centerImg from "../../assets/homeImages/center.png";
+import rightImg from "../../assets/homeImages/right.png";
 
 interface ParamsType {
   img: string;
@@ -18,9 +23,10 @@ const GrowYourSkills = ({ img, list }: ParamsType) => {
   return (
     <Container>
       <Row>
-        <div className="col-12 col-md-6 d-none d-md-block">
-          IMG
-          <img src={img} />
+        <div className="home-img col-12 col-md-6 d-none d-md-block">
+          <img className="right" src={rightImg} />
+          <img className="left" src={leftImg} />
+          <img className="center" src={centerImg} />
         </div>
         <div className="col-12 col-md-6">
           <h3

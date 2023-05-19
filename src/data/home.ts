@@ -30,12 +30,12 @@ export const homeData = {
     },
     { AR: "مشاريع عملية حقيقية", EN: "Real Practical Projects" },
     {
-      AR: "التدريب دون اتصال بالإنترنت والتدريب عبر الإنترنت",
+      AR: "كورسات ودبلومات اوفلاين واونلاين بشكل تفاعلي",
       EN: "Offline traning & Online training",
     },
     { AR: "تحديثات مجانية مستمرة", EN: "Free continuous updates" },
     {
-      AR: "المهارات الشخصية والتدريب على المهارات الصعبة",
+      AR: "تدريب على مهارات سوق العمل وتنمية المهارات الشخصية",
       EN: "Soft Skills and hard Skills Training",
     },
   ],
@@ -66,7 +66,7 @@ export const homeData = {
     // -------
 
     {
-      AR: "الموجهون المحترفون",
+      AR: "مدربون ذات خبرة في مجالاتهم",
       EN: "Professional Mentors",
       img: teacher,
     },

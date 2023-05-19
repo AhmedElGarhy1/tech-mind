@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Nav, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -55,10 +55,8 @@ const Footer = (): JSX.Element => {
                 </h4>
                 <ul className="list-unstyled p-0">
                   {footer.services.map((link, i) => (
-                    <li className="my-3" key={i}>
-                      <Link className="text-white" to={link.href}>
-                        {link.name[isEnglish ? "EN" : "AR"]}
-                      </Link>
+                    <li className="my-3 text-white" key={i}>
+                      {link[isEnglish ? "EN" : "AR"]}
                     </li>
                   ))}
                 </ul>
@@ -102,9 +100,10 @@ const Footer = (): JSX.Element => {
           </Container>
 
           <div className="footer-copyright text-center py-3 text-white">
+            &copy;
             {isEnglish
-              ? "© 2023 Copyright: Tech Mind"
-              : "© 2023 حقوق النشر: Tech Mind"}
+              ? " 2023 TechMind. Developed by Ahmed ElGarhy"
+              : " 2023 TechMind. تطوير أحمد الجارحي"}
           </div>
         </>
       )}
