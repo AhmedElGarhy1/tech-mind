@@ -19,6 +19,7 @@ interface Params {
   duration: number;
   workshops: number;
   real_projects: number;
+  handleShow: () => void;
 }
 
 const Stats = ({
@@ -27,6 +28,7 @@ const Stats = ({
   duration,
   workshops,
   real_projects,
+  handleShow,
 }: Params) => {
   const isEnglish = useAppSelector(selectIsEnglish);
 
@@ -80,6 +82,7 @@ const Stats = ({
         }}
         data-aos-delay="1000"
         data-aos="zoom-out"
+        onClick={handleShow}
         className="main-btn mt-5  mx-auto">
         Start Your Career
       </button>

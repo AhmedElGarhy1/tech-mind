@@ -12,19 +12,34 @@ import {
 } from "../../components/teach";
 import BreadCrumb from "../../components/BreadCrumb";
 import { DeplomaType } from "../../types/deploma";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { removeLoading } from "../../store/slices/LoadingSlice";
 import { useAppDispatch } from "../../store/hooks";
+import ReservationPopup from "../../components/Popup/ReservationPopup";
 
 const SingleDeploma = () => {
+  const layoutRef = useRef<HTMLDivElement>();
+  const data = useLoaderData();
+  const diploma = data as DeplomaType;
+  const [show, setShow] = useState<boolean>(false);
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(removeLoading());
   }, []);
 
-  const data = useLoaderData();
-  const diploma = data as DeplomaType;
-  // const navigate = useNavigate();
+  const handleClose = () => {
+    setShow(false);
+    setTimeout(() => {
+      if (layoutRef.current) layoutRef.current.style.display = "none";
+    }, 200);
+  };
+  const handleShow = () => {
+    if (layoutRef.current) layoutRef.current.style.display = "block";
+    setTimeout(() => {
+      setShow(true);
+    }, 1);
+  };
 
   return (
     <div>
@@ -33,11 +48,18 @@ const SingleDeploma = () => {
           <Hero
             name={diploma.name}
             description={diploma.description}
+            handleShow={handleShow}
+          />
+          <BreadCrumb name={diploma.name} />
+
+          <ReservationPopup
             tech_id={diploma._id}
+            layoutRef={layoutRef}
+            handleClose={handleClose}
+            show={show}
             tech_name={diploma.name}
             isDiploma={true}
           />
-          <BreadCrumb name={diploma.name} />
 
           <Overview course={diploma} />
           <DeplomaCourses
@@ -58,6 +80,7 @@ const SingleDeploma = () => {
             lectures={diploma.lectures}
             name={diploma.name}
             workshops={diploma.workshops}
+            handleShow={handleShow}
           />
           <FAQ list={diploma.fqa} />
         </>

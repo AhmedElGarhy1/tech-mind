@@ -16,36 +16,11 @@ interface ParamsType {
     EN: string;
   };
   noBtn?: boolean;
-  tech_id?: string;
-  tech_name?: StringLang;
-  isDiploma?: boolean;
+  handleShow?: () => void;
 }
 
-const Hero = ({
-  name,
-  description,
-  noBtn,
-  tech_id,
-  tech_name,
-  isDiploma,
-}: ParamsType) => {
+const Hero = ({ name, description, noBtn, handleShow }: ParamsType) => {
   const isEnglish = useAppSelector(selectIsEnglish);
-  const layoutRef = useRef<HTMLDivElement>();
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => {
-    setShow(false);
-    setTimeout(() => {
-      if (layoutRef.current) layoutRef.current.style.display = "none";
-    }, 200);
-  };
-  const handleShow = () => {
-    if (layoutRef.current) layoutRef.current.style.display = "block";
-    setTimeout(() => {
-      setShow(true);
-    }, 200);
-  };
 
   return (
     <div className="text-white bg-hero-img py-5">
@@ -75,14 +50,6 @@ const Hero = ({
                 className="main-btn hero-btn px-5 mx-2">
                 {isEnglish ? "Start Your Career" : "ابدأ حياتك المهنية"}
               </button>
-              <ReservationPopup
-                tech_id={tech_id}
-                layoutRef={layoutRef}
-                handleClose={handleClose}
-                show={show}
-                tech_name={tech_name}
-                isDiploma={isDiploma}
-              />
             </>
           )}
         </div>

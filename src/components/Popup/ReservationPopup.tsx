@@ -37,7 +37,7 @@ const ReservationPopup = ({
     <>
       <div
         ref={layoutRef}
-        style={{ display: "none" }}
+        style={{ display: "none", zIndex: 900 }}
         className={`${show ? "opacity-100 fixed-top" : ""} reservation-layout`}>
         <div className="reservation-popup p-4">
           <FontAwesomeIcon
@@ -78,7 +78,7 @@ const ReservationPopup = ({
               right: isEnglish ? "unset" : 48,
             }}>
             {popupData.slids.map((slide) => (
-              <SwiperSlide key={slide.AR + slide.EN}>
+              <SwiperSlide className="text-white" key={slide.AR + slide.EN}>
                 {slide[currentLanguage(isEnglish)]}
               </SwiperSlide>
             ))}
