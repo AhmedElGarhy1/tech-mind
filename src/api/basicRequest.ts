@@ -1,10 +1,6 @@
 import axios, { AxiosError } from "axios";
 
-let temp = "https://tech-mind-backend.onrender.com";
-// let temp = "https://tech-mind-backend-production.up.railway.app";
-if (import.meta.env.VITE_ENV === "dev") temp = "http://localhost:7000";
-
-export const BASE_URL = temp;
+export const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const backendReq = async (
   url: string,
