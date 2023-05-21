@@ -12,7 +12,7 @@ const NavBar = (): JSX.Element => {
     <>
       <Navbar className="bg-main fixed-top w-100" expand="lg">
         <Container>
-          <Navbar.Brand as={NavLink} to="home">
+          <Navbar.Brand as={NavLink} to="/">
             <img width="75" src={logo} />
           </Navbar.Brand>
           <Navbar.Toggle

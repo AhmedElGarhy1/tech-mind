@@ -55,7 +55,6 @@ export const sendCourseImagesToFirebase = async (
       main_img_promise,
       other_src_promise,
     ]);
-    console.log(main_img, other_src);
     return { main_img, other_src };
   }
 };
