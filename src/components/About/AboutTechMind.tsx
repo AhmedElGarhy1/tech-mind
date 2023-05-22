@@ -41,7 +41,7 @@ const AboutTechMind = ({ name, list }: ParamsType) => {
           </>
         )}
       </h1>
-      <ul className="list-unstyled m-0">
+      <ul className="list-unstyled p-0">
         {list.map((ele, i) => (
           <li
             data-aos={`fade-${i % 2 === 0 ? "right" : "left"}`}
