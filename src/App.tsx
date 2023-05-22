@@ -13,11 +13,14 @@ import "aos/dist/aos.css";
 
 import routes from "./router";
 import { MainLoading } from "./components/Loading";
-import { useEffect } from "react";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
+import { useEffect, useState } from "react";
+
+import { useAppSelector } from "./store/hooks";
+import { selectIsEnglish } from "./store/slices/LangSlice";
 
 const App = () => {
+  const isEnglish = useAppSelector(selectIsEnglish);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -26,10 +29,10 @@ const App = () => {
   }, []);
 
   return (
-    <Provider store={store}>
+    <div data-en={isEnglish} className="app">
       <MainLoading />
       <RouterProvider router={routes} />
-    </Provider>
+    </div>
   );
 };
 

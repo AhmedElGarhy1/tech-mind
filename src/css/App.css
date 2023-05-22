@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Ubuntu:wght@300;400;500;700&display=swap");
 
 :root {
   --main-color: #0e1d27;
@@ -13,8 +13,11 @@
   --border-color: #d9d9d9;
 }
 
-* {
+.app[data-en="true"] {
   font-family: "Ubuntu", sans-serif;
+}
+.app[data-en="false"] {
+  font-family: "Lato", sans-serif;
 }
 body,
 html {
