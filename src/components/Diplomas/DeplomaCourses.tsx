@@ -43,6 +43,7 @@ const DeplomaCourses = ({ list, deplomaID, isDeploma }: ParamsType) => {
                   className="deploma-course-card text-center border border-2 border rounded-2 p-1 pb-2 h-100 mx-auto px-3">
                   <img
                     className="my-3"
+                    width="50px"
                     src={course.icon}
                     alt={course.name["EN"]}
                   />

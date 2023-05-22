@@ -17,22 +17,22 @@ const footer = {
     {
       icon: faTwitterSquare,
       name: "Twitter",
-      href: "/",
+      href: "https://twitter.com/TechMind_812/",
     },
     {
       icon: faLinkedin,
       name: "Linkedin",
-      href: "/",
+      href: "https://www.linkedin.com/company/tech-mind812/",
     },
     {
       icon: faFacebookSquare,
       name: "Facebook",
-      href: "/",
+      href: "https://www.facebook.com/techmind812/",
     },
     {
       icon: faInstagramSquare,
       name: "Instgram",
-      href: "/",
+      href: "https://www.instagram.com/techmind812/",
     },
   ],
   services: [
