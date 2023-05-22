@@ -34,8 +34,10 @@ const Footer = (): JSX.Element => {
                 </p>
                 <ul className="footer-social list-unstyled p-0 d-flex">
                   {footer.social_icons.map((icon, i) => (
-                    <div
+                    <Link
                       key={i}
+                      to={icon.href}
+                      target="_blank"
                       className="footer-social-icon mx-2 mx-sm-3 d-flex"
                       style={{ width: "fit-content" }}
                       role="button">
@@ -44,7 +46,7 @@ const Footer = (): JSX.Element => {
                         color="var(--yellow-color)"
                         icon={icon.icon}
                       />
-                    </div>
+                    </Link>
                   ))}
                 </ul>
               </div>
@@ -82,7 +84,12 @@ const Footer = (): JSX.Element => {
                 </h4>
                 <ul className="list-unstyled p-0">
                   {footer.contact.map((link, i) => (
-                    <li className="text-white my-3" key={i}>
+                    <li
+                      style={{
+                        width: "105%",
+                      }}
+                      className="text-white my-3"
+                      key={i}>
                       <FontAwesomeIcon
                         color="var(--yellow-color)"
                         fontSize={20}
