@@ -35,7 +35,7 @@ const AllDiplomas: FC = () => {
     setPage(1);
     try {
       controller.abort();
-      const newDiplomas = await getAllDiplomas(1, q, controller.signal);
+      const newDiplomas = await getAllDiplomas(1, q, controller.signal, true);
       setDiplomas(newDiplomas);
       setQueryLoading(false);
       setHaveLoad(true);

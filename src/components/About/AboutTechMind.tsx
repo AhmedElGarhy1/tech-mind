@@ -36,7 +36,7 @@ const AboutTechMind = ({ name, list }: ParamsType) => {
           <>
             <span className="text-black">
               {name[currentLanguage(isEnglish)]}
-            </span>{" "}
+            </span>
             Tech Mind
           </>
         )}

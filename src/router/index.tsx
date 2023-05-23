@@ -135,7 +135,7 @@ export default createBrowserRouter(
           <Route path="diplomas">
             <Route
               index
-              loader={() => getAllDiplomas()}
+              loader={() => getAllDiplomas(1, "", null, true)}
               element={
                 <ReactSuspense>
                   <AllDiplomas />

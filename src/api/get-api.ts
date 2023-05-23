@@ -7,9 +7,10 @@ import { AdminDiplomaType } from "../types/deploma";
 const getAllDiplomas = async (
   page: number = 1,
   query?: string,
-  signal?: any
+  signal?: any,
+  isAdmin?: boolean
 ) => {
-  const url = `/diplomas?limit=20&page=${page}${
+  const url = `/diplomas?limit=20&sort=${!!isAdmin}&page=${page}${
     query ? `&query=${query}` : ""
   }`;
   const response = await backendReq(url, "get", {}, signal);
@@ -80,7 +81,9 @@ const getAllCourses = async (
   query?: string,
   signal?: any
 ) => {
-  const url = `/courses?limit=20&page=${page}${query ? `&query=${query}` : ""}`;
+  const url = `/courses?limit=20&sort=true&page=${page}${
+    query ? `&query=${query}` : ""
+  }`;
   const response = await backendReq(url, "get", {}, signal);
   return response.data;
 };

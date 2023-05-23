@@ -29,7 +29,7 @@ const DeplomaCourses = ({ list, deplomaID, isDeploma }: ParamsType) => {
     <Container className="my-5">
       <h1 className="mb-4">{isEnglish ? "Course Tracks" : "مسارات الدورة"}</h1>
       <Row>
-        {list.map((course, i) => (
+        {list.reverse().map((course, i) => (
           <div
             data-aos="flip-right"
             key={course._id}
