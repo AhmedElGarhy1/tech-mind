@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import useGet from "../../hooks/useGet";
 
 import { Autoplay } from "swiper";
@@ -26,7 +26,6 @@ const breakpoints = {
 };
 
 const CourseSlider = () => {
-  const swiperRef = useRef<SwiperRef>();
   const [courses, setCourses] = useState<CourseCardType[]>([]);
   const { error, loading, makeRequest } = useGet();
   const isEnglish = useAppSelector(selectIsEnglish);
@@ -65,7 +64,6 @@ const CourseSlider = () => {
             <>
               <Swiper
                 dir="ltr"
-                ref={swiperRef}
                 spaceBetween={25}
                 modules={[Autoplay]}
                 autoplay={{ delay: 7000 }}

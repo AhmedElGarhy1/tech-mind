@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import useGet from "../../hooks/useGet";
 
 import { Autoplay } from "swiper";
-import { Navigation } from "swiper";
 import ExploreLink from "../Home/ExploreLink";
 import DiplomaCard, { DiplomaCardType } from "./DiplomaCard";
 import { useAppSelector } from "../../store/hooks";
@@ -55,8 +54,7 @@ const DiplomasSlider = () => {
           <Swiper
             dir="ltr"
             // navigation
-            modules={[Autoplay, Navigation]}
-            loop
+            modules={[Autoplay]}
             autoplay={{ delay: 5000 }}
             spaceBetween={25}
             breakpoints={breakpoints}>
