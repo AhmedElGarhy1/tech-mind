@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
-import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import useGet from "../../hooks/useGet";
 
 import { Autoplay } from "swiper";

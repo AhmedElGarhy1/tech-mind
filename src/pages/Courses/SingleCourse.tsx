@@ -18,6 +18,7 @@ import { CourseType } from "../../types/course";
 import { useAppDispatch } from "../../store/hooks";
 import { removeLoading } from "../../store/slices/LoadingSlice";
 import ReservationPopup from "../../components/Popup/ReservationPopup";
+import StudentsFeedback from "../../components/teach/StudentsFeedback";
 
 interface DataType {
   course: CourseType;
@@ -99,6 +100,8 @@ const SingleCourse = () => {
             handleShow={handleShow}
           />
           <FAQ list={course.fqa} />
+
+          {!diploma && <StudentsFeedback />}
         </>
       )}
     </>

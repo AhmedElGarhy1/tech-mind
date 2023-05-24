@@ -9,6 +9,7 @@ import GrowYourSkills from "../components/Home/GrowYourSkills";
 import WhyTechMindHome from "../components/Home/WhyTechMindHome";
 import DiplomasSlider from "../components/Diplomas/DiplomasSlider";
 import CoursesSlider from "../components/Courses/CoursesSlider";
+import StudentsFeedback from "../components/teach/StudentsFeedback";
 
 const Home = () => {
   return (
@@ -25,6 +26,7 @@ const Home = () => {
       <WhyTechMindHome list={homeData.why_choose_us} />
       <DiplomasSlider />
       <CoursesSlider />
+      <StudentsFeedback />
     </div>
   );
 };

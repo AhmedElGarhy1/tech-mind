@@ -1,5 +1,6 @@
 import { useAppSelector } from "../store/hooks";
 import { selectLoadingStatus } from "../store/slices/LoadingSlice";
+import "../css/loading.css";
 
 export const MainLoading = () => {
   const pageLoading = useAppSelector(selectLoadingStatus);
@@ -7,8 +8,15 @@ export const MainLoading = () => {
   return (
     <>
       {pageLoading && (
-        <div className="loading">
-          <h2>Loading...</h2>
+        <div className="loading-page">
+          <div className="loader">
+            <div className="loader__bar"></div>
+            <div className="loader__bar"></div>
+            <div className="loader__bar"></div>
+            <div className="loader__bar"></div>
+            <div className="loader__bar"></div>
+            <div className="loader__ball"></div>
+          </div>
         </div>
       )}
     </>
@@ -18,8 +26,15 @@ export const MainLoading = () => {
 export const Loading = () => {
   return (
     <>
-      <div className="loading">
-        <h2>Loading...</h2>
+      <div className="loading-page">
+        <div className="loader">
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__ball"></div>
+        </div>
       </div>
     </>
   );

@@ -16,6 +16,7 @@ import { useEffect, useRef, useState } from "react";
 import { removeLoading } from "../../store/slices/LoadingSlice";
 import { useAppDispatch } from "../../store/hooks";
 import ReservationPopup from "../../components/Popup/ReservationPopup";
+import StudentsFeedback from "../../components/teach/StudentsFeedback";
 
 const SingleDeploma = () => {
   const layoutRef = useRef<HTMLDivElement>();
@@ -83,6 +84,8 @@ const SingleDeploma = () => {
             handleShow={handleShow}
           />
           <FAQ list={diploma.fqa} />
+
+          <StudentsFeedback />
         </>
       )}
     </div>

@@ -1,7 +1,6 @@
 import axios, { AxiosError } from "axios";
 
 export const BASE_URL = import.meta.env.VITE_BACKEND_URL;
-console.log(BASE_URL);
 
 const backendReq = async (
   url: string,
