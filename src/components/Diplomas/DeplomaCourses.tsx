@@ -38,9 +38,7 @@ const DeplomaCourses = ({ list, deplomaID, isDeploma }: ParamsType) => {
               <Link
                 to={`/diplomas/${deplomaID}/${course._id}`}
                 key={course._id}>
-                <div
-                  style={{ borderColor: "var(--secondary-color) !important" }}
-                  className="deploma-course-card text-center border border-2 border rounded-2 p-1 pb-2 h-100 mx-auto px-3">
+                <div className="deploma-course-card text-center rounded-2 p-1 pb-2 h-100 mx-auto px-3">
                   <img
                     className="my-3"
                     width="50px"

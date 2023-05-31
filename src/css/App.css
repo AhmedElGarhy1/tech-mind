@@ -193,10 +193,12 @@ h3 {
 /* deploma courses */
 .deploma-course-card {
   max-width: 350px !important;
+  border: 2px solid var(--secondary-color);
+  transition: var(--main-transition);
 }
 .deploma-course-card:hover {
   background-color: var(--yellow-color);
-  transition: var(--main-transition);
+  border: 2px solid var(--yellow-color);
 }
 .deploma-course-card:hover * {
   color: white !important;
