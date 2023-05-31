@@ -44,7 +44,7 @@ const ListColumn = ({ list }: ParamsType) => {
 
   return (
     <>
-      <ul className="list-unstyled animate">
+      <ul className="list-unstyled p-0 animate">
         {visible.map((item, i) => (
           <li key={i} className="my-2 d-flex">
             <div className="mx-2 mt-1">&#9632;</div>

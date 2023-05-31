@@ -41,6 +41,7 @@ const tempList: FeedbackType[] = [
 ];
 
 const StudentsFeedback: FC = () => {
+  return <></>;
   const isEnglish = useAppSelector(selectIsEnglish);
   const [feedbacks, setFeedbacks] = useState<FeedbackType[]>([]);
   const { error, loading, makeRequest } = useGet();
