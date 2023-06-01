@@ -37,7 +37,10 @@ const Messages = () => {
   };
 
   useLayoutEffect(() => {
-    if (page === 1) return setMessages(data || []);
+    if (page === 1) {
+      if (data.length < 20) setHaveLoad(false);
+      return setMessages(data || []);
+    }
 
     const getMoreCourses = async (pageNum: number) => {
       try {
@@ -47,6 +50,8 @@ const Messages = () => {
         const tempMessages = temp.data;
         if (!(tempMessages && tempMessages.length > 0))
           return setHaveLoad(false);
+
+        if (tempMessages.length < 20) setHaveLoad(false);
         setMessages((p) => [...p, ...tempMessages]);
       } catch (err) {
         console.log("ERROR");

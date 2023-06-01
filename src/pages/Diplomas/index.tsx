@@ -18,7 +18,10 @@ const Diplomas = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [diplomas, setDiplomas] = useState<DiplomaCardType[]>([]);
   useLayoutEffect(() => {
-    if (page === 1) return setDiplomas(basicDiplomas || []);
+    if (page === 1) {
+      if (basicDiplomas.length < 20) setHaveLoad(false);
+      return setDiplomas(basicDiplomas || []);
+    }
 
     const getMoreCourses = async (pageNum: number) => {
       try {
@@ -27,6 +30,8 @@ const Diplomas = () => {
         setLoading(false);
         if (!(tempDiplomas && tempDiplomas.length > 0))
           return setHaveLoad(false);
+        if (tempDiplomas.length < 20) setHaveLoad(false);
+
         setDiplomas((p) => [...p, ...tempDiplomas]);
       } catch (err) {
         console.log("ERROR");

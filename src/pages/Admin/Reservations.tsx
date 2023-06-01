@@ -16,7 +16,10 @@ const Reservations = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useLayoutEffect(() => {
-    if (page === 1) return setRegistrations(data || []);
+    if (page === 1) {
+      if (data.length < 20) setHaveLoad(false);
+      return setRegistrations(data || []);
+    }
 
     const getMoreCourses = async (pageNum: number) => {
       try {
@@ -26,6 +29,7 @@ const Reservations = () => {
         const tempMessages = temp.data;
         if (!(tempMessages && tempMessages.length > 0))
           return setHaveLoad(false);
+        if (tempMessages.length < 20) setHaveLoad(false);
         setRegistrations((p) => [...p, ...tempMessages]);
       } catch (err) {
         console.log("ERROR");

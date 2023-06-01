@@ -175,7 +175,7 @@ const makeReservation = async (data: any) => {
   return response;
 };
 const getAllReservations = async (pageNum: number = 1) => {
-  const url = `/reservations`;
+  const url = `/reservations?limit=20&page=${pageNum}`;
   const response = await backendReq(url, "get");
   return response;
 };

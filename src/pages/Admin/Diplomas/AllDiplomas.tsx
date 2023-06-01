@@ -68,7 +68,10 @@ const AllDiplomas: FC = () => {
   };
 
   useLayoutEffect(() => {
-    if (page === 1) return setDiplomas(basicDiplomas || []);
+    if (page === 1) {
+      if (basicDiplomas.length < 20) setHaveLoad(false);
+      return setDiplomas(basicDiplomas || []);
+    }
 
     const getMoreCourses = async (pageNum: number) => {
       try {
@@ -76,6 +79,7 @@ const AllDiplomas: FC = () => {
         const tempCourses = await getAllDiplomas(pageNum, query);
         setLoading(false);
         if (!(tempCourses && tempCourses.length > 0)) return setHaveLoad(false);
+        if (tempCourses.length < 20) setHaveLoad(false);
         setDiplomas((p) => [...p, ...tempCourses]);
       } catch (err) {
         console.log("ERROR");

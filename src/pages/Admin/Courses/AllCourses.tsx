@@ -67,7 +67,10 @@ const AllCourses: FC = () => {
   };
 
   useLayoutEffect(() => {
-    if (page === 1) return setCourses(basicCourses || []);
+    if (page === 1) {
+      if (basicCourses.length < 20) setHaveLoad(false);
+      return setCourses(basicCourses || []);
+    }
     const getMoreCourses = async (pageNum: number) => {
       try {
         setLoading(true);
@@ -78,6 +81,7 @@ const AllCourses: FC = () => {
         );
         setLoading(false);
         if (!(tempCourses && tempCourses.length > 0)) return setHaveLoad(false);
+        if (tempCourses.length < 20) setHaveLoad(false);
         setCourses((p) => [...p, ...tempCourses]);
       } catch (err) {
         console.log("ERROR");
